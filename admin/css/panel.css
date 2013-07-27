@@ -1,0 +1,10 @@
+input#wpsubtitle{
+  position: relative;
+  border: 1px solid #DFDFDF;
+  font-size:1.5em;
+  outline-color:-moz-use-text-color;
+  outline-style:none;
+  outline-width:medium;
+  padding:3px 4px;
+  width:100%;
+}
