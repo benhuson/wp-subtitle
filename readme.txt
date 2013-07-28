@@ -62,7 +62,5 @@ Yes, all subtitles are stored as custom fields.  Deactivating this plugin will n
 
 == Screenshots ==
 
-1. Post edit
-2. Page edit
-3. List of posts showing subtitles
-4. A single page showing a subtitle
+1. Edit post screen
+2. A single page showing a subtitle
