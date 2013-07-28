@@ -1,66 +1,85 @@
 === WP Subtitle ===
-Contributors: husani
+Contributors: husani, husobj
 Tags: subtitle, content, title, subheading, subhead, alternate title
-Donate link: http://www.husani.com/ventures/wordpress-plugins/wp-subtitle/#donate
-Requires at least: 2.7
-Tested up to: 2.8
-Stable tag: 1.0
+Requires at least: 3.0
+Tested up to: 2.5.2
+Stable tag: 2.0
+License: GPL2
 
-Add subtitles (subheadings) to your pages and posts.
+Add subtitles (subheadings) to your pages, posts or custom post types.
 
 == Description ==
 
 The WP Subtitle plugin allows your pages and posts to contain a subtitle.  Also called a sub-heading, this this short line of text is meant to appear beneath a post's (or page's) title, but can be inserted in your template wherever you choose.
 
-&lt;?the_subtitle()?&gt; is used for inside The Loop -- if you wish to get a page/post's subtitle outside The Loop, use &lt;?get_the_subtitle($id)?&gt;, where $id is the page or post's ID ($post->ID).
+`<?php the_subtitle(); ?>` is used for inside The Loop -- if you wish to get a page/post's subtitle outside The Loop, use `<?php get_the_subtitle(); ?>`, where $id is the page or post's ID ($post->ID).
 
-Just like WP's built-in &lt;?the_title()?&gt; method, &lt;?the_subtitle()?&gt; tag accepts three parameters:
+= Parameters =
 
-$before
-(string) Text to place before the subtitle, defaults to "".
+Just like WP's built-in `<?php the_title(); ?>` method, `<?php the_subtitle(); ?>` tag accepts three parameters:
 
-$after
-(string) Text to place after the subtitle, defaults to "".
+**$before**  
+*(string)* Text to place before the subtitle. Defaults to "".
 
-$display
-(boolean) If true, display the subtitle in XHTML; if false, return the subtitle for use in PHP.  Defaults to true.
+**$after**  
+*(string)* Text to place after the subtitle. Defaults to "".
 
-Things are slightly different in &lt;?get_the_subtitle()?&gt;:
+**$echo**  
+*(boolean)* If true, display the subtitle in HTML. If false, return the subtitle for use in PHP. Defaults to true.
 
-$id
-(integer) Post (or page) ID.
+Things are slightly different in `<?php get_the_subtitle(); ?>`:
 
-$before
-(string) Text to place before the subtitle, defaults to "".
+**$id**  
+*(integer)* Post (or page) ID.
 
-$after
-(string) Text to place after the subtitle, defaults to "".
+**$before**  
+*(string)* Text to place before the subtitle. Defaults to "".
 
-$display
-(boolean) If true, display the subtitle in XHTML; if false, return the subtitle for use in PHP.  Defaults to true.
+**$after**  
+*(string)* Text to place after the subtitle. Defaults to "".
 
-Changelog:
+**$echo**  
+*(boolean)* If true, display the subtitle in HTML. If false, return the subtitle for use in PHP. Defaults to true.
 
-* 1.0:
-    - First version
-
+For full details on the template tags and their arguments, [view the documentation here](https://github.com/benhuson/wp-subtitle/wiki).
 
 == Installation ==
 
-1.  Upload the WP Subtitle plugin to your blog (YOURBLOG/wp-content/plugins) and activate it using the Wordpress plugin admin screen.
-2.  Edit your page and/or post template and add &lt;?the_subtitle()?&gt; or &lt;?get_the_subtitle()?&gt; where you'd like the subtitle to appear.  Pass arguments per above instructions.
+1. Upload the WP Subtitle plugin to your WordPress site in the `/wp-content/plugins` folder or install via the WordPress admin.
+2. Activate it from the Wordpress plugin admin screen.
+3. Edit your page and/or post template and use the `<?php the_subtitle(); ?>` template tag where you'd like the subtitle to appear.
+
+For full details on the template tags and their arguments, [view the documentation here](https://github.com/benhuson/wp-subtitle/wiki).
 
 == Frequently Asked Questions ==
 
-= How does WP Subtitle work? =
+= What does WP Subtitle do? =
 
-The plugin uses a WP's actions/hooks to add a custom field to posts and pages.  Simple.
+The plugin adds a Subtitle field when editing posts or pages. The subtitle is stores as a custom field (post meta data) and can be output using template tags.
 
-= Does WP Subtitle use the Wordpress database? =
+= Where does WP Subtitle store the subtitles? =
 
-Yes, all subtitles are stored as custom fields.  Deactivating this plugin will not remove those firleds.
+All subtitles are stored as post meta data. Deactivating this plugin will not remove those fields.
+
+= How do I add the subtitle to my pages? =
+
+Refer to [the documentation](https://github.com/benhuson/wp-subtitle/wiki).
+
+= How can I contribute code? =
+
+The plugin is [hosted on GitHub](https://github.com/benhuson/wp-subtitle) and pull requests are welcome.
 
 == Screenshots ==
 
 1. Edit post screen
 2. A single page showing a subtitle
+
+== Changelog ==
+
+= 1.0 =
+* First version.
+
+== Upgrade Notice ==
+
+= 1.0 =
+* Initial release.
