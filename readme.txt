@@ -2,7 +2,7 @@
 Contributors: husani, husobj
 Tags: subtitle, content, title, subheading, subhead, alternate title
 Requires at least: 3.0
-Tested up to: 2.5.2
+Tested up to: 3.5.2
 Stable tag: 2.0
 License: GPL2
 
@@ -12,7 +12,7 @@ Add subtitles (subheadings) to your pages, posts or custom post types.
 
 The WP Subtitle plugin allows your pages and posts to contain a subtitle.  Also called a sub-heading, this this short line of text is meant to appear beneath a post's (or page's) title, but can be inserted in your template wherever you choose.
 
-`<?php the_subtitle(); ?>` is used for inside The Loop -- if you wish to get a page/post's subtitle outside The Loop, use `<?php get_the_subtitle(); ?>`, where $id is the page or post's ID ($post->ID).
+`<?php the_subtitle(); ?>` is used for inside The Loop. If you wish to get a page/post's subtitle outside The Loop, use `<?php get_the_subtitle( $post ); ?>`, where $post is a post object or ID ($post->ID).
 
 = Parameters =
 
@@ -29,8 +29,8 @@ Just like WP's built-in `<?php the_title(); ?>` method, `<?php the_subtitle(); ?
 
 Things are slightly different in `<?php get_the_subtitle(); ?>`:
 
-**$id**  
-*(integer)* Post (or page) ID.
+**$post**  
+*(int|object)* Post, page or custom post type object or ID.
 
 **$before**  
 *(string)* Text to place before the subtitle. Defaults to "".
@@ -76,10 +76,20 @@ The plugin is [hosted on GitHub](https://github.com/benhuson/wp-subtitle) and pu
 
 == Changelog ==
 
+= 2.0 =
+* Added custom post type support - use add_post_type_support( '{post_type}', 'wps_subtitle' ).
+* Fixed bug in more recent versions of WordPress.
+* Added 'wps_meta_box_title' filter.
+* Added 'wps_subtitle' filter.
+* Added 'wps_subtitle_field_description' filter.
+
 = 1.0 =
 * First version.
 
 == Upgrade Notice ==
+
+= 2.0 =
+* Added custom post type support and support for more recent versions of WordPress.
 
 = 1.0 =
 * Initial release.
