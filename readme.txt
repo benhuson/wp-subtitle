@@ -65,6 +65,14 @@ All subtitles are stored as post meta data. Deactivating this plugin will not re
 
 Refer to [the documentation](https://github.com/benhuson/wp-subtitle/wiki).
 
+= Where can I get help? =
+
+Please post support requests and questions in the [WordPress.org Support](http://wordpress.org/support/plugin/wp-subtitle) forum.
+
+= How should I report a bug? =
+
+Please submit bugs/errors directly to the [GitHub Issues](https://github.com/benhuson/wp-subtitle/issues) list.
+
 = How can I contribute code? =
 
 The plugin is [hosted on GitHub](https://github.com/benhuson/wp-subtitle) and pull requests are welcome.
