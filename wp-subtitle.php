@@ -115,25 +115,41 @@ class WPSubtitle {
 			return;
 
 		// Check edit capability
+		if ( ! WPSubtitle::_verify_post_edit_capability( $post_id ) )
+			return;
+	
+		// Save data
+		if ( isset( $_POST['wps_subtitle'] ) )
+			update_post_meta( $post_id, 'wps_subtitle', $_POST['wps_subtitle'] );
+	}
+
+	/**
+	 * Verify Post Edit Capability
+	 *
+	 * @since  2.0.1
+	 * @internal
+	 *
+	 * @param   int  $post_id  Post ID.
+	 * @return  bool
+	 */
+	function _verify_post_edit_capability( $post_id ) {
 		$abort = true;
 		$post_types = WPSubtitle::get_supported_post_types();
 		$post_types_obj = (array) get_post_types( array(
 			'_builtin' => false
 		), 'objects' );
+
+		// Check supported post type
 		if ( isset( $_POST['post_type'] ) && in_array( $_POST['post_type'], $post_types ) ) {
 			if ( 'page' == $_POST['post_type'] && current_user_can( 'edit_page', $post_id ) )
-				$abort = false;
+				return true;
 			elseif ( 'post' == $_POST['post_type'] && current_user_can( 'edit_post', $post_id ) )
-				$abort = false;
+				return true;
 			elseif ( current_user_can( $post_types_obj[$_POST['post_type']]->cap->edit_post, $post_id ) )
-				$abort = false;
+				return true;
 		}
-		if ( $abort )
-			return $post_id;
-	
-		// Save data
-		if ( isset( $_POST['wps_subtitle'] ) )
-			update_post_meta( $post_id, 'wps_subtitle', $_POST['wps_subtitle'] );
+
+		return false;
 	}
 
 	/**
