@@ -143,7 +143,7 @@ class WPSubtitle {
 	 * @internal
 	 *
 	 * @param   string  $nonce   Posted nonce name.
-	 * @param   string  $action  Nonce actopm.
+	 * @param   string  $action  Nonce action.
 	 * @return  bool
 	 */
 	function _verify_posted_nonce( $nonce, $action ) {
