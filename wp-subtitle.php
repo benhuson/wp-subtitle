@@ -111,8 +111,8 @@ class WPSubtitle {
 			return;
 
 		// Verify nonce
-		if ( isset( $_POST['wps_noncename'] ) && ! wp_verify_nonce( $_POST['wps_noncename'], 'wp-subtitle' ) )
-			return $post_id;
+		if ( ! WPSubtitle::_verify_posted_nonce( 'wps_noncename', 'wp-subtitle' ) )
+			return;
 
 		// Check edit capability
 		$abort = true;
@@ -133,6 +133,22 @@ class WPSubtitle {
 	
 		// Save data
 		update_post_meta( $post_id, 'wps_subtitle', $_POST['wps_subtitle'] );
+	}
+
+	/**
+	 * Verify Posted Nonce
+	 *
+	 * @since  2.0.1
+	 * @internal
+	 *
+	 * @param   string  $nonce   Posted nonce name.
+	 * @param   string  $action  Nonce actopm.
+	 * @return  bool
+	 */
+	function _verify_posted_nonce( $nonce, $action ) {
+		if ( isset( $_POST[$nonce] ) && wp_verify_nonce( $_POST[$nonce], $action ) )
+			return true;
+		return false;
 	}
 
 	/**
