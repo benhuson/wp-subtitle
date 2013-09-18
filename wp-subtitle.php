@@ -1,4 +1,4 @@
-<?
+<?php
 
 /*
 Plugin Name: WP Subtitle
