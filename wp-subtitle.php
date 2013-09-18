@@ -132,7 +132,8 @@ class WPSubtitle {
 			return $post_id;
 	
 		// Save data
-		update_post_meta( $post_id, 'wps_subtitle', $_POST['wps_subtitle'] );
+		if ( isset( $_POST['wps_subtitle'] ) )
+			update_post_meta( $post_id, 'wps_subtitle', $_POST['wps_subtitle'] );
 	}
 
 	/**
