@@ -2,8 +2,8 @@
 Contributors: husani, husobj
 Tags: subtitle, content, title, subheading, subhead, alternate title
 Requires at least: 3.0
-Tested up to: 3.5.2
-Stable tag: 2.0
+Tested up to: 3.6.1
+Stable tag: 2.0.1
 License: GPL2
 
 Add subtitles (subheadings) to your pages, posts or custom post types.
@@ -83,6 +83,10 @@ The plugin is [hosted on GitHub](https://github.com/benhuson/wp-subtitle) and pu
 2. A single page showing a subtitle
 
 == Changelog ==
+
+= 2.0.1 =
+* Use `<?php` instead of just `<?`.
+* Break out some of the code into separate functions. 
 
 = 2.0 =
 * Added custom post type support - use add_post_type_support( '{post_type}', 'wps_subtitle' ).
