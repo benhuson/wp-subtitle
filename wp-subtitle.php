@@ -28,6 +28,14 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
+// Plugin directory and url paths.
+define( 'WPSUBTITLE_SUBDIR', '/' . str_replace( basename( __FILE__ ), '', plugin_basename( __FILE__ ) ) );
+define( 'WPSUBTITLE_URL', plugins_url( WPSUBTITLE_SUBDIR ) );
+define( 'WPSUBTITLE_DIR', plugin_dir_path( __FILE__ ) );
+
+// Includes
+include_once( WPSUBTITLE_DIR . 'includes/deprecated.php' );
+
 add_action( 'plugins_loaded', array( 'WPSubtitle', '_init' ) );
 
 class WPSubtitle {
@@ -219,63 +227,6 @@ class WPSubtitle {
 		return get_post_meta( $post->ID, 'wps_subtitle', true );
 	}
 
-}
-
-/**
- * Query DB and echo page/post subtitle, if any
- *
- * @uses  WPSubtitle::_get_post_meta()
- *
- * @since  1.0
- * @deprecated  2.0  Use get_the_subtitle() instead.
- */
-function wps_get_the_subtitle() {
-	echo WPSubtitle::_get_post_meta();
-}
-
-/**
- * Display XHTML for subtitle panel
- *
- * @since  1.0
- * @deprecated  2.0  Legacy function.
- */
-function wps_addPanelXHTML() {
-}
-
-/**
- * Include CSS for subtitle panel
- *
- * @since  1.0
- * @deprecated  2.0  Legacy function.
- */
-function wps_addPanelCSS() {
-}
-
-/**
- * Include XHTML for form inside panel
- *
- * @since  1.0
- * @deprecated  2.0  Legacy function.
- */
-function wps_showSubtitlePanel() {
-}
-
-/**
- * For pre-2.5, include shell for panel
- *
- * @since  1.0
- * @deprecated  2.0  Legacy function.
- */
-function wps_showSubtitlePanelOld() {
-}
-
-/**
- * Store subtitle content in db as custom field
- *
- * @since  1.0
- * @deprecated  2.0  Legacy function.
- */
-function wps_saveSubtitle( $post_id ) {
 }
 
 /**
