@@ -5,6 +5,10 @@
  * @subpackage  Admin
  */
 
+// Language
+load_plugin_textdomain( 'wp-subtitle', false, dirname( WPSUBTITLE_BASENAME ) . '/languages' );
+
+// Includes
 add_action( 'add_meta_boxes', array( 'WPSubtitle_Admin', '_add_meta_boxes' ) );
 add_action( 'save_post', array( 'WPSubtitle_Admin', '_save_post' ) );
 
@@ -23,7 +27,7 @@ class WPSubtitle_Admin {
 	static function _add_meta_boxes() {
 		$post_types = WPSubtitle::get_supported_post_types();
 		foreach ( $post_types as $post_type ) {
-			$meta_box_title = apply_filters( 'wps_meta_box_title', 'Subtitle', $post_type );
+			$meta_box_title = apply_filters( 'wps_meta_box_title', __( 'Subtitle', 'wp-subtitle' ), $post_type );
 			add_meta_box( 'wps_subtitle_panel', __( $meta_box_title ), array( 'WPSubtitle_Admin', '_add_subtitle_meta_box' ), $post_type, 'normal', 'high' );
 		}
 	}
