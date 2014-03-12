@@ -14,7 +14,8 @@
  * @deprecated  2.0  Use get_the_subtitle() instead.
  */
 function wps_get_the_subtitle() {
-	echo WPSubtitle::_get_post_meta();
+	_deprecated_function( 'wps_get_the_subtitle()', '2.0', 'the_subtitle()' );
+	the_subtitle();
 }
 
 /**
@@ -24,6 +25,7 @@ function wps_get_the_subtitle() {
  * @deprecated  2.0  Legacy function.
  */
 function wps_addPanelXHTML() {
+	_deprecated_function( 'wps_addPanelXHTML()', '2.0' );
 }
 
 /**
@@ -33,6 +35,7 @@ function wps_addPanelXHTML() {
  * @deprecated  2.0  Legacy function.
  */
 function wps_addPanelCSS() {
+	_deprecated_function( 'wps_addPanelCSS()', '2.0' );
 }
 
 /**
@@ -42,6 +45,7 @@ function wps_addPanelCSS() {
  * @deprecated  2.0  Legacy function.
  */
 function wps_showSubtitlePanel() {
+	_deprecated_function( 'wps_addPanelCSS()', '2.0' );
 }
 
 /**
@@ -51,6 +55,7 @@ function wps_showSubtitlePanel() {
  * @deprecated  2.0  Legacy function.
  */
 function wps_showSubtitlePanelOld() {
+	_deprecated_function( 'wps_showSubtitlePanelOld()', '2.0' );
 }
 
 /**
@@ -60,4 +65,5 @@ function wps_showSubtitlePanelOld() {
  * @deprecated  2.0  Legacy function.
  */
 function wps_saveSubtitle( $post_id ) {
+	_deprecated_function( 'wps_saveSubtitle()', '2.0' );
 }
