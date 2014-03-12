@@ -39,8 +39,8 @@ class WPSubtitle_Admin {
 	 */
 	static function _add_subtitle_meta_box() {
 		global $post;
-		echo '<input type="hidden" name="wps_noncename" id="wps_noncename" value="' . wp_create_nonce( 'wp-subtitle' ) . '" />
-			<input type="text" id="wpsubtitle" name="wps_subtitle" value="' . WPSubtitle::_get_post_meta( $post->ID ) . '" style="width:99%;" />';
+		echo '<input type="hidden" name="wps_noncename" id="wps_noncename" value="' . wp_create_nonce( 'wp-subtitle' ) . '" />';
+		echo '<input type="text" id="wpsubtitle" name="wps_subtitle" value="' . WPSubtitle::_get_post_meta( $post->ID ) . '" style="width:99%;" />';
 		echo apply_filters( 'wps_subtitle_field_description', '', $post );
 	}
 
@@ -58,20 +58,24 @@ class WPSubtitle_Admin {
 
 		// Verify if this is an auto save routine. 
 		// If it is our form has not been submitted, so we dont want to do anything
-		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) 
+		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
 			return;
+		}
 
 		// Verify nonce
-		if ( ! WPSubtitle_Admin::_verify_posted_nonce( 'wps_noncename', 'wp-subtitle' ) )
+		if ( ! WPSubtitle_Admin::_verify_posted_nonce( 'wps_noncename', 'wp-subtitle' ) ) {
 			return;
+		}
 
 		// Check edit capability
-		if ( ! WPSubtitle_Admin::_verify_post_edit_capability( $post_id ) )
+		if ( ! WPSubtitle_Admin::_verify_post_edit_capability( $post_id ) ) {
 			return;
+		}
 	
 		// Save data
-		if ( isset( $_POST['wps_subtitle'] ) )
+		if ( isset( $_POST['wps_subtitle'] ) ) {
 			update_post_meta( $post_id, 'wps_subtitle', $_POST['wps_subtitle'] );
+		}
 	}
 
 	/**
@@ -92,12 +96,13 @@ class WPSubtitle_Admin {
 
 		// Check supported post type
 		if ( isset( $_POST['post_type'] ) && in_array( $_POST['post_type'], $post_types ) ) {
-			if ( 'page' == $_POST['post_type'] && current_user_can( 'edit_page', $post_id ) )
+			if ( 'page' == $_POST['post_type'] && current_user_can( 'edit_page', $post_id ) ) {
 				return true;
-			elseif ( 'post' == $_POST['post_type'] && current_user_can( 'edit_post', $post_id ) )
+			} elseif ( 'post' == $_POST['post_type'] && current_user_can( 'edit_post', $post_id ) ) {
 				return true;
-			elseif ( current_user_can( $post_types_obj[$_POST['post_type']]->cap->edit_post, $post_id ) )
+			} elseif ( current_user_can( $post_types_obj[ $_POST['post_type'] ]->cap->edit_post, $post_id ) ) {
 				return true;
+			}
 		}
 
 		return false;
@@ -114,8 +119,9 @@ class WPSubtitle_Admin {
 	 * @return  bool
 	 */
 	static function _verify_posted_nonce( $nonce, $action ) {
-		if ( isset( $_POST[$nonce] ) && wp_verify_nonce( $_POST[$nonce], $action ) )
+		if ( isset( $_POST[ $nonce ] ) && wp_verify_nonce( $_POST[ $nonce ], $action ) ) {
 			return true;
+		}
 		return false;
 	}
 

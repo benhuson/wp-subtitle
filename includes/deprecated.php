@@ -1,8 +1,8 @@
 <?php
 
 /**
- * @package    WP Subtitle
- * @subpackage Deprecated Functions
+ * @package     WP Subtitle
+ * @subpackage  Deprecated Functions
  */
 
 /**

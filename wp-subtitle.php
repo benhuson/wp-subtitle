@@ -74,8 +74,9 @@ class WPSubtitle {
 		$post_types = array_merge( $post_types, array( 'post', 'page' ) );
 		$supported = array();
 		foreach ( $post_types as $post_type ) {
-			if ( post_type_supports( $post_type, 'wps_subtitle' ) )
+			if ( post_type_supports( $post_type, 'wps_subtitle' ) ) {
 				$supported[] = $post_type;
+			}
 		}
 		return $supported;
 	}
@@ -149,7 +150,8 @@ function get_the_subtitle( $post = 0, $before = '', $after = '', $echo = true ) 
 		$subtitle = $before . $subtitle . $after;
 	}
 
-	if ( ! $echo )
+	if ( ! $echo ) {
 		return $subtitle;
+	}
 	echo $subtitle;
 }
