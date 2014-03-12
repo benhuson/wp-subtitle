@@ -29,7 +29,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
 // Plugin directory and url paths.
-define( 'WPSUBTITLE_SUBDIR', '/' . str_replace( basename( __FILE__ ), '', plugin_basename( __FILE__ ) ) );
+define( 'WPSUBTITLE_BASENAME', plugin_basename( __FILE__ ) );
+define( 'WPSUBTITLE_SUBDIR', '/' . str_replace( basename( __FILE__ ), '', WPSUBTITLE_BASENAME ) );
 define( 'WPSUBTITLE_URL', plugins_url( WPSUBTITLE_SUBDIR ) );
 define( 'WPSUBTITLE_DIR', plugin_dir_path( __FILE__ ) );
 
