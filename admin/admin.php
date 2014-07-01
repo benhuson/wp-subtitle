@@ -9,8 +9,11 @@
 load_plugin_textdomain( 'wp-subtitle', false, dirname( WPSUBTITLE_BASENAME ) . '/languages' );
 
 // Includes
-add_action( 'edit_form_after_title', array( 'WPSubtitle_Admin', '_add_subtitle_field' ) );
-//add_action( 'add_meta_boxes', array( 'WPSubtitle_Admin', '_add_meta_boxes' ) );
+if ( WPSubtitle_Admin::edit_form_after_title_supported() ) {
+	add_action( 'edit_form_after_title', array( 'WPSubtitle_Admin', '_add_subtitle_field' ) );
+} else {
+	add_action( 'add_meta_boxes', array( 'WPSubtitle_Admin', '_add_meta_boxes' ) );
+}
 add_action( 'save_post', array( 'WPSubtitle_Admin', '_save_post' ) );
 
 class WPSubtitle_Admin {
@@ -52,7 +55,7 @@ class WPSubtitle_Admin {
 	/**
 	 * Add Subtitle Field
 	 *
-	 * @since  2.0
+	 * @since  2.2
 	 * @internal
 	 *
 	 * @uses  WPSubtitle::_get_post_meta()
@@ -148,6 +151,22 @@ class WPSubtitle_Admin {
 			return true;
 		}
 		return false;
+	}
+
+	/**
+	 * edit_form_after_title Supported
+	 *
+	 * @since  2.2
+	 *
+	 * @return  bool
+	 */
+	static function edit_form_after_title_supported() {
+		global $wp_version;
+
+		if ( version_compare( $wp_version, '3.5', '<' ) ) {
+			return false;
+		}
+		return true;
 	}
 
 }
