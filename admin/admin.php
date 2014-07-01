@@ -69,6 +69,17 @@ class WPSubtitle_Admin {
 	}
 
 	/**
+	 * Get Meta Box Title
+	 *
+	 * @since  2.2
+	 *
+	 * @uses  apply_filters( 'wps_meta_box_title' )
+	 */
+	static function get_meta_box_title( $post_type ) {
+		return apply_filters( 'wps_meta_box_title', __( 'Subtitle', 'wp-subtitle' ), $post_type );
+	}
+
+	/**
 	 * Add Meta Boxes
 	 *
 	 * @since  2.0
@@ -81,8 +92,7 @@ class WPSubtitle_Admin {
 	static function _add_meta_boxes() {
 		$post_types = WPSubtitle::get_supported_post_types();
 		foreach ( $post_types as $post_type ) {
-			$meta_box_title = apply_filters( 'wps_meta_box_title', __( 'Subtitle', 'wp-subtitle' ), $post_type );
-			add_meta_box( 'wps_subtitle_panel', __( $meta_box_title ), array( 'WPSubtitle_Admin', '_add_subtitle_meta_box' ), $post_type, 'normal', 'high' );
+			add_meta_box( 'wps_subtitle_panel',  WPSubtitle_Admin::get_meta_box_title( $post_type ), array( 'WPSubtitle_Admin', '_add_subtitle_meta_box' ), $post_type, 'normal', 'high' );
 		}
 	}
 
