@@ -10,6 +10,7 @@ load_plugin_textdomain( 'wp-subtitle', false, dirname( WPSUBTITLE_BASENAME ) . '
 
 // Includes
 if ( WPSubtitle_Admin::edit_form_after_title_supported() ) {
+	add_action( 'admin_head', array( 'WPSubtitle_Admin', '_add_admin_styles' ) );
 	add_action( 'edit_form_after_title', array( 'WPSubtitle_Admin', '_add_subtitle_field' ) );
 } else {
 	add_action( 'add_meta_boxes', array( 'WPSubtitle_Admin', '_add_meta_boxes' ) );
@@ -17,6 +18,44 @@ if ( WPSubtitle_Admin::edit_form_after_title_supported() ) {
 add_action( 'save_post', array( 'WPSubtitle_Admin', '_save_post' ) );
 
 class WPSubtitle_Admin {
+
+	/**
+	 * Add Admin Styles
+	 *
+	 * @since  2.2
+	 * @internal
+	 */
+	static function _add_admin_styles() {
+		?>
+		<style>
+		#subtitlediv.top {
+			margin-bottom: 10px;
+			position: relative;
+		}
+		#subtitlediv.top #subtitlewrap {
+			border: 0;
+			padding: 0;
+		}
+		#subtitlediv.top #wpsubtitle {
+			background-color: #fff;
+			font-size: 1.4em;
+			line-height: 1em;
+			margin: 0;
+			outline: 0;
+			padding: 3px 8px;
+			width: 100%;
+			height: 1.7em;
+		}
+		#subtitlediv.top #wpsubtitle::-webkit-input-placeholder { padding-top: 3px; }
+		#subtitlediv.top #wpsubtitle:-moz-placeholder { padding-top: 3px; }
+		#subtitlediv.top #wpsubtitle::-moz-placeholder { padding-top: 3px; }
+		#subtitlediv.top #wpsubtitle:-ms-input-placeholder { padding-top: 3px; }
+		#subtitlediv.top #subtitledescription {
+			margin: 5px 10px 0 10px;
+		}
+		</style>
+		<?php
+	}
 
 	/**
 	 * Add Meta Boxes
@@ -63,13 +102,18 @@ class WPSubtitle_Admin {
 	 */
 	static function _add_subtitle_field() {
 		global $post;
-		echo '<div id="subtitlediv" style="position: relative;margin-bottom: 10px">';
-			echo '<div id="subtitlewrap" style="border: 0;padding: 0;">';
-				echo '<input type="text" id="wpsubtitle" name="wps_subtitle" value="' . WPSubtitle::_get_post_meta( $post->ID ) . '" placeholder="'.apply_filters( 'wps_enter_subtitle_here', __( 'Enter subtitle here...', 'wp-subtitle' ) ).'" autocomplete="off" style="padding: 3px 8px;font-size: 1.4em;line-height: 100%;width:100%;height: 1.7em;outline: 0;margin: 0;background-color: #fff;" />';
-			echo '</div>';
-		echo '</div>';
 		echo '<input type="hidden" name="wps_noncename" id="wps_noncename" value="' . wp_create_nonce( 'wp-subtitle' ) . '" />';
-		echo apply_filters( 'wps_subtitle_field_description', '', $post );
+		echo '<div id="subtitlediv" class="top">';
+			echo '<div id="subtitlewrap">';
+				echo '<input type="text" id="wpsubtitle" name="wps_subtitle" value="' . WPSubtitle::_get_post_meta( $post->ID ) . '" autocomplete="off" placeholder="' . esc_attr( apply_filters( 'wps_subtitle_field_placeholder', __( 'Enter subtitle here', 'wp-subtitle' ) ) ) . '" />';
+			echo '</div>';
+
+		// Description
+		$description = apply_filters( 'wps_subtitle_field_description', '', $post );
+		if ( ! empty( $description ) ) {
+			echo '<div id="subtitledescription">' . $description . '</div>';
+		}
+		echo '</div>';
 	}
 
 	/**
