@@ -5,7 +5,7 @@
  * @subpackage  Pointers
  */
 
-add_action( 'plugins_loaded', array( 'WPSubtitle_Pointers', '_setup' ) );
+add_action( 'admin_init', array( 'WPSubtitle_Pointers', '_setup' ) );
 
 class WPSubtitle_Pointers {
 
@@ -17,7 +17,12 @@ class WPSubtitle_Pointers {
 	 */
 	static function _setup() {
 		add_action( 'admin_enqueue_scripts', array( 'WPSubtitle_Pointers', '_pointer_load' ) );
-		add_filter( 'wps_subtitle_admin_pointers-post', array( 'WPSubtitle_Pointers', '_post_pointers' ) );
+
+		// Post Pointers
+		$post_types = WPSubtitle::get_supported_post_types();
+		foreach ( $post_types as $post_type ) {
+			add_filter( 'wps_subtitle_admin_pointers-' . $post_type, array( 'WPSubtitle_Pointers', '_post_type_pointers' ) );
+		}
 	}
 
 	/**
@@ -82,7 +87,8 @@ class WPSubtitle_Pointers {
 	}
 
 	/**
-	 * Post Pointers
+	 * Post Type Pointers.
+	 * The add pointers for multiple post types.
 	 *
 	 * @since  2.2
 	 * @internal
@@ -90,7 +96,9 @@ class WPSubtitle_Pointers {
 	 * @param   array  $pointers  Pointers.
 	 * @return  array             Pointers.
 	 */
-	static function _post_pointers( $pointers ) {
+	static function _post_type_pointers( $pointers ) {
+
+		// Subtitle field moved to below the post title (v.2.2)
 		$pointers['wps_subtitle_field_to_top'] = array(
 			'target'  => '#subtitlewrap',
 			'options' => array(
@@ -104,6 +112,7 @@ class WPSubtitle_Pointers {
 				)
 			)
 		);
+
 		return $pointers;
 	}
 
