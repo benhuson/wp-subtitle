@@ -2,8 +2,8 @@
 Contributors: husani, husobj
 Tags: subtitle, content, title, subheading, subhead, alternate title
 Requires at least: 3.0
-Tested up to: 3.9
-Stable tag: 2.1
+Tested up to: 3.9.1
+Stable tag: 2.2
 License: GPL2
 
 Add subtitles (subheadings) to your pages, posts or custom post types.
@@ -79,10 +79,15 @@ The plugin is [hosted on GitHub](https://github.com/benhuson/wp-subtitle) and pu
 
 == Screenshots ==
 
-1. Edit post screen
+1. Edit post screen (WordPress 3.5+ and WP Title 2.2+)
+1. Edit post screen (for earlier versions of WordPress or using the 'wps_subtitle_use_meta_box' filter)
 2. A single page showing a subtitle
 
 == Changelog ==
+
+= 2.2 =
+* Moved subtitle field from meta box to below title field in WordPress 3.5+ (props Tor Morten)
+* Added 'wps_subtitle_use_meta_box' filter to allow the edit field to be displayed in a meta box (the old way).
 
 = 2.1 =
 * Ready for translation - .pot file added.
@@ -106,11 +111,14 @@ The plugin is [hosted on GitHub](https://github.com/benhuson/wp-subtitle) and pu
 
 == Upgrade Notice ==
 
+= 2.2 =
+Subtitle field moved to below title field (only in WordPress 3.5+)
+
 = 2.1 =
-* Fixed static method warnings and only load admin functionality when needed.
+Fixed static method warnings and only load admin functionality when needed.
 
 = 2.0 =
-* Added custom post type support and support for more recent versions of WordPress.
+Added custom post type support and support for more recent versions of WordPress.
 
 = 1.0 =
-* Initial release.
+Initial release.
