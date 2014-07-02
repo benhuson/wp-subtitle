@@ -20,13 +20,15 @@ class WPSubtitle_Admin {
 		// Language
 		load_plugin_textdomain( 'wp-subtitle', false, dirname( WPSUBTITLE_BASENAME ) . '/languages' );
 
-		// Setup Actions
-		if ( WPSubtitle_Admin::edit_form_after_title_supported() ) {
+		// Setup Field / Meta Box
+		$post_type = isset( $_GET['post'] ) ? get_post_type( $_GET['post'] ) : '';
+		if ( WPSubtitle_Admin::edit_form_after_title_supported( $post_type ) ) {
 			add_action( 'admin_head', array( 'WPSubtitle_Admin', '_add_admin_styles' ) );
 			add_action( 'edit_form_after_title', array( 'WPSubtitle_Admin', '_add_subtitle_field' ) );
 		} else {
 			add_action( 'add_meta_boxes', array( 'WPSubtitle_Admin', '_add_meta_boxes' ) );
 		}
+
 		add_action( 'save_post', array( 'WPSubtitle_Admin', '_save_post' ) );
 	}
 
@@ -223,15 +225,16 @@ class WPSubtitle_Admin {
 	 *
 	 * @since  2.2
 	 *
+	 * @param   string  $post_type  Post type.
 	 * @return  bool
 	 */
-	static function edit_form_after_title_supported() {
+	static function edit_form_after_title_supported( $post_type = '' ) {
 		global $wp_version;
 
 		if ( version_compare( $wp_version, '3.5', '<' ) ) {
 			return false;
 		}
-		return true;
+		return ! apply_filters( 'wps_subtitle_use_meta_box', false, $post_type );
 	}
 
 }
