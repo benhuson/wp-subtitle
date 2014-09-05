@@ -112,8 +112,11 @@ class WPSubtitle {
 	 */
 	static function get_the_subtitle( $post = 0 ) {
 		$post = get_post( $post );
-		$subtitle = WPSubtitle::_get_post_meta( $post );
-		return apply_filters( 'wps_subtitle', $subtitle, $post );
+		if ( WPSubtitle::is_supported_post_type( $post->post_type ) ) {
+			$subtitle = WPSubtitle::_get_post_meta( $post );
+			return apply_filters( 'wps_subtitle', $subtitle, $post );
+		}
+		return '';
 	}
 
 	/**
