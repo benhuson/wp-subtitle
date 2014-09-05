@@ -3,7 +3,7 @@ Contributors: husani, husobj
 Tags: subtitle, content, title, subheading, subhead, alternate title
 Requires at least: 3.0
 Tested up to: 3.9.1
-Stable tag: 2.2
+Stable tag: 2.3
 License: GPL2
 
 Add subtitles (subheadings) to your pages, posts or custom post types.
@@ -43,6 +43,8 @@ Things are slightly different in `<?php get_the_subtitle(); ?>`:
 
 For full details on the template tags and their arguments, [view the documentation here](https://github.com/benhuson/wp-subtitle/wiki).
 
+By default, subtitle are supported by both posts and pages. To add support for custom post types use add_post_type_support( 'my_post_type', 'wps_subtitle' ).
+
 == Installation ==
 
 1. Upload the WP Subtitle plugin to your WordPress site in the `/wp-content/plugins` folder or install via the WordPress admin.
@@ -65,6 +67,17 @@ All subtitles are stored as post meta data. Deactivating this plugin will not re
 
 Refer to [the documentation](https://github.com/benhuson/wp-subtitle/wiki).
 
+= How do I add support for custom post types? =
+
+To add support for custom post types use add_post_type_support( 'my_post_type', 'wps_subtitle' ):
+
+`
+function my_wp_subtitle_page_part_support() {
+	add_post_type_support( 'my_post_type', 'wps_subtitle' );
+}
+add_action( 'init', 'my_wp_subtitle_page_part_support' );
+`
+
 = Where can I get help? =
 
 Please post support requests and questions in the [WordPress.org Support](http://wordpress.org/support/plugin/wp-subtitle) forum.
@@ -83,7 +96,11 @@ The plugin is [hosted on GitHub](https://github.com/benhuson/wp-subtitle) and pu
 1. Edit post screen (for earlier versions of WordPress or using the 'wps_subtitle_use_meta_box' filter)
 2. A single page showing a subtitle
 
-== Changelog ==
+== Changelog =
+
+= 2.3 =
+* Prevent subtitle fields from displaying on post types for which support has not been added using add_post_type_support(). Previously the fields were displayed but the subtitle would not be saved.
+* Escape subtitle admin field value - fixes issues with subtitles with quotes.
 
 = 2.2 =
 * Moved subtitle field from meta box to below title field in WordPress 3.5+ (props Tor Morten)
@@ -110,6 +127,9 @@ The plugin is [hosted on GitHub](https://github.com/benhuson/wp-subtitle) and pu
 * First version.
 
 == Upgrade Notice ==
+
+= 2.3 =
+Prevent subtitle fields from displaying on unsupported post types and fix issue with quotes in subtitles.
 
 = 2.2 =
 Subtitle field moved to below title field (only in WordPress 3.5+)
