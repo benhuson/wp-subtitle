@@ -84,6 +84,22 @@ class WPSubtitle {
 	}
 
 	/**
+	 * Is Supported Post Type
+	 *
+	 * @since  2.3
+	 *
+	 * @param   string   $post_type  Post Type.
+	 * @return  boolean
+	 */
+	static function is_supported_post_type( $post_type ) {
+		$post_types = WPSubtitle::get_supported_post_types();
+		if ( in_array( $post_type, $post_types ) ) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
 	 * Get the Subtitle
 	 *
 	 * @since  2.0
