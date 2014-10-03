@@ -96,7 +96,7 @@ The plugin is [hosted on GitHub](https://github.com/benhuson/wp-subtitle) and pu
 1. Edit post screen (for earlier versions of WordPress or using the 'wps_subtitle_use_meta_box' filter)
 2. A single page showing a subtitle
 
-== Changelog =
+== Changelog ==
 
 = 2.3.1 =
 * Security Update: Ensure subtitles are sanitized when saving.
