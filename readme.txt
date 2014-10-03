@@ -3,7 +3,7 @@ Contributors: husani, husobj
 Tags: subtitle, content, title, subheading, subhead, alternate title
 Requires at least: 3.0
 Tested up to: 4.0
-Stable tag: 2.3
+Stable tag: 2.3.1
 License: GPL2
 
 Add subtitles (subheadings) to your pages, posts or custom post types.
@@ -98,6 +98,9 @@ The plugin is [hosted on GitHub](https://github.com/benhuson/wp-subtitle) and pu
 
 == Changelog =
 
+= 2.3.1 =
+* Security Update: Ensure subtitles are sanitized when saving.
+
 = 2.3 =
 * Prevent subtitle fields from displaying on post types for which support has not been added using add_post_type_support(). Previously the fields were displayed but the subtitle would not be saved.
 * Escape subtitle admin field value - fixes issues with subtitles with quotes.
@@ -127,6 +130,9 @@ The plugin is [hosted on GitHub](https://github.com/benhuson/wp-subtitle) and pu
 * First version.
 
 == Upgrade Notice ==
+
+= 2.3.1 =
+Security Update: Ensure subtitles are sanitized when saving.
 
 = 2.3 =
 Prevent subtitle fields from displaying on unsupported post types and fix issue with quotes in subtitles.
