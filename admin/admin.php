@@ -183,7 +183,7 @@ class WPSubtitle_Admin {
 	
 		// Save data
 		if ( isset( $_POST['wps_subtitle'] ) ) {
-			update_post_meta( $post_id, 'wps_subtitle', $_POST['wps_subtitle'] );
+			update_post_meta( $post_id, 'wps_subtitle', wp_kses_post( $_POST['wps_subtitle'] ) );
 		}
 	}
 
