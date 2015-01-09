@@ -32,18 +32,18 @@ class WPSubtitle_Admin {
 	 */
 	static function _admin_init() {
 
-	    global $pagenow;
-		$post_type = '';
-	    
-	    if ( isset($_GET['post_type']) ) {
-        	$post_type = $_GET['post_type'];
+        global $pagenow;
+        $post_type = '';
+
+        if ( isset($_GET['post_type']) ) {
+            $post_type = $_GET['post_type'];
         } 
         elseif ( isset($_GET['post']) ) {
-	        $post_type = get_post_type($_GET['post']);
-	    }
-	    elseif ($pagenow == 'post-new.php' ) {
-	    	$post_type = 'post';
-	    }
+            $post_type = get_post_type($_GET['post']);
+        }
+        elseif ($pagenow == 'post-new.php' ) {
+            $post_type = 'post';
+        }
 	    
 		// Setup Field / Meta Box
 		if ( WPSubtitle::is_supported_post_type( $post_type ) ) {
