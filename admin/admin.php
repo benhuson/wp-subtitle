@@ -33,15 +33,15 @@ class WPSubtitle_Admin {
 	static function _admin_init() {
 
 		global $pagenow;
+
+		// Get post type
 		$post_type = '';
 
-		if ( isset($_GET['post_type']) ) {
+		if ( isset( $_GET['post_type'] ) ) {
 			$post_type = $_GET['post_type'];
-		}
-		elseif ( isset($_GET['post']) ) {
-			$post_type = get_post_type($_GET['post']);
-		}
-		elseif ($pagenow == 'post-new.php' ) {
+		} elseif ( isset( $_GET['post'] ) ) {
+			$post_type = get_post_type( $_GET['post'] );
+		} elseif ( $pagenow == 'post-new.php' ) {
 			$post_type = 'post';
 		}
 
