@@ -53,6 +53,49 @@ class WPSubtitle_Admin {
 			} else {
 				add_action( 'add_meta_boxes', array( 'WPSubtitle_Admin', '_add_meta_boxes' ) );
 			}
+
+			add_filter( 'manage_edit-' . $post_type . '_columns', array( 'WPSubtitle_Admin', 'manage_subtitle_columns' ) );
+			add_action( 'manage_' . $post_type . '_posts_custom_column', array( 'WPSubtitle_Admin', 'manage_subtitle_columns_content' ), 10, 2 );
+
+		}
+
+	}
+
+	/**
+	 * Add subtitle admin column.
+	 *
+	 * @since  2.4
+	 *
+	 * @param   array  $columns  A columns
+	 * @return  array            Updated columns.
+	 */
+	public static function manage_subtitle_columns( $columns ) {
+
+		$new_columns = array();
+
+		foreach ( $columns as $column => $value ) {
+			$new_columns[ $column ] = $value;
+			if ( 'title' == $column ) {
+				$new_columns['wps_subtitle'] = __( 'Subtitle', 'wps_subtitle' );
+			}
+		}
+
+		return $new_columns;
+
+	}
+
+	/**
+	 * Display subtitle column.
+	 *
+	 * @since  2.4
+	 *
+	 * @param  string  $column_name  Column name.
+	 * @param  int     $post_id      Post ID
+	 */
+	public static function manage_subtitle_columns_content( $column_name, $post_id ) {
+
+		if ( $column_name == 'wps_subtitle' ) {
+			echo get_the_subtitle( $post_id, '', '', false );
 		}
 
 	}
