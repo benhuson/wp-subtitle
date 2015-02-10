@@ -40,20 +40,59 @@ class WPSubtitle_Pointers {
 			return;
 		}
 
-		// Get the screen ID
-		$screen = get_current_screen();
-		$screen_id = $screen->id;
-
-		// Get pointers for this screen
-		$pointers = apply_filters( 'wps_subtitle_admin_pointers-' . $screen_id, array() );
-
-		// No pointers? Then we stop.
-		if ( ! $pointers || ! is_array( $pointers ) ) {
+		// Get pointers for this screen, or return.
+		$pointers = self::get_current_pointers();
+		if ( empty( $pointers ) ) {
 			return;
 		}
 
-		// Get dismissed pointers
-		$dismissed = explode( ',', (string) get_user_meta( get_current_user_id(), 'dismissed_wp_pointers', true ) );
+		// Get dismissed pointers, or return.
+		$valid_pointers = self::remove_dismissed_pointers( $pointers );
+		if ( empty( $valid_pointers ) ) {
+			return;
+		}
+
+		// Enqueue pointer scripts and styles.
+		wp_enqueue_style( 'wp-pointer' );
+		wp_enqueue_script( 'wps-subtitle-pointer', plugins_url( 'js/pointers.js', __FILE__ ), array( 'wp-pointer' ) );
+		wp_localize_script( 'wps-subtitle-pointer', 'wpsSubtitlePointer', $valid_pointers );
+
+	}
+
+	/**
+	 * Get Current Pointers
+	 *
+	 * Get pointers for the current aadmin screen.
+	 *
+	 * @since  2.4
+	 *
+	 * @return  array  Current screen pointers.
+	 */
+	public static function get_current_pointers() {
+
+		$screen = get_current_screen();
+		$pointers = apply_filters( 'wps_subtitle_admin_pointers-' . $screen->id, array() );
+
+		// Only return valid array of pointers.
+		if ( is_array( $pointers ) ) {
+			return $pointers;
+		}
+
+		return array();
+
+	}
+
+	/**
+	 * Remove Dismissed Pointers
+	 *
+	 * @since  2.4
+	 *
+	 * @param   array  $pointers  Pointers.
+	 * @return  array             Active pointers.
+	 */
+	public static function remove_dismissed_pointers( $pointers ) {
+
+		$dismissed = self::get_dismissed_pointers();
 		$valid_pointers = array();
 
 		// Check pointers and remove dismissed ones.
@@ -70,19 +109,20 @@ class WPSubtitle_Pointers {
 			$valid_pointers['pointers'][] = $pointer;
 		}
 
-		// No valid pointers? Stop here.
-		if ( empty( $valid_pointers ) ) {
-			return;
-		}
+		return $valid_pointers;
 
-		// Enqueue pointers.
-		wp_enqueue_style( 'wp-pointer' );
+	}
 
-		// Enqueue our pointers script.
-		wp_enqueue_script( 'wps-subtitle-pointer', plugins_url( 'js/pointers.js', __FILE__ ), array( 'wp-pointer' ) );
+	/**
+	 * Get Dismissed Pointers
+	 *
+	 * @since  2.4
+	 *
+	 * @return  array  Dismissed pointers.
+	 */
+	public static function get_dismissed_pointers() {
 
-		// Add pointer options.
-		wp_localize_script( 'wps-subtitle-pointer', 'wpsSubtitlePointer', $valid_pointers );
+		return explode( ',', (string) get_user_meta( get_current_user_id(), 'dismissed_wp_pointers', true ) );
 
 	}
 
