@@ -41,7 +41,7 @@ class WPSubtitle_Admin {
 			$post_type = $_GET['post_type'];
 		} elseif ( isset( $_GET['post'] ) ) {
 			$post_type = get_post_type( $_GET['post'] );
-		} elseif ( $pagenow == 'post-new.php' ) {
+		} elseif ( in_array( $pagenow, array( 'post-new.php', 'edit.php' ) ) ) {
 			$post_type = 'post';
 		}
 
