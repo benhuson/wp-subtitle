@@ -110,6 +110,7 @@ class WPSubtitle_Admin {
 		?>
 		<style>
 		#subtitlediv.top {
+			margin-top: 5px;
 			margin-bottom: 15px;
 			position: relative;
 		}
