@@ -143,8 +143,8 @@ class WPSubtitle_Pointers {
 			'target'  => '#subtitlewrap',
 			'options' => array(
 				'content' => sprintf( '<h3>%s</h3><p>%s</p>',
-					sprintf( __( '%s Field', WPSubtitle::TEXTDOMAIN ), WPSubtitle_Admin::get_meta_box_title( get_post_type( get_queried_object_id() ) ) ),
-					__( 'This field has moved from a meta box to below the post title.', WPSubtitle::TEXTDOMAIN )
+					sprintf( __( '%s Field', 'wp-subtitle' ), WPSubtitle_Admin::get_meta_box_title( get_post_type( get_queried_object_id() ) ) ),
+					__( 'This field has moved from a meta box to below the post title.', 'wp-subtitle' )
 				),
 				'position' => array(
 					'edge'  => 'top',

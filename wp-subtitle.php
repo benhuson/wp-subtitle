@@ -51,8 +51,6 @@ add_action( 'init', array( 'WPSubtitle', '_add_default_post_type_support' ), 5 )
 
 class WPSubtitle {
 
-	const TEXTDOMAIN = 'wps_subtitle';
-
 	/**
 	 * Add Default Post Type Support
 	 *
