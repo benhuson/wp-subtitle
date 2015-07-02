@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WP Subtitle\n"
-"POT-Creation-Date: 2014-07-02 21:25-0000\n"
+"POT-Creation-Date: 2015-07-02 06:57-0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Ben Huson <ben@thewhiteroom.net>\n"
 "Language-Team: \n"
@@ -10,25 +10,25 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.6.2\n"
+"X-Generator: Poedit 1.7.6\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;_x;_ex\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: ..\n"
 
-#: ../admin/admin.php:81
+#: ../admin/admin.php:79 ../admin/admin.php:150
 msgid "Subtitle"
 msgstr ""
 
-#: ../admin/admin.php:131
+#: ../admin/admin.php:200
 msgid "Enter subtitle here"
 msgstr ""
 
-#: ../admin/pointers.php:106
+#: ../admin/pointers.php:146
 #, php-format
 msgid "%s Field"
 msgstr ""
 
-#: ../admin/pointers.php:107
+#: ../admin/pointers.php:147
 msgid "This field has moved from a meta box to below the post title."
 msgstr ""
