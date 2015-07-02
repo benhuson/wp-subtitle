@@ -36,6 +36,7 @@ define( 'WPSUBTITLE_DIR', plugin_dir_path( __FILE__ ) );
 
 // Includes
 include_once( WPSUBTITLE_DIR . 'includes/deprecated.php' );
+include_once( WPSUBTITLE_DIR . 'includes/shortcode.php' );
 
 // Include admin-only functionality
 if ( is_admin() ) {
