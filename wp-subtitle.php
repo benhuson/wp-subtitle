@@ -57,7 +57,7 @@ class WPSubtitle {
 	 * @since  2.0
 	 * @internal
 	 */
-	static function _add_default_post_type_support() {
+	public static function _add_default_post_type_support() {
 		add_post_type_support( 'page', 'wps_subtitle' );
 		add_post_type_support( 'post', 'wps_subtitle' );
 	}
@@ -69,7 +69,7 @@ class WPSubtitle {
 	 *
 	 * @return  array  Array of supported post types.
 	 */
-	static function get_supported_post_types() {
+	public static function get_supported_post_types() {
 		$post_types = (array) get_post_types( array(
 			'_builtin' => false
 		) );
@@ -91,8 +91,8 @@ class WPSubtitle {
 	 * @param   string   $post_type  Post Type.
 	 * @return  boolean
 	 */
-	static function is_supported_post_type( $post_type ) {
-		$post_types = WPSubtitle::get_supported_post_types();
+	public static function is_supported_post_type( $post_type ) {
+		$post_types = self::get_supported_post_types();
 		if ( in_array( $post_type, $post_types ) ) {
 			return true;
 		}
@@ -110,10 +110,10 @@ class WPSubtitle {
 	 * @param   int|object  $post  Post ID or object.
 	 * @return  string             The filtered subtitle meta value.
 	 */
-	static function get_the_subtitle( $post = 0 ) {
+	public static function get_the_subtitle( $post = 0 ) {
 		$post = get_post( $post );
-		if ( $post && WPSubtitle::is_supported_post_type( $post->post_type ) ) {
-			$subtitle = WPSubtitle::_get_post_meta( $post );
+		if ( $post && self::is_supported_post_type( $post->post_type ) ) {
+			$subtitle = self::_get_post_meta( $post );
 			return apply_filters( 'wps_subtitle', $subtitle, $post );
 		}
 		return '';
@@ -128,7 +128,7 @@ class WPSubtitle {
 	 * @param   int|object  $post  Post ID or object.
 	 * @return  string             The subtitle meta value.
 	 */
-	static function _get_post_meta( $id = 0 ) {
+	public static function _get_post_meta( $id = 0 ) {
 		$post = get_post( $id );
 		return get_post_meta( $post->ID, 'wps_subtitle', true );
 	}

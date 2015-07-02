@@ -15,7 +15,7 @@ class WPSubtitle_Admin {
 	 * @since  2.2
 	 * @internal
 	 */
-	static function _setup() {
+	public static function _setup() {
 
 		// Language
 		load_plugin_textdomain( 'wp-subtitle', false, dirname( WPSUBTITLE_BASENAME ) . '/languages' );
@@ -30,7 +30,7 @@ class WPSubtitle_Admin {
 	 * @since  2.3
 	 * @internal
 	 */
-	static function _admin_init() {
+	public static function _admin_init() {
 
 		global $pagenow;
 
@@ -47,7 +47,7 @@ class WPSubtitle_Admin {
 
 		// Setup Field / Meta Box
 		if ( WPSubtitle::is_supported_post_type( $post_type ) ) {
-			if ( WPSubtitle_Admin::edit_form_after_title_supported( $post_type ) ) {
+			if ( self::edit_form_after_title_supported( $post_type ) ) {
 				add_action( 'admin_head', array( 'WPSubtitle_Admin', '_add_admin_styles' ) );
 				add_action( 'edit_form_after_title', array( 'WPSubtitle_Admin', '_add_subtitle_field' ) );
 			} else {
@@ -106,7 +106,7 @@ class WPSubtitle_Admin {
 	 * @since  2.2
 	 * @internal
 	 */
-	static function _add_admin_styles() {
+	public static function _add_admin_styles() {
 		?>
 		<style>
 		#subtitlediv.top {
@@ -146,7 +146,7 @@ class WPSubtitle_Admin {
 	 *
 	 * @uses  apply_filters( 'wps_meta_box_title' )
 	 */
-	static function get_meta_box_title( $post_type ) {
+	public static function get_meta_box_title( $post_type ) {
 		return apply_filters( 'wps_meta_box_title', __( 'Subtitle', 'wp-subtitle' ), $post_type );
 	}
 
@@ -160,10 +160,10 @@ class WPSubtitle_Admin {
 	 * @uses  apply_filters( 'wps_meta_box_title' )
 	 * @uses  WPSubtitle_Admin::_add_subtitle_meta_box()
 	 */
-	static function _add_meta_boxes() {
+	public static function _add_meta_boxes() {
 		$post_types = WPSubtitle::get_supported_post_types();
 		foreach ( $post_types as $post_type ) {
-			add_meta_box( 'wps_subtitle_panel',  WPSubtitle_Admin::get_meta_box_title( $post_type ), array( 'WPSubtitle_Admin', '_add_subtitle_meta_box' ), $post_type, 'normal', 'high' );
+			add_meta_box( 'wps_subtitle_panel',  self::get_meta_box_title( $post_type ), array( 'WPSubtitle_Admin', '_add_subtitle_meta_box' ), $post_type, 'normal', 'high' );
 		}
 	}
 
@@ -176,7 +176,7 @@ class WPSubtitle_Admin {
 	 * @uses  WPSubtitle::_get_post_meta()
 	 * @uses  apply_filters( 'wps_subtitle_field_description' )
 	 */
-	static function _add_subtitle_meta_box() {
+	public static function _add_subtitle_meta_box() {
 		global $post;
 		echo '<input type="hidden" name="wps_noncename" id="wps_noncename" value="' . wp_create_nonce( 'wp-subtitle' ) . '" />';
 		echo '<input type="text" id="wpsubtitle" name="wps_subtitle" value="' . esc_attr( WPSubtitle::_get_post_meta( $post->ID ) ) . '" style="width:99%;" />';
@@ -192,7 +192,7 @@ class WPSubtitle_Admin {
 	 * @uses  WPSubtitle::_get_post_meta()
 	 * @uses  apply_filters( 'wps_subtitle_field_description' )
 	 */
-	static function _add_subtitle_field() {
+	public static function _add_subtitle_field() {
 		global $post;
 		echo '<input type="hidden" name="wps_noncename" id="wps_noncename" value="' . wp_create_nonce( 'wp-subtitle' ) . '" />';
 		echo '<div id="subtitlediv" class="top">';
@@ -218,7 +218,7 @@ class WPSubtitle_Admin {
 	 *
 	 * @param  int  $post_id  Post ID or object.
 	 */
-	static function _save_post( $post_id ) {
+	public static function _save_post( $post_id ) {
 
 		// Verify if this is an auto save routine. 
 		// If it is our form has not been submitted, so we dont want to do anything
@@ -227,12 +227,12 @@ class WPSubtitle_Admin {
 		}
 
 		// Verify nonce
-		if ( ! WPSubtitle_Admin::_verify_posted_nonce( 'wps_noncename', 'wp-subtitle' ) ) {
+		if ( ! self::_verify_posted_nonce( 'wps_noncename', 'wp-subtitle' ) ) {
 			return;
 		}
 
 		// Check edit capability
-		if ( ! WPSubtitle_Admin::_verify_post_edit_capability( $post_id ) ) {
+		if ( ! self::_verify_post_edit_capability( $post_id ) ) {
 			return;
 		}
 	
@@ -251,7 +251,7 @@ class WPSubtitle_Admin {
 	 * @param   int  $post_id  Post ID.
 	 * @return  bool
 	 */
-	static function _verify_post_edit_capability( $post_id ) {
+	private static function _verify_post_edit_capability( $post_id ) {
 
 		$post_types_obj = (array) get_post_types( array(
 			'_builtin' => false
@@ -281,7 +281,7 @@ class WPSubtitle_Admin {
 	 * @param   string  $action  Nonce action.
 	 * @return  bool
 	 */
-	static function _verify_posted_nonce( $nonce, $action ) {
+	private static function _verify_posted_nonce( $nonce, $action ) {
 		if ( isset( $_POST[ $nonce ] ) && wp_verify_nonce( $_POST[ $nonce ], $action ) ) {
 			return true;
 		}
@@ -296,7 +296,7 @@ class WPSubtitle_Admin {
 	 * @param   string  $post_type  Post type.
 	 * @return  bool
 	 */
-	static function edit_form_after_title_supported( $post_type = '' ) {
+	private static function edit_form_after_title_supported( $post_type = '' ) {
 		global $wp_version;
 
 		if ( version_compare( $wp_version, '3.5', '<' ) ) {

@@ -15,7 +15,7 @@ class WPSubtitle_Pointers {
 	 * @since  2.2
 	 * @internal
 	 */
-	static function _setup() {
+	public static function _setup() {
 		add_action( 'admin_enqueue_scripts', array( 'WPSubtitle_Pointers', '_pointer_load' ) );
 
 		// Post Pointers
@@ -33,7 +33,7 @@ class WPSubtitle_Pointers {
 	 *
 	 * @param   string  $hook_suffix  Page hook.
 	 */
-	static function _pointer_load( $hook_suffix ) {
+	public static function _pointer_load( $hook_suffix ) {
 
 		// Don't run on WP < 3.3
 		if ( get_bloginfo( 'version' ) < '3.3' ) {
@@ -65,10 +65,11 @@ class WPSubtitle_Pointers {
 	 * Get pointers for the current aadmin screen.
 	 *
 	 * @since  2.4
+	 * @internal
 	 *
 	 * @return  array  Current screen pointers.
 	 */
-	public static function get_current_pointers() {
+	private static function get_current_pointers() {
 
 		$screen = get_current_screen();
 		$pointers = apply_filters( 'wps_subtitle_admin_pointers-' . $screen->id, array() );
@@ -86,11 +87,12 @@ class WPSubtitle_Pointers {
 	 * Remove Dismissed Pointers
 	 *
 	 * @since  2.4
+	 * @internal
 	 *
 	 * @param   array  $pointers  Pointers.
 	 * @return  array             Active pointers.
 	 */
-	public static function remove_dismissed_pointers( $pointers ) {
+	private static function remove_dismissed_pointers( $pointers ) {
 
 		$dismissed = self::get_dismissed_pointers();
 		$valid_pointers = array();
@@ -117,10 +119,11 @@ class WPSubtitle_Pointers {
 	 * Get Dismissed Pointers
 	 *
 	 * @since  2.4
+	 * @internal
 	 *
 	 * @return  array  Dismissed pointers.
 	 */
-	public static function get_dismissed_pointers() {
+	private static function get_dismissed_pointers() {
 
 		return explode( ',', (string) get_user_meta( get_current_user_id(), 'dismissed_wp_pointers', true ) );
 
@@ -136,7 +139,7 @@ class WPSubtitle_Pointers {
 	 * @param   array  $pointers  Pointers.
 	 * @return  array             Pointers.
 	 */
-	static function _post_type_pointers( $pointers ) {
+	public static function _post_type_pointers( $pointers ) {
 
 		// Subtitle field moved to below the post title (v.2.2)
 		$pointers['wps_subtitle_field_to_top'] = array(
