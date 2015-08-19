@@ -2,8 +2,8 @@
 Contributors: husobj, husani
 Tags: subtitle, content, title, subheading, subhead, alternate title
 Requires at least: 3.7
-Tested up to: 4.2.2
-Stable tag: 2.4.1
+Tested up to: 4.3
+Stable tag: 2.5
 License: GPL2
 
 Add subtitles (subheadings) to your pages, posts or custom post types.
@@ -98,6 +98,11 @@ The plugin is [hosted on GitHub](https://github.com/benhuson/wp-subtitle) and pu
 
 == Changelog ==
 
+= 2.5 =
+* Add [wp_subtitle] shortcode.
+* Declare methods as public or private.
+* Do not use variable for textdomain - causes issues for parsers.
+
 = 2.4.1 =
 * Fix PHP notice warning on 404 error page. Props Jay Williams.
 * Add a little space above subtitle field when below title field in admin.
@@ -140,6 +145,9 @@ The plugin is [hosted on GitHub](https://github.com/benhuson/wp-subtitle) and pu
 * First version.
 
 == Upgrade Notice ==
+
+= 2.5 =
+Add [wp_subtitle] shortcode. Do not use variable for textdomain - causes issues for parsers.
 
 = 2.4.1 =
 Fix PHP notice warning on 404 error page.
