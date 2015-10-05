@@ -131,7 +131,22 @@ class WPSubtitle {
 	 */
 	public static function _get_post_meta( $id = 0 ) {
 		$post = get_post( $id );
-		return get_post_meta( $post->ID, 'wps_subtitle', true );
+		return get_post_meta( $post->ID, self::_get_post_meta_key( $post->ID ), true );
+	}
+
+	/**
+	 * Get Post Meta Key
+	 *
+	 * @since  2.5.x
+	 * @internal
+	 *
+	 * @param   int     $post  Post ID.
+	 * @return  string         The subtitle meta key.
+	 */
+	public static function _get_post_meta_key( $post_id = 0 ) {
+
+		return apply_filters( 'wps_subtitle_key', 'wps_subtitle', $post_id );
+
 	}
 
 }
