@@ -22,6 +22,7 @@ class WPSubtitle_Admin {
 
 		add_action( 'admin_init', array( 'WPSubtitle_Admin', '_admin_init' ) );
 		add_action( 'save_post', array( 'WPSubtitle_Admin', '_save_post' ) );
+		add_action( 'admin_enqueue_scripts', array( 'WPSubtitle_Admin', '_add_admin_scripts' ) );
 	}
 
 	/**
@@ -37,8 +38,8 @@ class WPSubtitle_Admin {
 		// Get post type
 		$post_type = '';
 
-		if ( isset( $_GET['post_type'] ) ) {
-			$post_type = $_GET['post_type'];
+		if ( isset( $_REQUEST['post_type'] ) ) {
+			$post_type = $_REQUEST['post_type'];
 		} elseif ( isset( $_GET['post'] ) ) {
 			$post_type = get_post_type( $_GET['post'] );
 		} elseif ( in_array( $pagenow, array( 'post-new.php', 'edit.php' ) ) ) {
@@ -56,9 +57,36 @@ class WPSubtitle_Admin {
 
 			add_filter( 'manage_edit-' . $post_type . '_columns', array( 'WPSubtitle_Admin', 'manage_subtitle_columns' ) );
 			add_action( 'manage_' . $post_type . '_posts_custom_column', array( 'WPSubtitle_Admin', 'manage_subtitle_columns_content' ), 10, 2 );
-
+			add_action( 'quick_edit_custom_box', array( 'WPSubtitle_Admin', 'quick_edit_custom_box' ), 10, 2 );
 		}
 
+	}
+
+	/**
+	 * Add subtitle input to quick edit.
+	 *
+	 * @since  2.6
+	 *
+	 * @uses  add_action( 'quick_edit_custom_box' )
+	 *
+	 * @param  string  $column_name  Column name.
+	 * @param  string  $post_type 	 Post type
+	 */
+	public static function quick_edit_custom_box($column_name, $post_type) {
+		if ($column_name !== 'wps_subtitle') {
+			return;
+		}
+		wp_nonce_field( 'wp-subtitle', 'wps_noncename' );
+		?>
+		<fieldset class="inline-edit-col-left">
+			<div class="inline-edit-col column-<?php echo $column_name; ?>">
+				<label>
+					<span class="title"><?php _e( 'Subtitle', 'wp-subtitle' ); ?></span>
+					<span class="input-text-wrap"><input type="text" name="wps_subtitle" class="wps_subtitle" value=""></span>
+				</label>
+			</div>
+		</fieldset>
+		<?php
 	}
 
 	/**
@@ -95,9 +123,20 @@ class WPSubtitle_Admin {
 	public static function manage_subtitle_columns_content( $column_name, $post_id ) {
 
 		if ( $column_name == 'wps_subtitle' ) {
-			echo get_the_subtitle( $post_id, '', '', false );
+			$subtitle = get_the_subtitle( $post_id, '', '', false );
+			echo '<span data-wps_subtitle="' . esc_attr( $subtitle ) . '">' . esc_html($subtitle) . '</span>';
 		}
 
+	}
+
+	/**
+	 * Add Admin scripts.
+	 *
+	 * @since  2.6
+	 * @internal
+	 */
+	public static function _add_admin_scripts() {
+		wp_enqueue_script( 'wps_subtitle', plugins_url( 'js/admin-edit.js', __FILE__ ), false, null, true );
 	}
 
 	/**
