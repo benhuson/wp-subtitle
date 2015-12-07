@@ -39,9 +39,9 @@ class WPSubtitle_Admin {
 		$post_type = '';
 
 		if ( isset( $_REQUEST['post_type'] ) ) {
-			$post_type = $_REQUEST['post_type'];
+			$post_type = sanitize_text_field( $_REQUEST['post_type'] );
 		} elseif ( isset( $_GET['post'] ) ) {
-			$post_type = get_post_type( $_GET['post'] );
+			$post_type = get_post_type( absint( $_GET['post'] ) );
 		} elseif ( in_array( $pagenow, array( 'post-new.php', 'edit.php' ) ) ) {
 			$post_type = 'post';
 		}
