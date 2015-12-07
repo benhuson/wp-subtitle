@@ -40,10 +40,10 @@ include_once( WPSUBTITLE_DIR . 'includes/shortcode.php' );
 
 // Include admin-only functionality
 if ( is_admin() ) {
+	require_once( WPSUBTITLE_DIR . 'admin/admin.php' );
 	if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
 		// Load AJAX functions here if required...
 	} else {
-		require_once( WPSUBTITLE_DIR . 'admin/admin.php' );
 		require_once( WPSUBTITLE_DIR . 'admin/pointers.php' );
 	}
 }
