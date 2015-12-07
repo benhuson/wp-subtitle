@@ -135,8 +135,14 @@ class WPSubtitle_Admin {
 	 * @since  2.6
 	 * @internal
 	 */
-	public static function _add_admin_scripts() {
+	public static function _add_admin_scripts( $hook ) {
+
+		if ( 'edit.php' != $hook ) {
+			return;
+		}
+
 		wp_enqueue_script( 'wps_subtitle', plugins_url( 'js/admin-edit.js', __FILE__ ), false, null, true );
+
 	}
 
 	/**
