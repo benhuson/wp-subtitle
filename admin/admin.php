@@ -81,7 +81,7 @@ class WPSubtitle_Admin {
 		<fieldset class="inline-edit-col-left inline-edit-col-left-wps-subtitle">
 			<div class="inline-edit-col column-<?php echo $column_name; ?>">
 				<label>
-					<span class="title"><?php _e( 'Subtitle', 'wp-subtitle' ); ?></span>
+					<span class="title"><?php esc_html_e( 'Subtitle', 'wp-subtitle' ); ?></span>
 					<span class="input-text-wrap"><input type="text" name="wps_subtitle" class="wps_subtitle" value=""></span>
 				</label>
 			</div>
