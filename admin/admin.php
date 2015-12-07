@@ -78,7 +78,7 @@ class WPSubtitle_Admin {
 		}
 		wp_nonce_field( 'wp-subtitle', 'wps_noncename' );
 		?>
-		<fieldset class="inline-edit-col-left">
+		<fieldset class="inline-edit-col-left inline-edit-col-left-wps-subtitle">
 			<div class="inline-edit-col column-<?php echo $column_name; ?>">
 				<label>
 					<span class="title"><?php _e( 'Subtitle', 'wp-subtitle' ); ?></span>
@@ -173,6 +173,9 @@ class WPSubtitle_Admin {
 		#subtitlediv.top #wpsubtitle:-ms-input-placeholder { padding-top: 3px; }
 		#subtitlediv.top #subtitledescription {
 			margin: 5px 10px 0 10px;
+		}
+		.quick-edit-row-post .inline-edit-col-left-wps-subtitle {
+			clear: left;
 		}
 		</style>
 		<?php
