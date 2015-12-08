@@ -2,7 +2,7 @@
 Contributors: husobj, husani
 Tags: subtitle, content, title, subheading, subhead, alternate title
 Requires at least: 3.7
-Tested up to: 4.3
+Tested up to: 4.4
 Stable tag: 2.5
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
