@@ -2,7 +2,15 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## [Unreleased]
+## [2.6] - 2015-12-08
+
+### Security
+- Sanitize `$_REQUEST` and `$_GET` when establishing post type in the admin.
+
+### Added
+- Added quick edit support for subtitle. Props [Fabian Marz](https://github.com/fabianmarz) and [sun](https://github.com/sun).
+- Allow subtitle post meta key to be filtered using `wps_subtitle_key`.
+- Add German translation. Props [hatsumatsu](https://github.com/hatsumatsu).
 
 ## [2.5] - 2015-08-19
 

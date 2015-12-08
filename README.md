@@ -88,6 +88,9 @@ The plugin is [hosted on GitHub](https://github.com/benhuson/wp-subtitle) and pu
 Upgrade Notice
 --------------
 
+### 2.6
+Added quick edit support for subtitle. Security Update: Sanitize `$_REQUEST` and `$_GET` when establishing post type in the admin.
+
 ### 2.5
 Add [wp_subtitle] shortcode. Do not use variable for textdomain - causes issues for parsers.
 
