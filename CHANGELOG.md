@@ -2,6 +2,8 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [Unreleased]
+
 ## [2.6] - 2015-12-08
 
 ### Security
@@ -96,7 +98,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - First version.
 
-[Unreleased]: https://github.com/benhuson/wp-subtitle/compare/2.5...HEAD
+[Unreleased]: https://github.com/benhuson/wp-subtitle/compare/2.6...HEAD
+[2.6]: https://github.com/benhuson/wp-subtitle/compare/2.5...2.6
 [2.5]: https://github.com/benhuson/wp-subtitle/compare/2.4.1...2.5
 [2.4.1]: https://github.com/benhuson/wp-subtitle/compare/2.4...2.4.1
 [2.4]: https://github.com/benhuson/wp-subtitle/compare/2.3.2...2.4
