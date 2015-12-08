@@ -72,11 +72,14 @@ class WPSubtitle_Admin {
 	 * @param  string  $column_name  Column name.
 	 * @param  string  $post_type 	 Post type
 	 */
-	public static function quick_edit_custom_box($column_name, $post_type) {
-		if ($column_name !== 'wps_subtitle') {
+	public static function quick_edit_custom_box( $column_name, $post_type ) {
+
+		if ( $column_name !== 'wps_subtitle' ) {
 			return;
 		}
+
 		wp_nonce_field( 'wp-subtitle', 'wps_noncename' );
+
 		?>
 		<fieldset class="inline-edit-col-left inline-edit-col-left-wps-subtitle">
 			<div class="inline-edit-col column-<?php echo $column_name; ?>">
@@ -87,6 +90,7 @@ class WPSubtitle_Admin {
 			</div>
 		</fieldset>
 		<?php
+
 	}
 
 	/**
@@ -124,7 +128,7 @@ class WPSubtitle_Admin {
 
 		if ( $column_name == 'wps_subtitle' ) {
 			$subtitle = get_the_subtitle( $post_id, '', '', false );
-			echo '<span data-wps_subtitle="' . esc_attr( $subtitle ) . '">' . esc_html($subtitle) . '</span>';
+			echo '<span data-wps_subtitle="' . esc_attr( $subtitle ) . '">' . esc_html( $subtitle ) . '</span>';
 		}
 
 	}
