@@ -4,7 +4,8 @@ Tags: subtitle, content, title, subheading, subhead, alternate title
 Requires at least: 3.7
 Tested up to: 4.3
 Stable tag: 2.5
-License: GPL2
+License: GPLv2
+License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 
 Add subtitles (subheadings) to your pages, posts or custom post types.
 
