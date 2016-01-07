@@ -169,7 +169,7 @@ function get_the_subtitle( $post = 0, $before = '', $after = '', $echo = true ) 
 	$subtitle = WPSubtitle::get_the_subtitle( $post );
 
 	if ( ! empty( $subtitle ) ) {
-		$subtitle = $before . $subtitle . $after;
+		$subtitle = wptexturize( $before . $subtitle . $after );
 	}
 
 	if ( ! $echo ) {
