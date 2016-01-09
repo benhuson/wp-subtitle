@@ -53,6 +53,10 @@ if ( is_admin() ) {
 
 add_action( 'init', array( 'WPSubtitle', '_add_default_post_type_support' ), 5 );
 
+// Default subtitle filters
+add_filter( 'wps_subtitle', 'wptexturize' );
+add_filter( 'wps_subtitle', 'trim' );
+
 class WPSubtitle {
 
 	/**
@@ -187,7 +191,7 @@ function get_the_subtitle( $post = 0, $before = '', $after = '', $echo = true ) 
 	$subtitle = WPSubtitle::get_the_subtitle( $post );
 
 	if ( ! empty( $subtitle ) ) {
-		$subtitle = wptexturize( $before . $subtitle . $after );
+		$subtitle = $before . $subtitle . $after;
 	}
 
 	if ( ! $echo ) {
