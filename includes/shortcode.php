@@ -43,7 +43,12 @@ class WPSubtitle_Shortcode {
 		$before .= self::format_subtitle_content( $atts['before'], 'before' );
 		$after = self::format_subtitle_content( $atts['after'], 'after' ) . $after;
 
-		return get_the_subtitle( $post->ID, $before, $after, false );
+		$subtitle = new WP_Subtitle( $post );
+
+		return $subtitle->get_subtitle( array(
+			'before' => $before,
+			'after'  => $after
+		) );
 
 	}
 

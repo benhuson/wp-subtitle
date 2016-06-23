@@ -113,19 +113,17 @@ class WPSubtitle {
 	 *
 	 * @since  2.0
 	 *
-	 * @uses  WPSubtitle::_get_post_meta()
-	 * @uses  apply_filters( 'wps_subtitle' )
+	 * @uses  WP_Subtitle::get_subtitle()
 	 *
 	 * @param   int|object  $post  Post ID or object.
 	 * @return  string             The filtered subtitle meta value.
 	 */
 	public static function get_the_subtitle( $post = 0 ) {
-		$post = get_post( $post );
-		if ( $post && self::is_supported_post_type( $post->post_type ) ) {
-			$subtitle = self::_get_post_meta( $post );
-			return apply_filters( 'wps_subtitle', $subtitle, $post );
-		}
-		return '';
+
+		$subtitle = new WP_Subtitle( $post );
+
+		return $subtitle->get_subtitle();
+
 	}
 
 	/**
@@ -134,12 +132,17 @@ class WPSubtitle {
 	 * @since  2.0
 	 * @internal
 	 *
+	 * @uses  WP_Subtitle::get_raw_subtitle()
+	 *
 	 * @param   int|object  $post  Post ID or object.
 	 * @return  string             The subtitle meta value.
 	 */
-	public static function _get_post_meta( $id = 0 ) {
-		$post = get_post( $id );
-		return get_post_meta( $post->ID, self::_get_post_meta_key( $post->ID ), true );
+	public static function _get_post_meta( $post = 0 ) {
+
+		$subtitle = new WP_Subtitle( $post );
+
+		return $subtitle->get_raw_subtitle();
+
 	}
 
 	/**
@@ -164,7 +167,7 @@ class WPSubtitle {
  *
  * @since  1.0
  *
- * @uses  get_the_subtitle()
+ * @uses  WP_Subtitle::get_subtitle()
  *
  * @param   string  $before  Before the subtitle.
  * @param   string  $after   After the subtitle.
@@ -172,7 +175,20 @@ class WPSubtitle {
  * @return  string           The subtitle string.
  */
 function the_subtitle( $before = '', $after = '', $echo = true ) {
-	return get_the_subtitle( 0, $before, $after, $echo );
+
+	$subtitle = new WP_Subtitle( get_the_ID() );
+
+	$output = $subtitle->get_subtitle( array(
+		'before' => $before,
+		'after'  => $after
+	) );
+
+	if ( ! $echo ) {
+		return $output;
+	}
+
+	echo $output;
+
 }
 
 /**
@@ -180,7 +196,7 @@ function the_subtitle( $before = '', $after = '', $echo = true ) {
  *
  * @since  1.0
  *
- * @uses  WPSubtitle::get_the_subtitle()
+ * @uses  WP_Subtitle::get_subtitle()
  *
  * @param   int|object  $post    Post ID or object.
  * @param   string      $before  Before the subtitle.
@@ -189,14 +205,18 @@ function the_subtitle( $before = '', $after = '', $echo = true ) {
  * @return  string               The subtitle string.
  */
 function get_the_subtitle( $post = 0, $before = '', $after = '', $echo = true ) {
-	$subtitle = WPSubtitle::get_the_subtitle( $post );
 
-	if ( ! empty( $subtitle ) ) {
-		$subtitle = $before . $subtitle . $after;
-	}
+	$subtitle = new WP_Subtitle( $post );
+
+	$output = $subtitle->get_subtitle( array(
+		'before' => $before,
+		'after'  => $after
+	) );
 
 	if ( ! $echo ) {
-		return $subtitle;
+		return $output;
 	}
-	echo $subtitle;
+
+	echo $output;
+
 }
