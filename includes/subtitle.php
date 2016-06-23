@@ -151,7 +151,7 @@ class WP_Subtitle {
 	 *
 	 * @return  boolean
 	 */
-	private function current_user_can_edit() {
+	public function current_user_can_edit() {
 
 		// Check supported post type
 		if ( $this->is_supported_post_type() ) {
