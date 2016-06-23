@@ -300,7 +300,10 @@ class WPSubtitle_Admin {
 	
 		// Save data
 		if ( isset( $_POST['wps_subtitle'] ) ) {
-			update_post_meta( $post_id, WPSubtitle::_get_post_meta_key( $post_id ), wp_kses_post( $_POST['wps_subtitle'] ) );
+
+			$subtitle = new WP_Subtitle( $post );
+			$subtitle->update_subtitle( $_POST['wps_subtitle'] );
+
 		}
 	}
 

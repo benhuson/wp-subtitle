@@ -84,6 +84,18 @@ class WP_Subtitle {
 	}
 
 	/**
+	 * Update Subtitle
+	 *
+	 * @param   string    $subtitle  Subtitle.
+	 * @return  int|bool             Meta ID if new entry. True if updated, false if not updated or the same as current value.
+	 */
+	public function update_subtitle( $subtitle ) {
+
+		return update_post_meta( $this->post_id, $this->get_post_meta_key(), wp_kses_post( $subtitle ) );
+
+	}
+
+	/**
 	 * Get Post Meta Key
 	 *
 	 * @uses  apply_filters( 'wps_subtitle_key' )
