@@ -309,7 +309,8 @@ class WPSubtitle_Admin {
 	/**
 	 * Verify Post Edit Capability
 	 *
-	 * @since  2.0.1
+	 * @since        2.0.1
+	 * @deprecated   2.7    Use WP_Subtitle->current_user_can_edit() instead.
 	 * @internal
 	 *
 	 * @param   int  $post_id  Post ID.
@@ -317,22 +318,12 @@ class WPSubtitle_Admin {
 	 */
 	private static function _verify_post_edit_capability( $post_id ) {
 
-		$post_types_obj = (array) get_post_types( array(
-			'_builtin' => false
-		), 'objects' );
+		_deprecated_function( '_verify_post_edit_capability()', '2.7', 'WP_Subtitle->current_user_can_edit()' );
 
-		// Check supported post type
-		if ( isset( $_POST['post_type'] ) && WPSubtitle::is_supported_post_type( $_POST['post_type'] ) ) {
-			if ( 'page' == $_POST['post_type'] && current_user_can( 'edit_page', $post_id ) ) {
-				return true;
-			} elseif ( 'post' == $_POST['post_type'] && current_user_can( 'edit_post', $post_id ) ) {
-				return true;
-			} elseif ( current_user_can( $post_types_obj[ $_POST['post_type'] ]->cap->edit_post, $post_id ) ) {
-				return true;
-			}
-		}
+		$subtitle = new WP_Subtitle( $post_id );
 
-		return false;
+		return $subtitle->current_user_can_edit();
+
 	}
 
 	/**
