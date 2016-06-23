@@ -127,8 +127,10 @@ class WPSubtitle_Admin {
 	public static function manage_subtitle_columns_content( $column_name, $post_id ) {
 
 		if ( $column_name == 'wps_subtitle' ) {
-			$subtitle = get_the_subtitle( $post_id, '', '', false );
-			echo '<span data-wps_subtitle="' . esc_attr( $subtitle ) . '">' . esc_html( $subtitle ) . '</span>';
+
+			$subtitle = new WP_Subtitle( $post_id );
+			echo '<span data-wps_subtitle="' . esc_attr( $subtitle->get_subtitle() ) . '">' . esc_html( $subtitle->get_subtitle() ) . '</span>';
+
 		}
 
 	}
@@ -229,9 +231,13 @@ class WPSubtitle_Admin {
 	 * @uses  apply_filters( 'wps_subtitle_field_description' )
 	 */
 	public static function _add_subtitle_meta_box() {
+
 		global $post;
+
+		$subtitle = new WP_Subtitle( $post );
+
 		echo '<input type="hidden" name="wps_noncename" id="wps_noncename" value="' . wp_create_nonce( 'wp-subtitle' ) . '" />';
-		echo '<input type="text" id="wpsubtitle" name="wps_subtitle" value="' . esc_attr( WPSubtitle::_get_post_meta( $post->ID ) ) . '" style="width:99%;" />';
+		echo '<input type="text" id="wpsubtitle" name="wps_subtitle" value="' . esc_attr( $subtitle->get_raw_subtitle() ) . '" style="width:99%;" />';
 		echo apply_filters( 'wps_subtitle_field_description', '', $post );
 	}
 
@@ -245,11 +251,15 @@ class WPSubtitle_Admin {
 	 * @uses  apply_filters( 'wps_subtitle_field_description' )
 	 */
 	public static function _add_subtitle_field() {
+
 		global $post;
+
+		$subtitle = new WP_Subtitle( $post );
+
 		echo '<input type="hidden" name="wps_noncename" id="wps_noncename" value="' . wp_create_nonce( 'wp-subtitle' ) . '" />';
 		echo '<div id="subtitlediv" class="top">';
 			echo '<div id="subtitlewrap">';
-				echo '<input type="text" id="wpsubtitle" name="wps_subtitle" value="' . esc_attr( WPSubtitle::_get_post_meta( $post->ID ) ) . '" autocomplete="off" placeholder="' . esc_attr( apply_filters( 'wps_subtitle_field_placeholder', __( 'Enter subtitle here', 'wp-subtitle' ) ) ) . '" />';
+				echo '<input type="text" id="wpsubtitle" name="wps_subtitle" value="' . esc_attr( $subtitle->get_raw_subtitle() ) . '" autocomplete="off" placeholder="' . esc_attr( apply_filters( 'wps_subtitle_field_placeholder', __( 'Enter subtitle here', 'wp-subtitle' ) ) ) . '" />';
 			echo '</div>';
 
 		// Description
@@ -290,7 +300,10 @@ class WPSubtitle_Admin {
 	
 		// Save data
 		if ( isset( $_POST['wps_subtitle'] ) ) {
-			update_post_meta( $post_id, WPSubtitle::_get_post_meta_key( $post_id ), wp_kses_post( $_POST['wps_subtitle'] ) );
+
+			$subtitle = new WP_Subtitle( $post );
+			$subtitle->update_subtitle( $_POST['wps_subtitle'] );
+
 		}
 	}
 

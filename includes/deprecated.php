@@ -15,7 +15,10 @@
  */
 function wps_get_the_subtitle() {
 	_deprecated_function( 'wps_get_the_subtitle()', '2.0', 'the_subtitle()' );
-	the_subtitle();
+
+	$subtitle = new WP_Subtitle( get_the_ID() );
+	$subtitle->the_subtitle();
+
 }
 
 /**
