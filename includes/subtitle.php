@@ -77,7 +77,7 @@ class WP_Subtitle {
 	 *
 	 * @return  string  The subtitle meta value.
 	 */
-	private function get_raw_subtitle() {
+	public function get_raw_subtitle() {
 
 		return get_post_meta( $this->post_id, $this->get_post_meta_key(), true );
 
