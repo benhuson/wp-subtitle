@@ -293,18 +293,17 @@ class WPSubtitle_Admin {
 			return;
 		}
 
-		// Check edit capability
-		if ( ! self::_verify_post_edit_capability( $post_id ) ) {
-			return;
-		}
-	
-		// Save data
+		// Check data and save
 		if ( isset( $_POST['wps_subtitle'] ) ) {
 
-			$subtitle = new WP_Subtitle( $post );
-			$subtitle->update_subtitle( $_POST['wps_subtitle'] );
+			$subtitle = new WP_Subtitle( $post_id );
+
+			if ( $subtitle->current_user_can_edit() ) {
+				$subtitle->update_subtitle( $_POST['wps_subtitle'] );
+			}
 
 		}
+
 	}
 
 	/**
