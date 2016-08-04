@@ -4,7 +4,7 @@
 Plugin Name: WP Subtitle
 Plugin URI: http://wordpress.org/plugins/wp-subtitle/
 Description: Adds a subtitle field to pages and posts. Possible to add support for custom post types.
-Version: 2.6
+Version: 2.7
 Author: Ben Huson, Husani Oakley
 Author URI: https://github.com/benhuson/wp-subtitle
 License: GPLv2
