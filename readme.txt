@@ -2,8 +2,8 @@
 Contributors: husobj, husani
 Tags: subtitle, content, title, subheading, subhead, alternate title
 Requires at least: 3.7
-Tested up to: 4.4
-Stable tag: 2.6
+Tested up to: 4.6
+Stable tag: 2.7
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 
@@ -99,6 +99,11 @@ The plugin is [hosted on GitHub](https://github.com/benhuson/wp-subtitle) and pu
 
 == Changelog ==
 
+= 2.7 =
+* Trim subtitle by default.
+* Apply wptexturize() on subtitle.
+* Use WP_Subtitle class to manage post subtitle.
+
 = 2.6 =
 * Security Update: Sanitize `$_REQUEST` and `$_GET` when establishing post type in the admin.
 * Added quick edit support for subtitle. Props [Fabian Marz](https://github.com/fabianmarz) and [sun](https://github.com/sun).
@@ -152,6 +157,9 @@ The plugin is [hosted on GitHub](https://github.com/benhuson/wp-subtitle) and pu
 * First version.
 
 == Upgrade Notice ==
+
+= 2.7 =
+Trim subtitle and wptexturize() by default.
 
 = 2.6 =
 Added quick edit support for subtitle. Security Update: Sanitize `$_REQUEST` and `$_GET` when establishing post type in the admin.

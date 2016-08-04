@@ -4,6 +4,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [2.7] - 2016-08-04
+
+### Changed
+- Trim subtitle by default.
+- Apply wptexturize() on subtitle.
+- Use WP_Subtitle class to manage post subtitle.
+
 ## [2.6] - 2015-12-08
 
 ### Security
