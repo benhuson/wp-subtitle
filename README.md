@@ -88,6 +88,9 @@ The plugin is [hosted on GitHub](https://github.com/benhuson/wp-subtitle) and pu
 Upgrade Notice
 --------------
 
+### 2.7.1
+Fix incorrect post ID reference preventing subtitle from saving.
+
 ### 2.7
 Trim subtitle and wptexturize() by default.
 
