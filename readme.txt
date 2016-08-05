@@ -3,7 +3,7 @@ Contributors: husobj, husani
 Tags: subtitle, content, title, subheading, subhead, alternate title
 Requires at least: 3.7
 Tested up to: 4.6
-Stable tag: 2.7
+Stable tag: 2.7.1
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 
@@ -99,6 +99,9 @@ The plugin is [hosted on GitHub](https://github.com/benhuson/wp-subtitle) and pu
 
 == Changelog ==
 
+= 2.7.1 =
+* Fix incorrect post ID reference preventing subtitle from saving.
+
 = 2.7 =
 * Trim subtitle by default.
 * Apply wptexturize() on subtitle.
@@ -157,6 +160,9 @@ The plugin is [hosted on GitHub](https://github.com/benhuson/wp-subtitle) and pu
 * First version.
 
 == Upgrade Notice ==
+
+= 2.7.1 =
+Fix incorrect post ID reference preventing subtitle from saving.
 
 = 2.7 =
 Trim subtitle and wptexturize() by default.
