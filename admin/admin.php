@@ -301,7 +301,7 @@ class WPSubtitle_Admin {
 		// Save data
 		if ( isset( $_POST['wps_subtitle'] ) ) {
 
-			$subtitle = new WP_Subtitle( $post );
+			$subtitle = new WP_Subtitle( $post_id );
 			$subtitle->update_subtitle( $_POST['wps_subtitle'] );
 
 		}
