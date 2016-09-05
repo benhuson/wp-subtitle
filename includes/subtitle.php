@@ -146,4 +146,44 @@ class WP_Subtitle {
 
 	}
 
+	/**
+	 * Current User Can Edit
+	 *
+	 * @return  boolean
+	 */
+	public function current_user_can_edit() {
+
+		// Check supported post type
+		if ( $this->is_supported_post_type() ) {
+
+			$post_type = get_post_type( $this->post_id );
+
+			// Current user can...
+			switch ( $post_type ) {
+
+				// ... edit page
+				case 'page':
+					return current_user_can( 'edit_page', $this->post_id );
+
+				// ... edit post
+				case 'post':
+					return current_user_can( 'edit_post', $this->post_id );
+
+				// ... edit other post type
+				default:
+
+					$post_types = (array) get_post_types( array(
+						'_builtin' => false
+					), 'objects' );
+
+					return current_user_can( $post_types[ $post_type ]->cap->edit_post, $this->post_id );
+
+			}
+
+		}
+
+		return false;
+
+	}
+
 }
