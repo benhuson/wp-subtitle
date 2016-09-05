@@ -84,6 +84,17 @@ class WP_Subtitle {
 	}
 
 	/**
+	 * Get Default Subtitle
+	 *
+	 * @return  string  Default title.
+	 */
+	public function get_default_subtitle() {
+
+		return apply_filters( 'default_subtitle', '', $this->post_id );
+
+	}
+
+	/**
 	 * Update Subtitle
 	 *
 	 * @param   string    $subtitle  Subtitle.

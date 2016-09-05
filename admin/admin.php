@@ -256,10 +256,20 @@ class WPSubtitle_Admin {
 
 		$subtitle = new WP_Subtitle( $post );
 
+		$value = $subtitle->get_raw_subtitle();
+
+		// Default subtitle
+		if ( function_exists( 'get_current_screen' ) && empty( $value ) ) {
+			$screen = get_current_screen();
+			if ( isset( $screen->action ) && 'add' == $screen->action ) {
+				$value = $subtitle->get_default_subtitle( $post );
+			}
+		}
+
 		echo '<input type="hidden" name="wps_noncename" id="wps_noncename" value="' . wp_create_nonce( 'wp-subtitle' ) . '" />';
 		echo '<div id="subtitlediv" class="top">';
 			echo '<div id="subtitlewrap">';
-				echo '<input type="text" id="wpsubtitle" name="wps_subtitle" value="' . esc_attr( htmlentities( $subtitle->get_raw_subtitle() ) ) . '" autocomplete="off" placeholder="' . esc_attr( apply_filters( 'wps_subtitle_field_placeholder', __( 'Enter subtitle here', 'wp-subtitle' ) ) ) . '" />';
+				echo '<input type="text" id="wpsubtitle" name="wps_subtitle" value="' . esc_attr( htmlentities( $value ) ) . '" autocomplete="off" placeholder="' . esc_attr( apply_filters( 'wps_subtitle_field_placeholder', __( 'Enter subtitle here', 'wp-subtitle' ) ) ) . '" />';
 			echo '</div>';
 
 		// Description
