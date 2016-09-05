@@ -91,7 +91,7 @@ class WP_Subtitle {
 	 */
 	public function update_subtitle( $subtitle ) {
 
-		return update_post_meta( $this->post_id, $this->get_post_meta_key(), wp_kses_post( $subtitle ) );
+		return update_post_meta( $this->post_id, $this->get_post_meta_key(), $subtitle );
 
 	}
 
