@@ -4,6 +4,15 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [2.8] - 2016-09-07
+
+### Added
+- Add `wps_default_subtitle` filter.
+
+### Changed
+- Allow subtitle to contain HTML (same as main post title ).
+- Use WP_Subtitle class to validate saving of subtitle in the admin.
+
 ## [2.7.1] - 2016-08-05
 
 ### Fixed
@@ -110,7 +119,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - First version.
 
-[Unreleased]: https://github.com/benhuson/wp-subtitle/compare/2.7.1...HEAD
+[Unreleased]: https://github.com/benhuson/wp-subtitle/compare/2.8...HEAD
+[2.8]: https://github.com/benhuson/wp-subtitle/compare/2.7.1...2.8
 [2.7.1]: https://github.com/benhuson/wp-subtitle/compare/2.7...2.7.1
 [2.7]: https://github.com/benhuson/wp-subtitle/compare/2.6...2.7
 [2.6]: https://github.com/benhuson/wp-subtitle/compare/2.5...2.6

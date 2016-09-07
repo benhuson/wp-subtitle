@@ -234,10 +234,10 @@ class WPSubtitle_Admin {
 
 		global $post;
 
-		$subtitle = new WP_Subtitle( $post );
+		$value = self::get_admin_subtitle_value( $post );
 
 		echo '<input type="hidden" name="wps_noncename" id="wps_noncename" value="' . wp_create_nonce( 'wp-subtitle' ) . '" />';
-		echo '<input type="text" id="wpsubtitle" name="wps_subtitle" value="' . esc_attr( $subtitle->get_raw_subtitle() ) . '" style="width:99%;" />';
+		echo '<input type="text" id="wpsubtitle" name="wps_subtitle" value="' . esc_attr( htmlentities( $value ) ) . '" autocomplete="off" placeholder="' . esc_attr( apply_filters( 'wps_subtitle_field_placeholder', __( 'Enter subtitle here', 'wp-subtitle' ) ) ) . '" style="width:99%;" />';
 		echo apply_filters( 'wps_subtitle_field_description', '', $post );
 	}
 
@@ -254,12 +254,12 @@ class WPSubtitle_Admin {
 
 		global $post;
 
-		$subtitle = new WP_Subtitle( $post );
+		$value = self::get_admin_subtitle_value( $post );
 
 		echo '<input type="hidden" name="wps_noncename" id="wps_noncename" value="' . wp_create_nonce( 'wp-subtitle' ) . '" />';
 		echo '<div id="subtitlediv" class="top">';
 			echo '<div id="subtitlewrap">';
-				echo '<input type="text" id="wpsubtitle" name="wps_subtitle" value="' . esc_attr( $subtitle->get_raw_subtitle() ) . '" autocomplete="off" placeholder="' . esc_attr( apply_filters( 'wps_subtitle_field_placeholder', __( 'Enter subtitle here', 'wp-subtitle' ) ) ) . '" />';
+				echo '<input type="text" id="wpsubtitle" name="wps_subtitle" value="' . esc_attr( htmlentities( $value ) ) . '" autocomplete="off" placeholder="' . esc_attr( apply_filters( 'wps_subtitle_field_placeholder', __( 'Enter subtitle here', 'wp-subtitle' ) ) ) . '" />';
 			echo '</div>';
 
 		// Description
@@ -268,6 +268,33 @@ class WPSubtitle_Admin {
 			echo '<div id="subtitledescription">' . $description . '</div>';
 		}
 		echo '</div>';
+	}
+
+	/**
+	 * Get Admin Subtitle Value
+	 *
+	 * @since  2.8
+	 * @internal
+	 *
+	 * @param   WP_Post  $post  Post object.
+	 * @return  string          Subtitle value.
+	 */
+	private function get_admin_subtitle_value( $post ) {
+
+		$subtitle = new WP_Subtitle( $post );
+
+		$value = $subtitle->get_raw_subtitle();
+
+		// Default subtitle if adding new post
+		if ( function_exists( 'get_current_screen' ) && empty( $value ) ) {
+			$screen = get_current_screen();
+			if ( isset( $screen->action ) && 'add' == $screen->action ) {
+				$value = $subtitle->get_default_subtitle( $post );
+			}
+		}
+
+		return $value;
+
 	}
 
 	/**
@@ -293,24 +320,24 @@ class WPSubtitle_Admin {
 			return;
 		}
 
-		// Check edit capability
-		if ( ! self::_verify_post_edit_capability( $post_id ) ) {
-			return;
-		}
-	
-		// Save data
+		// Check data and save
 		if ( isset( $_POST['wps_subtitle'] ) ) {
 
 			$subtitle = new WP_Subtitle( $post_id );
-			$subtitle->update_subtitle( $_POST['wps_subtitle'] );
+
+			if ( $subtitle->current_user_can_edit() ) {
+				$subtitle->update_subtitle( $_POST['wps_subtitle'] );
+			}
 
 		}
+
 	}
 
 	/**
 	 * Verify Post Edit Capability
 	 *
-	 * @since  2.0.1
+	 * @since        2.0.1
+	 * @deprecated   2.7    Use WP_Subtitle->current_user_can_edit() instead.
 	 * @internal
 	 *
 	 * @param   int  $post_id  Post ID.
@@ -318,22 +345,12 @@ class WPSubtitle_Admin {
 	 */
 	private static function _verify_post_edit_capability( $post_id ) {
 
-		$post_types_obj = (array) get_post_types( array(
-			'_builtin' => false
-		), 'objects' );
+		_deprecated_function( '_verify_post_edit_capability()', '2.7', 'WP_Subtitle->current_user_can_edit()' );
 
-		// Check supported post type
-		if ( isset( $_POST['post_type'] ) && WPSubtitle::is_supported_post_type( $_POST['post_type'] ) ) {
-			if ( 'page' == $_POST['post_type'] && current_user_can( 'edit_page', $post_id ) ) {
-				return true;
-			} elseif ( 'post' == $_POST['post_type'] && current_user_can( 'edit_post', $post_id ) ) {
-				return true;
-			} elseif ( current_user_can( $post_types_obj[ $_POST['post_type'] ]->cap->edit_post, $post_id ) ) {
-				return true;
-			}
-		}
+		$subtitle = new WP_Subtitle( $post_id );
 
-		return false;
+		return $subtitle->current_user_can_edit();
+
 	}
 
 	/**

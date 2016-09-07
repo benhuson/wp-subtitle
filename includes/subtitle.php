@@ -84,6 +84,19 @@ class WP_Subtitle {
 	}
 
 	/**
+	 * Get Default Subtitle
+	 *
+	 * @since  2.8
+	 *
+	 * @return  string  Default title.
+	 */
+	public function get_default_subtitle() {
+
+		return apply_filters( 'wps_default_subtitle', '', $this->post_id );
+
+	}
+
+	/**
 	 * Update Subtitle
 	 *
 	 * @param   string    $subtitle  Subtitle.
@@ -91,7 +104,7 @@ class WP_Subtitle {
 	 */
 	public function update_subtitle( $subtitle ) {
 
-		return update_post_meta( $this->post_id, $this->get_post_meta_key(), wp_kses_post( $subtitle ) );
+		return update_post_meta( $this->post_id, $this->get_post_meta_key(), $subtitle );
 
 	}
 
@@ -124,6 +137,8 @@ class WP_Subtitle {
 	/**
 	 * Get Supported Post Types
 	 *
+	 * @since  2.7
+	 *
 	 * @return  array  Array of supported post types.
 	 */
 	private function get_supported_post_types() {
@@ -143,6 +158,48 @@ class WP_Subtitle {
 		}
 
 		return $supported;
+
+	}
+
+	/**
+	 * Current User Can Edit
+	 *
+	 * @since  2.8
+	 *
+	 * @return  boolean
+	 */
+	public function current_user_can_edit() {
+
+		// Check supported post type
+		if ( $this->is_supported_post_type() ) {
+
+			$post_type = get_post_type( $this->post_id );
+
+			// Current user can...
+			switch ( $post_type ) {
+
+				// ... edit page
+				case 'page':
+					return current_user_can( 'edit_page', $this->post_id );
+
+				// ... edit post
+				case 'post':
+					return current_user_can( 'edit_post', $this->post_id );
+
+				// ... edit other post type
+				default:
+
+					$post_types = (array) get_post_types( array(
+						'_builtin' => false
+					), 'objects' );
+
+					return current_user_can( $post_types[ $post_type ]->cap->edit_post, $this->post_id );
+
+			}
+
+		}
+
+		return false;
 
 	}
 
