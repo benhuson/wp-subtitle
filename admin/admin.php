@@ -237,7 +237,7 @@ class WPSubtitle_Admin {
 		$value = self::get_admin_subtitle_value( $post );
 
 		echo '<input type="hidden" name="wps_noncename" id="wps_noncename" value="' . wp_create_nonce( 'wp-subtitle' ) . '" />';
-		echo '<input type="text" id="wpsubtitle" name="wps_subtitle" value="' . esc_attr( htmlentities( $value ) ) . '" style="width:99%;" />';
+		echo '<input type="text" id="wpsubtitle" name="wps_subtitle" value="' . esc_attr( htmlentities( $value ) ) . '" autocomplete="off" placeholder="' . esc_attr( apply_filters( 'wps_subtitle_field_placeholder', __( 'Enter subtitle here', 'wp-subtitle' ) ) ) . '" style="width:99%;" />';
 		echo apply_filters( 'wps_subtitle_field_description', '', $post );
 	}
 
