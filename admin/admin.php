@@ -234,17 +234,7 @@ class WPSubtitle_Admin {
 
 		global $post;
 
-		$subtitle = new WP_Subtitle( $post );
-
-		$value = $subtitle->get_raw_subtitle();
-
-		// Default subtitle
-		if ( function_exists( 'get_current_screen' ) && empty( $value ) ) {
-			$screen = get_current_screen();
-			if ( isset( $screen->action ) && 'add' == $screen->action ) {
-				$value = $subtitle->get_default_subtitle( $post );
-			}
-		}
+		$value = self::get_admin_subtitle_value( $post );
 
 		echo '<input type="hidden" name="wps_noncename" id="wps_noncename" value="' . wp_create_nonce( 'wp-subtitle' ) . '" />';
 		echo '<input type="text" id="wpsubtitle" name="wps_subtitle" value="' . esc_attr( htmlentities( $value ) ) . '" style="width:99%;" />';
@@ -264,17 +254,7 @@ class WPSubtitle_Admin {
 
 		global $post;
 
-		$subtitle = new WP_Subtitle( $post );
-
-		$value = $subtitle->get_raw_subtitle();
-
-		// Default subtitle
-		if ( function_exists( 'get_current_screen' ) && empty( $value ) ) {
-			$screen = get_current_screen();
-			if ( isset( $screen->action ) && 'add' == $screen->action ) {
-				$value = $subtitle->get_default_subtitle( $post );
-			}
-		}
+		$value = self::get_admin_subtitle_value( $post );
 
 		echo '<input type="hidden" name="wps_noncename" id="wps_noncename" value="' . wp_create_nonce( 'wp-subtitle' ) . '" />';
 		echo '<div id="subtitlediv" class="top">';
@@ -288,6 +268,30 @@ class WPSubtitle_Admin {
 			echo '<div id="subtitledescription">' . $description . '</div>';
 		}
 		echo '</div>';
+	}
+
+	/**
+	 * Get Admin Subtitle Value
+	 *
+	 * @param   WP_Post  $post  Post object.
+	 * @return  string          Subtitle value.
+	 */
+	private function get_admin_subtitle_value( $post ) {
+
+		$subtitle = new WP_Subtitle( $post );
+
+		$value = $subtitle->get_raw_subtitle();
+
+		// Default subtitle if adding new post
+		if ( function_exists( 'get_current_screen' ) && empty( $value ) ) {
+			$screen = get_current_screen();
+			if ( isset( $screen->action ) && 'add' == $screen->action ) {
+				$value = $subtitle->get_default_subtitle( $post );
+			}
+		}
+
+		return $value;
+
 	}
 
 	/**
