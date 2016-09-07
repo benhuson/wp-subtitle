@@ -88,6 +88,9 @@ The plugin is [hosted on GitHub](https://github.com/benhuson/wp-subtitle) and pu
 Upgrade Notice
 --------------
 
+### 2.8
+Allow subtitle to contain HTML (same as main post title ) and add `wps_default_subtitle` filter.
+
 ### 2.7.1
 Fix incorrect post ID reference preventing subtitle from saving.
 

@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: subtitle, content, title, subheading, subhead, alternate title
 Requires at least: 3.7
 Tested up to: 4.6
-Stable tag: 2.7.1
+Stable tag: 2.8
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 
@@ -100,6 +100,11 @@ The plugin is [hosted on GitHub](https://github.com/benhuson/wp-subtitle) and pu
 
 == Changelog ==
 
+= 2.8 =
+* Allow subtitle to contain HTML (same as main post title ).
+* Add `wps_default_subtitle` filter.
+* Use WP_Subtitle class to validate saving of subtitle in the admin.
+
 = 2.7.1 =
 * Fix incorrect post ID reference preventing subtitle from saving.
 
@@ -161,6 +166,9 @@ The plugin is [hosted on GitHub](https://github.com/benhuson/wp-subtitle) and pu
 * First version.
 
 == Upgrade Notice ==
+
+= 2.8 =
+Allow subtitle to contain HTML (same as main post title ) and add `wps_default_subtitle` filter.
 
 = 2.7.1 =
 Fix incorrect post ID reference preventing subtitle from saving.
