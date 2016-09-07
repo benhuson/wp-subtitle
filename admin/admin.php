@@ -237,7 +237,7 @@ class WPSubtitle_Admin {
 		$subtitle = new WP_Subtitle( $post );
 
 		echo '<input type="hidden" name="wps_noncename" id="wps_noncename" value="' . wp_create_nonce( 'wp-subtitle' ) . '" />';
-		echo '<input type="text" id="wpsubtitle" name="wps_subtitle" value="' . esc_attr( $subtitle->get_raw_subtitle() ) . '" style="width:99%;" />';
+		echo '<input type="text" id="wpsubtitle" name="wps_subtitle" value="' . esc_attr( htmlentities( $subtitle->get_raw_subtitle() ) ) . '" style="width:99%;" />';
 		echo apply_filters( 'wps_subtitle_field_description', '', $post );
 	}
 
