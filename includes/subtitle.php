@@ -90,7 +90,7 @@ class WP_Subtitle {
 	 */
 	public function get_default_subtitle() {
 
-		return apply_filters( 'default_subtitle', '', $this->post_id );
+		return apply_filters( 'wps_default_subtitle', '', $this->post_id );
 
 	}
 
