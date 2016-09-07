@@ -11,7 +11,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 - Allow subtitle to contain HTML (same as main post title ).
-- Use WP_Subtitle class to validate saving of subtitle in the admin.
+- Use `WP_Subtitle` class to validate saving of subtitle in the admin.
 
 ## [2.7.1] - 2016-08-05
 

@@ -103,7 +103,7 @@ The plugin is [hosted on GitHub](https://github.com/benhuson/wp-subtitle) and pu
 = 2.8 =
 * Allow subtitle to contain HTML (same as main post title ).
 * Add `wps_default_subtitle` filter.
-* Use WP_Subtitle class to validate saving of subtitle in the admin.
+* Use `WP_Subtitle` class to validate saving of subtitle in the admin.
 
 = 2.7.1 =
 * Fix incorrect post ID reference preventing subtitle from saving.
