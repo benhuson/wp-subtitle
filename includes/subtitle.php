@@ -86,6 +86,8 @@ class WP_Subtitle {
 	/**
 	 * Get Default Subtitle
 	 *
+	 * @since  2.8
+	 *
 	 * @return  string  Default title.
 	 */
 	public function get_default_subtitle() {
@@ -135,6 +137,8 @@ class WP_Subtitle {
 	/**
 	 * Get Supported Post Types
 	 *
+	 * @since  2.7
+	 *
 	 * @return  array  Array of supported post types.
 	 */
 	private function get_supported_post_types() {
@@ -159,6 +163,8 @@ class WP_Subtitle {
 
 	/**
 	 * Current User Can Edit
+	 *
+	 * @since  2.8
 	 *
 	 * @return  boolean
 	 */

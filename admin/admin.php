@@ -273,6 +273,9 @@ class WPSubtitle_Admin {
 	/**
 	 * Get Admin Subtitle Value
 	 *
+	 * @since  2.8
+	 * @internal
+	 *
 	 * @param   WP_Post  $post  Post object.
 	 * @return  string          Subtitle value.
 	 */
