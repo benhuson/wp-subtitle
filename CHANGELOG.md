@@ -4,6 +4,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [2.8.1] - 2016-09-14
+
+### Fixed
+- Fix PHP warning - `get_admin_subtitle_value()` should be declared static.
+
 ## [2.8] - 2016-09-07
 
 ### Added
@@ -119,7 +124,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - First version.
 
-[Unreleased]: https://github.com/benhuson/wp-subtitle/compare/2.8...HEAD
+[Unreleased]: https://github.com/benhuson/wp-subtitle/compare/2.8.1...HEAD
+[2.8.1]: https://github.com/benhuson/wp-subtitle/compare/2.8...2.8.1
 [2.8]: https://github.com/benhuson/wp-subtitle/compare/2.7.1...2.8
 [2.7.1]: https://github.com/benhuson/wp-subtitle/compare/2.7...2.7.1
 [2.7]: https://github.com/benhuson/wp-subtitle/compare/2.6...2.7
