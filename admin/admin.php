@@ -279,7 +279,7 @@ class WPSubtitle_Admin {
 	 * @param   WP_Post  $post  Post object.
 	 * @return  string          Subtitle value.
 	 */
-	private function get_admin_subtitle_value( $post ) {
+	private static function get_admin_subtitle_value( $post ) {
 
 		$subtitle = new WP_Subtitle( $post );
 
