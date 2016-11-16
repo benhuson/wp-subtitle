@@ -104,7 +104,7 @@ class WP_Subtitle {
 	 */
 	public function update_subtitle( $subtitle ) {
 
-		return update_post_meta( $this->post_id, $this->get_post_meta_key(), $subtitle );
+		return update_metadata('post', $this->post_id, $this->get_post_meta_key(), $subtitle);
 
 	}
 
@@ -147,7 +147,7 @@ class WP_Subtitle {
 			'_builtin' => false
 		) );
 
-		$post_types = array_merge( $post_types, array( 'post', 'page' ) );
+		$post_types = array_merge( $post_types, array( 'post', 'page', 'revision' ) );
 
 		$supported = array();
 
@@ -174,6 +174,10 @@ class WP_Subtitle {
 		if ( $this->is_supported_post_type() ) {
 
 			$post_type = get_post_type( $this->post_id );
+
+			if ($revision = wp_is_post_revision( $this->post_id )) {
+				$post_type = get_post_type( $revision );
+			}
 
 			// Current user can...
 			switch ( $post_type ) {
