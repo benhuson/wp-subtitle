@@ -129,7 +129,7 @@ class WP_Subtitle {
 	 *
 	 * @param  int  $revision_id  Revision ID.
 	 */
-	public static function restore_post_revision( $revision_id ) {
+	public function restore_post_revision( $revision_id ) {
 
 		$meta_value = get_metadata( 'post', $revision_id, $this->get_post_meta_key(), true );
 
