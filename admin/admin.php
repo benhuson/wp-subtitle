@@ -26,7 +26,8 @@ class WPSubtitle_Admin {
 		add_action( 'admin_enqueue_scripts', array( 'WPSubtitle_Admin', '_add_admin_scripts' ) );
 
 		add_filter( '_wp_post_revision_fields', array( 'WPSubtitle_Admin', '_wp_post_revision_fields' ), 9 );
-		add_action( 'wp_restore_post_revision', array( 'WPSubtitle_Admin', 'wp_restore_post_revision'), 10, 2 );
+		add_action( 'wp_restore_post_revision', array( 'WPSubtitle_Admin', 'wp_restore_post_revision' ), 10, 2 );
+
 	}
 
 	/**
@@ -156,36 +157,42 @@ class WPSubtitle_Admin {
 	}
 
 	/**
-	 * Add wps_subtitle to post revision fields.
+	 * Add `wps_subtitle` to post revision fields.
 	 *
-	 * @param array $fields Revision fields.
-	 *
-	 * @since 2.9
+	 * @since     2.9
 	 * @internal
+	 *
+	 * @param  array  $fields  Revision fields.
 	 */
 	public static function _wp_post_revision_fields( $fields ) {
+
 		$fields['wps_subtitle'] = __( 'Subtitle', 'wp-subtitle' );
+
 		return $fields;
+
 	}
 
 	/**
-	 * Restore revisioned wps_subtitle value to post.
+	 * Restore revisioned `wps_subtitle` value to post.
 	 *
-	 * @param int $post_id Post ID
-	 * @param int $revision_id Revision ID
+	 * @since  2.9
 	 *
-	 * @since 2.9
+	 * @param  int  $post_id      Post ID.
+	 * @param  int  $revision_id  Revision ID.
 	 */
 	public static function wp_restore_post_revision( $post_id, $revision_id ) {
+
 		$post = get_post( $post_id );
 		$revision = get_post( $revision_id );
+
 		$meta_value = get_metadata( 'post', $revision->ID, 'wps_subtitle', true );
+
 		if ( $meta_value ) {
 			update_post_meta( $post_id, 'wps_subtitle', $meta_value );
-		}
-		else {
+		} else {
 			delete_post_meta( $post_id, 'wps_subtitle' );
 		}
+
 	}
 
 	/**
@@ -362,6 +369,7 @@ class WPSubtitle_Admin {
 
 			$new_value = $_POST['wps_subtitle'];
 			$old_value = get_metadata( 'post', $post_id, 'wps_subtitle', true );
+
 			if ( $new_value === $old_value ) {
 				return;
 			}

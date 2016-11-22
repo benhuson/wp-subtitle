@@ -72,26 +72,30 @@ class WPSubtitle {
 		add_post_type_support( 'revision', 'wps_subtitle' );
 
 		add_filter( 'the_preview', array( 'WPSubtitle', 'the_preview' ), 10, 2 );
+
 	}
 
 	/**
 	 * Returns the autosaved data to make changes visible in preview mode.
 	 *
-	 * @since 2.9
+	 * @since  2.9
 	 *
-	 * @param object $post Post object.
-	 * @param object $query Query object.
-	 *
-	 * @return WP_Post|false The autosaved data or false on failure or when no autosave exists.
+	 * @param   object         $post   Post object.
+	 * @param   object         $query  Query object.
+	 * @return  WP_Post|false          The autosaved data or false on failure or when no autosave exists.
 	 */
 	public static function the_preview( $post, $query ) {
-		if (isset($_GET['preview_id'])) {
+
+		if ( isset( $_GET['preview_id'] ) ) {
 			return wp_get_post_autosave( $post->ID );
 		}
+
 		if ( $revisions = wp_get_post_revisions( $post->ID ) ) {
 			return array_shift( $revisions );
 		}
+
 		return $post;
+
 	}
 
 	/**

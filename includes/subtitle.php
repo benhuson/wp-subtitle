@@ -104,7 +104,8 @@ class WP_Subtitle {
 	 */
 	public function update_subtitle( $subtitle ) {
 
-		return update_metadata('post', $this->post_id, $this->get_post_meta_key(), $subtitle);
+		// Uses `update_metadata` as `update_post_meta` doesn't work with revisions.
+		return update_metadata( 'post', $this->post_id, $this->get_post_meta_key(), $subtitle );
 
 	}
 
@@ -175,7 +176,7 @@ class WP_Subtitle {
 
 			$post_type = get_post_type( $this->post_id );
 
-			if ($revision = wp_is_post_revision( $this->post_id )) {
+			if ( $revision = wp_is_post_revision( $this->post_id ) ) {
 				$post_type = get_post_type( $revision );
 			}
 
