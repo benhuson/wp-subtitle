@@ -123,6 +123,25 @@ class WP_Subtitle {
 	}
 
 	/**
+	 * Restore revision.
+	 *
+	 * @since  2.9
+	 *
+	 * @param  int  $revision_id  Revision ID.
+	 */
+	public static function restore_post_revision( $revision_id ) {
+
+		$meta_value = get_metadata( 'post', $revision_id, $this->get_post_meta_key(), true );
+
+		if ( $meta_value ) {
+			$this->update_subtitle( $meta_value );
+		} else {
+			delete_post_meta( $this->post_id, $this->get_post_meta_key() );
+		}
+
+	}
+
+	/**
 	 * Is Supported Post Type?
 	 *
 	 * @return  boolean

@@ -182,16 +182,8 @@ class WPSubtitle_Admin {
 	 */
 	public static function wp_restore_post_revision( $post_id, $revision_id ) {
 
-		$post = get_post( $post_id );
-		$revision = get_post( $revision_id );
-
-		$meta_value = get_metadata( 'post', $revision->ID, 'wps_subtitle', true );
-
-		if ( $meta_value ) {
-			update_post_meta( $post_id, 'wps_subtitle', $meta_value );
-		} else {
-			delete_post_meta( $post_id, 'wps_subtitle' );
-		}
+		$subtitle = new WP_Subtitle( $post_id );
+		$subtitle->restore_post_revision( $revision_id );
 
 	}
 
