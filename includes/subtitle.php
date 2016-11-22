@@ -110,6 +110,18 @@ class WP_Subtitle {
 	}
 
 	/**
+	 * Is Current Subtitle?
+	 *
+	 * @param   string   $subtitle  Subtitle value.
+	 * @return  boolean
+	 */
+	public function is_current_subtitle( $subtitle ) {
+
+		return $subtitle === get_metadata( 'post', $this->post_id, 'wps_subtitle', true );
+
+	}
+
+	/**
 	 * Get Post Meta Key
 	 *
 	 * @uses  apply_filters( 'wps_subtitle_key' )

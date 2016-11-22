@@ -360,16 +360,16 @@ class WPSubtitle_Admin {
 		if ( isset( $_POST['wps_subtitle'] ) ) {
 
 			$new_value = $_POST['wps_subtitle'];
-			$old_value = get_metadata( 'post', $post_id, 'wps_subtitle', true );
-
-			if ( $new_value === $old_value ) {
-				return;
-			}
 
 			$subtitle = new WP_Subtitle( $post_id );
 
+			// Don't save if value not changed
+			if ( $subtitle->is_current_subtitle( $new_value ) ) {
+				return;
+			}
+
 			if ( $subtitle->current_user_can_edit() ) {
-				$subtitle->update_subtitle( $_POST['wps_subtitle'] );
+				$subtitle->update_subtitle( $new_value );
 			}
 
 		}
