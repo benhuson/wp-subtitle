@@ -4,6 +4,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Added
+- Add support for post revisions. Props [Fabian Marz](https://github.com/fabianmarz).
+
 ## [2.8.1] - 2016-09-14
 
 ### Fixed

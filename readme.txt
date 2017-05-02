@@ -100,6 +100,9 @@ The plugin is [hosted on GitHub](https://github.com/benhuson/wp-subtitle) and pu
 
 == Changelog ==
 
+= Unreleased =
+* Add support for post revisions. Props [Fabian Marz](https://github.com/fabianmarz).
+
 = 2.8.1 =
 * Fix PHP warning - `get_admin_subtitle_value()` should be declared static.
 
