@@ -21,8 +21,13 @@ class WPSubtitle_Admin {
 		load_plugin_textdomain( 'wp-subtitle', false, dirname( WPSUBTITLE_BASENAME ) . '/languages' );
 
 		add_action( 'admin_init', array( 'WPSubtitle_Admin', '_admin_init' ) );
+		add_action( 'post_updated', array( 'WPSubtitle_Admin', '_save_post' ), 9 );
 		add_action( 'save_post', array( 'WPSubtitle_Admin', '_save_post' ) );
 		add_action( 'admin_enqueue_scripts', array( 'WPSubtitle_Admin', '_add_admin_scripts' ) );
+
+		add_filter( '_wp_post_revision_fields', array( 'WPSubtitle_Admin', '_wp_post_revision_fields' ), 9 );
+		add_action( 'wp_restore_post_revision', array( 'WPSubtitle_Admin', 'wp_restore_post_revision' ), 10, 2 );
+
 	}
 
 	/**
@@ -148,6 +153,37 @@ class WPSubtitle_Admin {
 		}
 
 		wp_enqueue_script( 'wps_subtitle', plugins_url( 'js/admin-edit.js', __FILE__ ), false, null, true );
+
+	}
+
+	/**
+	 * Add `wps_subtitle` to post revision fields.
+	 *
+	 * @since     2.9
+	 * @internal
+	 *
+	 * @param  array  $fields  Revision fields.
+	 */
+	public static function _wp_post_revision_fields( $fields ) {
+
+		$fields['wps_subtitle'] = __( 'Subtitle', 'wp-subtitle' );
+
+		return $fields;
+
+	}
+
+	/**
+	 * Restore revisioned `wps_subtitle` value to post.
+	 *
+	 * @since  2.9
+	 *
+	 * @param  int  $post_id      Post ID.
+	 * @param  int  $revision_id  Revision ID.
+	 */
+	public static function wp_restore_post_revision( $post_id, $revision_id ) {
+
+		$subtitle = new WP_Subtitle( $post_id );
+		$subtitle->restore_post_revision( $revision_id );
 
 	}
 
@@ -332,10 +368,17 @@ class WPSubtitle_Admin {
 		// Check data and save
 		if ( isset( $_POST['wps_subtitle'] ) ) {
 
+			$new_value = $_POST['wps_subtitle'];
+
 			$subtitle = new WP_Subtitle( $post_id );
 
+			// Don't save if value not changed
+			if ( $subtitle->is_current_subtitle( $new_value ) ) {
+				return;
+			}
+
 			if ( $subtitle->current_user_can_edit() ) {
-				$subtitle->update_subtitle( $_POST['wps_subtitle'] );
+				$subtitle->update_subtitle( $new_value );
 			}
 
 		}

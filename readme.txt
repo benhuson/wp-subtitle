@@ -101,7 +101,8 @@ The plugin is [hosted on GitHub](https://github.com/benhuson/wp-subtitle) and pu
 == Changelog ==
 
 = Unreleased =
-- As of WordPress 4.3 no need to esc_attr() AND htmlentities() - can mess up special characters.
+* Add support for post revisions. Props [Fabian Marz](https://github.com/fabianmarz).
+* As of WordPress 4.3 no need to esc_attr() AND htmlentities() - can mess up special characters.
 
 = 2.8.1 =
 * Fix PHP warning - `get_admin_subtitle_value()` should be declared static.
