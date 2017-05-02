@@ -237,8 +237,13 @@ class WPSubtitle_Admin {
 		$value = self::get_admin_subtitle_value( $post );
 
 		echo '<input type="hidden" name="wps_noncename" id="wps_noncename" value="' . wp_create_nonce( 'wp-subtitle' ) . '" />';
+
+		// As of WordPress 4.3 no need to esc_attr() AND htmlentities().
+		// @see  https://core.trac.wordpress.org/changeset/33271
 		echo '<input type="text" id="wpsubtitle" name="wps_subtitle" value="' . esc_attr( $value ) . '" autocomplete="off" placeholder="' . esc_attr( apply_filters( 'wps_subtitle_field_placeholder', __( 'Enter subtitle here', 'wp-subtitle' ) ) ) . '" style="width:99%;" />';
+
 		echo apply_filters( 'wps_subtitle_field_description', '', $post );
+
 	}
 
 	/**
