@@ -263,9 +263,13 @@ class WPSubtitle_Admin {
 
 		echo '<input type="hidden" name="wps_noncename" id="wps_noncename" value="' . wp_create_nonce( 'wp-subtitle' ) . '" />';
 		echo '<div id="subtitlediv" class="top">';
-			echo '<div id="subtitlewrap">';
-				echo '<input type="text" id="wpsubtitle" name="wps_subtitle" value="' . esc_attr( $value ) . '" autocomplete="off" placeholder="' . esc_attr( apply_filters( 'wps_subtitle_field_placeholder', __( 'Enter subtitle here', 'wp-subtitle' ) ) ) . '" />';
-			echo '</div>';
+		echo '<div id="subtitlewrap">';
+
+		// As of WordPress 4.3 no need to esc_attr() AND htmlentities().
+		// @see  https://core.trac.wordpress.org/changeset/33271
+		echo '<input type="text" id="wpsubtitle" name="wps_subtitle" value="' . esc_attr( $value ) . '" autocomplete="off" placeholder="' . esc_attr( apply_filters( 'wps_subtitle_field_placeholder', __( 'Enter subtitle here', 'wp-subtitle' ) ) ) . '" />';
+
+		echo '</div>';
 
 		// Description
 		$description = apply_filters( 'wps_subtitle_field_description', '', $post );
