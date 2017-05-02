@@ -4,6 +4,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Fixed
+- As of WordPress 4.3 no need to esc_attr() AND htmlentities() - can mess up special characters.
+
 ## [2.8.1] - 2016-09-14
 
 ### Fixed
