@@ -112,6 +112,8 @@ class WP_Subtitle {
 	/**
 	 * Is Current Subtitle?
 	 *
+	 * @since  2.9
+	 *
 	 * @param   string   $subtitle  Subtitle value.
 	 * @return  boolean
 	 */
