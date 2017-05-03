@@ -4,6 +4,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [2.9] - 2017-05-03
+
+### Added
+- Add support for post revisions. Props [Fabian Marz](https://github.com/fabianmarz).
+
+### Fixed
+- As of WordPress 4.3 no need to esc_attr() AND htmlentities() - can mess up special characters.
+
 ## [2.8.1] - 2016-09-14
 
 ### Fixed
@@ -124,7 +132,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - First version.
 
-[Unreleased]: https://github.com/benhuson/wp-subtitle/compare/2.8.1...HEAD
+[Unreleased]: https://github.com/benhuson/wp-subtitle/compare/2.9...HEAD
+[2.9]: https://github.com/benhuson/wp-subtitle/compare/2.8.1...2.9
 [2.8.1]: https://github.com/benhuson/wp-subtitle/compare/2.8...2.8.1
 [2.8]: https://github.com/benhuson/wp-subtitle/compare/2.7.1...2.8
 [2.7.1]: https://github.com/benhuson/wp-subtitle/compare/2.7...2.7.1

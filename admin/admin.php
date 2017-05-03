@@ -21,8 +21,13 @@ class WPSubtitle_Admin {
 		load_plugin_textdomain( 'wp-subtitle', false, dirname( WPSUBTITLE_BASENAME ) . '/languages' );
 
 		add_action( 'admin_init', array( 'WPSubtitle_Admin', '_admin_init' ) );
+		add_action( 'post_updated', array( 'WPSubtitle_Admin', '_save_post' ), 9 );
 		add_action( 'save_post', array( 'WPSubtitle_Admin', '_save_post' ) );
 		add_action( 'admin_enqueue_scripts', array( 'WPSubtitle_Admin', '_add_admin_scripts' ) );
+
+		add_filter( '_wp_post_revision_fields', array( 'WPSubtitle_Admin', '_wp_post_revision_fields' ), 9 );
+		add_action( 'wp_restore_post_revision', array( 'WPSubtitle_Admin', 'wp_restore_post_revision' ), 10, 2 );
+
 	}
 
 	/**
@@ -152,6 +157,37 @@ class WPSubtitle_Admin {
 	}
 
 	/**
+	 * Add `wps_subtitle` to post revision fields.
+	 *
+	 * @since     2.9
+	 * @internal
+	 *
+	 * @param  array  $fields  Revision fields.
+	 */
+	public static function _wp_post_revision_fields( $fields ) {
+
+		$fields['wps_subtitle'] = __( 'Subtitle', 'wp-subtitle' );
+
+		return $fields;
+
+	}
+
+	/**
+	 * Restore revisioned `wps_subtitle` value to post.
+	 *
+	 * @since  2.9
+	 *
+	 * @param  int  $post_id      Post ID.
+	 * @param  int  $revision_id  Revision ID.
+	 */
+	public static function wp_restore_post_revision( $post_id, $revision_id ) {
+
+		$subtitle = new WP_Subtitle( $post_id );
+		$subtitle->restore_post_revision( $revision_id );
+
+	}
+
+	/**
 	 * Add Admin Styles
 	 *
 	 * @since  2.2
@@ -237,8 +273,13 @@ class WPSubtitle_Admin {
 		$value = self::get_admin_subtitle_value( $post );
 
 		echo '<input type="hidden" name="wps_noncename" id="wps_noncename" value="' . wp_create_nonce( 'wp-subtitle' ) . '" />';
-		echo '<input type="text" id="wpsubtitle" name="wps_subtitle" value="' . esc_attr( htmlentities( $value ) ) . '" autocomplete="off" placeholder="' . esc_attr( apply_filters( 'wps_subtitle_field_placeholder', __( 'Enter subtitle here', 'wp-subtitle' ) ) ) . '" style="width:99%;" />';
+
+		// As of WordPress 4.3 no need to esc_attr() AND htmlentities().
+		// @see  https://core.trac.wordpress.org/changeset/33271
+		echo '<input type="text" id="wpsubtitle" name="wps_subtitle" value="' . esc_attr( $value ) . '" autocomplete="off" placeholder="' . esc_attr( apply_filters( 'wps_subtitle_field_placeholder', __( 'Enter subtitle here', 'wp-subtitle' ) ) ) . '" style="width:99%;" />';
+
 		echo apply_filters( 'wps_subtitle_field_description', '', $post );
+
 	}
 
 	/**
@@ -258,9 +299,13 @@ class WPSubtitle_Admin {
 
 		echo '<input type="hidden" name="wps_noncename" id="wps_noncename" value="' . wp_create_nonce( 'wp-subtitle' ) . '" />';
 		echo '<div id="subtitlediv" class="top">';
-			echo '<div id="subtitlewrap">';
-				echo '<input type="text" id="wpsubtitle" name="wps_subtitle" value="' . esc_attr( htmlentities( $value ) ) . '" autocomplete="off" placeholder="' . esc_attr( apply_filters( 'wps_subtitle_field_placeholder', __( 'Enter subtitle here', 'wp-subtitle' ) ) ) . '" />';
-			echo '</div>';
+		echo '<div id="subtitlewrap">';
+
+		// As of WordPress 4.3 no need to esc_attr() AND htmlentities().
+		// @see  https://core.trac.wordpress.org/changeset/33271
+		echo '<input type="text" id="wpsubtitle" name="wps_subtitle" value="' . esc_attr( $value ) . '" autocomplete="off" placeholder="' . esc_attr( apply_filters( 'wps_subtitle_field_placeholder', __( 'Enter subtitle here', 'wp-subtitle' ) ) ) . '" />';
+
+		echo '</div>';
 
 		// Description
 		$description = apply_filters( 'wps_subtitle_field_description', '', $post );
@@ -323,10 +368,17 @@ class WPSubtitle_Admin {
 		// Check data and save
 		if ( isset( $_POST['wps_subtitle'] ) ) {
 
+			$new_value = $_POST['wps_subtitle'];
+
 			$subtitle = new WP_Subtitle( $post_id );
 
+			// Don't save if value not changed
+			if ( $subtitle->is_current_subtitle( $new_value ) ) {
+				return;
+			}
+
 			if ( $subtitle->current_user_can_edit() ) {
-				$subtitle->update_subtitle( $_POST['wps_subtitle'] );
+				$subtitle->update_subtitle( $new_value );
 			}
 
 		}
