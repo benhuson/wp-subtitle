@@ -88,6 +88,9 @@ The plugin is [hosted on GitHub](https://github.com/benhuson/wp-subtitle) and pu
 Upgrade Notice
 --------------
 
+### 2.9
+Add support for revisions and fix special character encoding.
+
 ### 2.8.1
 Fix PHP warning - `get_admin_subtitle_value()` should be declared static.
 

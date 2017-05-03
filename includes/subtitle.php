@@ -104,7 +104,22 @@ class WP_Subtitle {
 	 */
 	public function update_subtitle( $subtitle ) {
 
-		return update_post_meta( $this->post_id, $this->get_post_meta_key(), $subtitle );
+		// Uses `update_metadata` as `update_post_meta` doesn't work with revisions.
+		return update_metadata( 'post', $this->post_id, $this->get_post_meta_key(), $subtitle );
+
+	}
+
+	/**
+	 * Is Current Subtitle?
+	 *
+	 * @since  2.9
+	 *
+	 * @param   string   $subtitle  Subtitle value.
+	 * @return  boolean
+	 */
+	public function is_current_subtitle( $subtitle ) {
+
+		return $subtitle === get_metadata( 'post', $this->post_id, 'wps_subtitle', true );
 
 	}
 
@@ -118,6 +133,25 @@ class WP_Subtitle {
 	private function get_post_meta_key() {
 
 		return apply_filters( 'wps_subtitle_key', 'wps_subtitle', $this->post_id );
+
+	}
+
+	/**
+	 * Restore revision.
+	 *
+	 * @since  2.9
+	 *
+	 * @param  int  $revision_id  Revision ID.
+	 */
+	public function restore_post_revision( $revision_id ) {
+
+		$meta_value = get_metadata( 'post', $revision_id, $this->get_post_meta_key(), true );
+
+		if ( $meta_value ) {
+			$this->update_subtitle( $meta_value );
+		} else {
+			delete_post_meta( $this->post_id, $this->get_post_meta_key() );
+		}
 
 	}
 
@@ -147,7 +181,7 @@ class WP_Subtitle {
 			'_builtin' => false
 		) );
 
-		$post_types = array_merge( $post_types, array( 'post', 'page' ) );
+		$post_types = array_merge( $post_types, array( 'post', 'page', 'revision' ) );
 
 		$supported = array();
 
@@ -174,6 +208,10 @@ class WP_Subtitle {
 		if ( $this->is_supported_post_type() ) {
 
 			$post_type = get_post_type( $this->post_id );
+
+			if ( $revision = wp_is_post_revision( $this->post_id ) ) {
+				$post_type = get_post_type( $revision );
+			}
 
 			// Current user can...
 			switch ( $post_type ) {
