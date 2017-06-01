@@ -88,6 +88,9 @@ The plugin is [hosted on GitHub](https://github.com/benhuson/wp-subtitle) and pu
 Upgrade Notice
 --------------
 
+### 2.9.1
+Fix preview not rendering correct template and other post meta.
+
 ### 2.9
 Add support for revisions and fix special character encoding.
 
