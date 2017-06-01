@@ -4,6 +4,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [2.9.1] - 2017-06-01
+
+### Fixed
+- Fix preview not rendering correct template and other post meta.
+
 ## [2.9] - 2017-05-03
 
 ### Added
@@ -132,7 +137,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - First version.
 
-[Unreleased]: https://github.com/benhuson/wp-subtitle/compare/2.9...HEAD
+[Unreleased]: https://github.com/benhuson/wp-subtitle/compare/2.9.1...HEAD
+[2.9]: https://github.com/benhuson/wp-subtitle/compare/2.9...2.9.1
 [2.9]: https://github.com/benhuson/wp-subtitle/compare/2.8.1...2.9
 [2.8.1]: https://github.com/benhuson/wp-subtitle/compare/2.8...2.8.1
 [2.8]: https://github.com/benhuson/wp-subtitle/compare/2.7.1...2.8
