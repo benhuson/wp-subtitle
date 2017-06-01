@@ -3,8 +3,8 @@ Contributors: husobj, husani
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SLZUF4XJTS4E6
 Tags: subtitle, content, title, subheading, subhead, alternate title
 Requires at least: 3.7
-Tested up to: 4.7.4
-Stable tag: 2.9
+Tested up to: 4.7.5
+Stable tag: 2.9.1
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 
@@ -102,6 +102,9 @@ The plugin is [hosted on GitHub](https://github.com/benhuson/wp-subtitle) and pu
 
 = Unreleased =
 
+= 2.9.1 =
+* Fix preview not rendering correct template and other post meta.
+
 = 2.9 =
 * Add support for post revisions. Props [Fabian Marz](https://github.com/fabianmarz).
 * As of WordPress 4.3 no need to esc_attr() AND htmlentities() - can mess up special characters.
@@ -175,6 +178,9 @@ The plugin is [hosted on GitHub](https://github.com/benhuson/wp-subtitle) and pu
 * First version.
 
 == Upgrade Notice ==
+
+= 2.9.1 =
+Fix preview not rendering correct template and other post meta.
 
 = 2.9 =
 Add support for revisions and fix special character encoding.
