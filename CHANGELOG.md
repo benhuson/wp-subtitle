@@ -138,7 +138,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - First version.
 
 [Unreleased]: https://github.com/benhuson/wp-subtitle/compare/2.9.1...HEAD
-[2.9]: https://github.com/benhuson/wp-subtitle/compare/2.9...2.9.1
+[2.9.1]: https://github.com/benhuson/wp-subtitle/compare/2.9...2.9.1
 [2.9]: https://github.com/benhuson/wp-subtitle/compare/2.8.1...2.9
 [2.8.1]: https://github.com/benhuson/wp-subtitle/compare/2.8...2.8.1
 [2.8]: https://github.com/benhuson/wp-subtitle/compare/2.7.1...2.8
