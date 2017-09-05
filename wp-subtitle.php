@@ -65,12 +65,16 @@ class WPSubtitle {
 	/**
 	 * REST API
 	 *
+	 * @since  3.0
+	 *
 	 * @var  WPSubtitle_REST|null
 	 */
 	private static $rest = null;
 
 	/**
 	 * Load
+	 *
+	 * @since  3.0
 	 */
 	public static function load() {
 
