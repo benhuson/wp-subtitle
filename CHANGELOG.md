@@ -4,6 +4,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [3.0] - 2017-09-05
+
+### Added
+- Make `wps_subtitle` available via WordPress REST API.
+
 ## [2.9.1] - 2017-06-01
 
 ### Fixed
@@ -137,7 +142,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - First version.
 
-[Unreleased]: https://github.com/benhuson/wp-subtitle/compare/2.9.1...HEAD
+[Unreleased]: https://github.com/benhuson/wp-subtitle/compare/3.0...HEAD
+[3.0]: https://github.com/benhuson/wp-subtitle/compare/2.9.2...3.0
 [2.9.1]: https://github.com/benhuson/wp-subtitle/compare/2.9...2.9.1
 [2.9]: https://github.com/benhuson/wp-subtitle/compare/2.8.1...2.9
 [2.8.1]: https://github.com/benhuson/wp-subtitle/compare/2.8...2.8.1
