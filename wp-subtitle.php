@@ -41,6 +41,7 @@ define( 'WPSUBTITLE_DIR', plugin_dir_path( __FILE__ ) );
 include_once( WPSUBTITLE_DIR . 'includes/subtitle.php' );
 include_once( WPSUBTITLE_DIR . 'includes/deprecated.php' );
 include_once( WPSUBTITLE_DIR . 'includes/shortcode.php' );
+include_once( WPSUBTITLE_DIR . 'includes/rest.php' );
 
 // Include admin-only functionality
 if ( is_admin() ) {
@@ -52,6 +53,7 @@ if ( is_admin() ) {
 	}
 }
 
+add_action( 'plugins_loaded', array( 'WPSubtitle', 'load' ) );
 add_action( 'init', array( 'WPSubtitle', '_add_default_post_type_support' ), 5 );
 
 // Default subtitle filters
@@ -59,6 +61,22 @@ add_filter( 'wps_subtitle', 'wptexturize' );
 add_filter( 'wps_subtitle', 'trim' );
 
 class WPSubtitle {
+
+	/**
+	 * REST API
+	 *
+	 * @var  WPSubtitle_REST|null
+	 */
+	private static $rest = null;
+
+	/**
+	 * Load
+	 */
+	public static function load() {
+
+		self::$rest = new WPSubtitle_REST();
+
+	}
 
 	/**
 	 * Add Default Post Type Support
