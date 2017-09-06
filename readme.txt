@@ -3,8 +3,8 @@ Contributors: husobj, husani
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SLZUF4XJTS4E6
 Tags: subtitle, content, title, subheading, subhead, alternate title
 Requires at least: 3.7
-Tested up to: 4.7.5
-Stable tag: 2.9.1
+Tested up to: 4.8.1
+Stable tag: 3.0
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 
@@ -102,6 +102,9 @@ The plugin is [hosted on GitHub](https://github.com/benhuson/wp-subtitle) and pu
 
 = Unreleased =
 
+= 3.0 =
+* Make `wps_subtitle` available via WordPress REST API.
+
 = 2.9.1 =
 * Fix preview not rendering correct template and other post meta.
 
@@ -178,6 +181,9 @@ The plugin is [hosted on GitHub](https://github.com/benhuson/wp-subtitle) and pu
 * First version.
 
 == Upgrade Notice ==
+
+= 3.0 =
+* Make `wps_subtitle` available via WordPress REST API.
 
 = 2.9.1 =
 Fix preview not rendering correct template and other post meta.
