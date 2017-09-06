@@ -88,6 +88,9 @@ The plugin is [hosted on GitHub](https://github.com/benhuson/wp-subtitle) and pu
 Upgrade Notice
 --------------
 
+### 3.0
+Make `wps_subtitle` available via WordPress REST API.
+
 ### 2.9.1
 Fix preview not rendering correct template and other post meta.
 
