@@ -47,8 +47,8 @@ class WPSubtitle_WPSEO {
 
 			$sep = isset( $replacements['%%sep%%'] ) ? ' ' . $replacements['%%sep%%'] . ' ' : ' - ';
 
-			$replacements['%%wps_subtitle_before_sep%%'] = $sep;
-			$replacements['%%wps_subtitle_after_sep%%'] = $sep;
+			$replacements['%%wps_subtitle_before_sep%%'] = apply_filters( 'wps_subtitle_seo_before_sep', $sep );
+			$replacements['%%wps_subtitle_after_sep%%'] = apply_filters( 'wps_subtitle_seo_after_sep', $sep );
 
 		}
 
