@@ -9,6 +9,22 @@
  *
  * Adds support for a `%%wps_subtitle%%` placeholder to include
  * the subtitle in browser titles and meta descriptions.
+ *
+ * Also adds `%%wps_subtitle_before_sep%%` and `%%wps_subtitle_after_sep%%`.
+ * These can be used to add seperators before/after the subtitle. If there
+ * is no subtitle set these placeholders will not be output.
+ *
+ * The seperator placeholders can be customized using the `wps_subtitle_seo_before_sep`
+ * and `wps_subtitle_seo_after_sep` filters.
+ *
+ * The seperator placeholders include a 'space' either side by default. This means that
+ * you should create your title template with no whitespace around the seperator placeholders.
+ * It allows you to customize the seperators to include commas and butt the seperator up to
+ * the preceding/following text.
+ *
+ * e.g. If '%%wps_subtitle_before_sep%%' is set to ', ':
+ *      `%%title%%%%wps_subtitle_before_sep%%%%wps_subtitle%% %%sep%% %%sitename%%`
+ *      "Title, Subtitle - Sitename"
  */
 
 class WPSubtitle_WPSEO {
