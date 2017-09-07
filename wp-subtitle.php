@@ -42,6 +42,7 @@ include_once( WPSUBTITLE_DIR . 'includes/subtitle.php' );
 include_once( WPSUBTITLE_DIR . 'includes/deprecated.php' );
 include_once( WPSUBTITLE_DIR . 'includes/shortcode.php' );
 include_once( WPSUBTITLE_DIR . 'includes/rest.php' );
+include_once( WPSUBTITLE_DIR . 'includes/compat/wordpress-seo.php' );
 
 // Include admin-only functionality
 if ( is_admin() ) {
@@ -72,6 +73,13 @@ class WPSubtitle {
 	private static $rest = null;
 
 	/**
+	 * WP SEO (plugin compatibility)
+	 *
+	 * @var  WPSubtitle_WPSEO|null
+	 */
+	private static $wpseo = null;
+
+	/**
 	 * Load
 	 *
 	 * @since  3.0
@@ -79,6 +87,7 @@ class WPSubtitle {
 	public static function load() {
 
 		self::$rest = new WPSubtitle_REST();
+		self::$wpseo = new WPSubtitle_WPSEO();
 
 	}
 
