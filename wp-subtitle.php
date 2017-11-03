@@ -45,6 +45,7 @@ include_once( WPSUBTITLE_DIR . 'includes/rest.php' );
 
 // Include admin-only functionality
 if ( is_admin() ) {
+    require_once WPSUBTITLE_DIR . 'admin/settings.php';
 	require_once( WPSUBTITLE_DIR . 'admin/admin.php' );
 	if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
 		// Load AJAX functions here if required...

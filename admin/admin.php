@@ -55,7 +55,10 @@ class WPSubtitle_Admin {
 		if ( WPSubtitle::is_supported_post_type( $post_type ) ) {
 			if ( self::edit_form_after_title_supported( $post_type ) ) {
 				add_action( 'admin_head', array( 'WPSubtitle_Admin', '_add_admin_styles' ) );
-				add_action( 'edit_form_after_title', array( 'WPSubtitle_Admin', '_add_subtitle_field' ) );
+				$renderHook = get_option( 'wp_subtitle_field_location', '' ) === 'above_main'
+					? 'edit_form_top'
+					: 'edit_form_after_title';
+				add_action( $renderHook, array( 'WPSubtitle_Admin', '_add_subtitle_field' ) );
 			} else {
 				add_action( 'add_meta_boxes', array( 'WPSubtitle_Admin', '_add_meta_boxes' ) );
 			}
@@ -354,7 +357,7 @@ class WPSubtitle_Admin {
 	 */
 	public static function _save_post( $post_id ) {
 
-		// Verify if this is an auto save routine. 
+		// Verify if this is an auto save routine.
 		// If it is our form has not been submitted, so we dont want to do anything
 		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
 			return;
