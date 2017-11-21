@@ -17,9 +17,20 @@ class WPSubtitle_WooCommerce {
 	 */
 	public function __construct() {
 
-		add_action( 'init', array( $this, 'add_product_post_type_support' ) );
-		add_action( 'woocommerce_single_product_summary' , array( $this, 'single_product_summary' ), 6 );
-		add_action( 'woocommerce_shop_loop_item_title' , array( $this, 'shop_loop_item_title' ) );
+		if ( 'yes' == get_option( 'wp_subtitle_woocommerce_enabled' ) ) {
+
+			add_action( 'init', array( $this, 'add_product_post_type_support' ) );
+
+			if ( 'yes' == get_option( 'wp_subtitle_woocommerce_show_on_single' ) ) {
+				add_action( 'woocommerce_single_product_summary' , array( $this, 'single_product_summary' ), 6 );
+			}
+
+			if ( 'yes' == get_option( 'wp_subtitle_woocommerce_show_in_loop' ) ) {
+				add_action( 'woocommerce_shop_loop_item_title' , array( $this, 'shop_loop_item_title' ) );
+			}
+
+		}
+
 		add_filter( 'woocommerce_product_settings' , array( $this, 'product_settings' ) );
 
 	}
