@@ -14,7 +14,7 @@ function wp_subtitle_settings_init() {
         'wp_subtitle_setting_section',
         __( 'WP Subtitle Settings', 'wp-subtitle' ), // section title, will be rendered
         function () {
-            echo '<p>' . __("It\'s possible to move the subtitle input field above the main title field by activating the checkbox", 'wp-subtitle' ) . '</p>';
+            echo '<p>' . __("It's possible to move the subtitle input field above the main title field by activating the checkbox", 'wp-subtitle' ) . '</p>';
         },
         'writing'
     );
