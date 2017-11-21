@@ -4,6 +4,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Added
+- Added `%%wps_subtitle%%` placeholders for Yoast SEO compatibility.
+
 ## [3.0] - 2017-09-05
 
 ### Added
