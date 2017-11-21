@@ -55,7 +55,7 @@ class WPSubtitle_Admin {
 		if ( WPSubtitle::is_supported_post_type( $post_type ) ) {
 			if ( self::edit_form_after_title_supported( $post_type ) ) {
 				add_action( 'admin_head', array( 'WPSubtitle_Admin', '_add_admin_styles' ) );
-				$renderHook = get_option( 'wp_subtitle_field_location', '' ) === 'above_main'
+				$renderHook = get_option( 'wp_subtitle_field_location', '' ) === 'before_title'
 					? 'edit_form_top'
 					: 'edit_form_after_title';
 				add_action( $renderHook, array( 'WPSubtitle_Admin', '_add_subtitle_field' ) );

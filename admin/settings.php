@@ -23,8 +23,8 @@ function wp_subtitle_settings_init() {
         'wp_subtitle_field_location',
         __( 'Position of input field', 'wp-subtitle' ), // field description, will be rendered
         function () {
-            echo '<input name="wp_subtitle_field_location" id="wp_subtitle_field_location" type="checkbox" value="above_main" '
-                 . checked( 'above_main', get_option( 'wp_subtitle_field_location' ), false )
+            echo '<input name="wp_subtitle_field_location" id="wp_subtitle_field_location" type="checkbox" value="before_title" '
+                 . checked( 'before_title', get_option( 'wp_subtitle_field_location' ), false )
                  . '>';
             echo '<label for="wp_subtitle_field_location">' . __('Move input field above main title', 'wp-subtitle' ) . '</label>';
         },
