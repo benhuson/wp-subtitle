@@ -3,9 +3,9 @@
  * Registers and manages the setting for the input field position.
  *
  * The setting is named `wp_subtitle_field_location` and is stored
- * in the options table. If the setting's value is "above_main", the
- * input field will be rendered above the main title field instead
- * below it.
+ * in the options table. If the setting's value is "before_title", the
+ * input field will be rendered before the main title field instead
+ * after it.
  *
  * @return void
  */
