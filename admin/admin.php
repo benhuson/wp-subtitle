@@ -110,9 +110,24 @@ class WPSubtitle_Admin {
 
 		$new_columns = array();
 
+		// Subtitle column after...
+		$after_column = '';
+		if ( array_key_exists( 'title', $columns ) ) {
+			$after_column = 'title';
+		} elseif ( array_key_exists( 'name', $columns ) ) {
+			$after_column = 'name';
+		}
+
+		// Add column
+		if ( empty( $after_column ) ) {
+			$columns['wps_subtitle'] = __( 'Subtitle', 'wp-subtitle' );
+			return $columns;
+		}
+
+		// Insert column
 		foreach ( $columns as $column => $value ) {
 			$new_columns[ $column ] = $value;
-			if ( 'title' == $column ) {
+			if ( $after_column == $column ) {
 				$new_columns['wps_subtitle'] = __( 'Subtitle', 'wp-subtitle' );
 			}
 		}
