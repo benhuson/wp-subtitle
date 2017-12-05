@@ -101,6 +101,7 @@ The plugin is [hosted on GitHub](https://github.com/benhuson/wp-subtitle) and pu
 == Changelog ==
 
 = Unreleased =
+* WooCommerce compatibility. Go to `WooCommerce > Settings > Products > Display` for settings.
 
 = 3.0 =
 * Make `wps_subtitle` available via WordPress REST API.

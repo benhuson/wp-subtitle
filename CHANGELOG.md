@@ -4,6 +4,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Added
+- WooCommerce compatibility. Go to `WooCommerce > Settings > Products > Display` for settings.
+
 ## [3.0] - 2017-09-05
 
 ### Added
