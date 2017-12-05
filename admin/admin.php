@@ -53,9 +53,15 @@ class WPSubtitle_Admin {
 
 		// Setup Field / Meta Box
 		if ( WPSubtitle::is_supported_post_type( $post_type ) ) {
-			if ( self::edit_form_after_title_supported( $post_type ) ) {
+
+			$position = self::subtitle_field_position( $post_type );
+
+			if ( 'after_title' == $position ) {
 				add_action( 'admin_head', array( 'WPSubtitle_Admin', '_add_admin_styles' ) );
 				add_action( 'edit_form_after_title', array( 'WPSubtitle_Admin', '_add_subtitle_field' ) );
+			} elseif ( 'before_title' == $position ) {
+				add_action( 'admin_head', array( 'WPSubtitle_Admin', '_add_admin_styles' ) );
+				add_action( 'edit_form_top', array( 'WPSubtitle_Admin', '_add_subtitle_field' ) );
 			} else {
 				add_action( 'add_meta_boxes', array( 'WPSubtitle_Admin', '_add_meta_boxes' ) );
 			}
@@ -63,6 +69,7 @@ class WPSubtitle_Admin {
 			add_filter( 'manage_edit-' . $post_type . '_columns', array( 'WPSubtitle_Admin', 'manage_subtitle_columns' ) );
 			add_action( 'manage_' . $post_type . '_posts_custom_column', array( 'WPSubtitle_Admin', 'manage_subtitle_columns_content' ), 10, 2 );
 			add_action( 'quick_edit_custom_box', array( 'WPSubtitle_Admin', 'quick_edit_custom_box' ), 10, 2 );
+
 		}
 
 	}
@@ -437,6 +444,26 @@ class WPSubtitle_Admin {
 			return false;
 		}
 		return ! apply_filters( 'wps_subtitle_use_meta_box', false, $post_type );
+	}
+
+	/**
+	 * Subtitle Field Position
+	 *
+	 * @since  2.2
+	 *
+	 * @param  string  $post_type  Post type.
+	 * @param  string              Position.
+	 */
+	private static function subtitle_field_position( $post_type = '' ) {
+
+		$position = apply_filters( 'wps_subtitle_field_position', 'after_title', $post_type );
+
+		if ( ! self::edit_form_after_title_supported( $post_type ) ) {
+			return '';
+		}
+
+		return $position;
+
 	}
 
 }
