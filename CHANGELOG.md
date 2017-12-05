@@ -8,6 +8,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 - Make `wps_subtitle` available via WordPress REST API.
+- Added `wps_subtitle_field_position` filter to show subtitle admin field `before_title`, `after_title` or in meta box.
 
 ## [2.9.1] - 2017-06-01
 

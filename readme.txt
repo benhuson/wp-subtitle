@@ -102,6 +102,8 @@ The plugin is [hosted on GitHub](https://github.com/benhuson/wp-subtitle) and pu
 
 = Unreleased =
 
+* Added `wps_subtitle_field_position` filter to show subtitle admin field `before_title`, `after_title` or in meta box.
+
 = 3.0 =
 * Make `wps_subtitle` available via WordPress REST API.
 
