@@ -20,9 +20,10 @@
 
 		attributes : {
 			content : {
-				type     : 'array',
+				type     : 'string',
 				source   : 'children',
 				selector : 'h2',
+				meta     : 'wps_subtitle',
 			},
 		},
 

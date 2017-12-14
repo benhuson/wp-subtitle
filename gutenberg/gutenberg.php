@@ -14,7 +14,17 @@ class WPSubtitle_Gutenberg {
 	 */
 	public function __construct() {
 
+		add_action( 'init', array( $this, 'register_meta' ) );
 		add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_block_editor_assets' ) );
+
+	}
+
+	public function register_meta() {
+
+		register_meta( 'page', 'wps_subtitle', array(
+			'show_in_rest' => true,
+			'single'       => true
+		) );
 
 	}
 
