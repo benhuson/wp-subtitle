@@ -15,7 +15,7 @@
 
 		title      : __( 'Subtitle', 'wp-subtitle' ),
 		icon       : 'heading',
-		category   : 'formatting',
+		category   : 'common',
 		useOnce    : true,
 
 		attributes : {
