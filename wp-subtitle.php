@@ -67,7 +67,7 @@ class WPSubtitle {
 	/**
 	 * REST API
 	 *
-	 * @since  3.0
+	 * @since  3.1
 	 *
 	 * @var  WPSubtitle_REST|null
 	 */
@@ -76,12 +76,16 @@ class WPSubtitle {
 	/**
 	 * WP SEO (plugin compatibility)
 	 *
+	 * @since  3.1
+	 *
 	 * @var  WPSubtitle_WPSEO|null
 	 */
 	private static $wpseo = null;
 
 	/**
 	 * WooCommerce
+	 *
+	 * @since  3.1
 	 *
 	 * @var  WPSubtitle_WooCommerce|null
 	 */
@@ -90,7 +94,7 @@ class WPSubtitle {
 	/**
 	 * Load
 	 *
-	 * @since  3.0
+	 * @since  3.1
 	 */
 	public static function load() {
 

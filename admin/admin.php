@@ -464,7 +464,7 @@ class WPSubtitle_Admin {
 	/**
 	 * Subtitle Field Position
 	 *
-	 * @since  2.2
+	 * @since  3.1
 	 *
 	 * @param  string  $post_type  Post type.
 	 * @param  string              Position.

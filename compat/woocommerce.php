@@ -4,6 +4,8 @@
  * @package     WP Subtitle
  * @subpackage  WooCommerce
  *
+ * @since  3.1
+ *
  * Compatibility for the WooCommerce plugin:
  * https://wordpress.org/plugins/woocommerce/
  */
@@ -12,6 +14,8 @@ class WPSubtitle_WooCommerce {
 
 	/**
 	 * Constructor
+	 *
+	 * @since  3.1
 	 *
 	 * @internal  Do not create multiple instances.
 	 */
@@ -38,6 +42,8 @@ class WPSubtitle_WooCommerce {
 	/**
 	 * Add Product Post Type Support
 	 *
+	 * @since  3.1
+	 *
 	 * @internal  Private. Called via the `init` action.
 	 */
 	public function add_product_post_type_support() {
@@ -48,6 +54,8 @@ class WPSubtitle_WooCommerce {
 
 	/**
 	 * Single Product Summary
+	 *
+	 * @since  3.1
 	 *
 	 * @internal  Private. Called via the `woocommerce_single_product_summary` action.
 	 */
@@ -60,6 +68,8 @@ class WPSubtitle_WooCommerce {
 	/**
 	 * Shop Loop Item Title
 	 *
+	 * @since  3.1
+	 *
 	 * @internal  Private. Called via the `woocommerce_shop_loop_item_title` action.
 	 */
 	public function shop_loop_item_title() {
@@ -70,6 +80,8 @@ class WPSubtitle_WooCommerce {
 
 	/**
 	 * Product Settings
+	 *
+	 * @since  3.1
 	 *
 	 * @param   array  $settings  Settings.
 	 * @return  array             Settings.

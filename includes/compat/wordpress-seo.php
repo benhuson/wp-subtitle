@@ -4,6 +4,8 @@
  * @package     WP Subtitle
  * @subpackage  WordPress SEO
  *
+ * @since  3.1
+ *
  * Compatibility for the Yoast SEO plugin:
  * https://wordpress.org/plugins/wordpress-seo/
  *
@@ -32,6 +34,8 @@ class WPSubtitle_WPSEO {
 	/**
 	 * Constructor
 	 *
+	 * @since  3.1
+	 *
 	 * @internal  Do not create multiple instances.
 	 */
 	public function __construct() {
@@ -42,6 +46,8 @@ class WPSubtitle_WPSEO {
 
 	/**
 	 * Add SEO Replacements
+	 *
+	 * @since  3.1
 	 *
 	 * @param    array  $replacements  SEO replacements.
 	 * @return   array                 Filtered replacements.
