@@ -44,6 +44,7 @@ include_once( WPSUBTITLE_DIR . 'includes/shortcode.php' );
 include_once( WPSUBTITLE_DIR . 'includes/rest.php' );
 include_once( WPSUBTITLE_DIR . 'includes/compat/wordpress-seo.php' );
 include_once( WPSUBTITLE_DIR . 'compat/woocommerce.php' );
+include_once( WPSUBTITLE_DIR . 'gutenberg/gutenberg.php' );
 
 // Include admin-only functionality
 if ( is_admin() ) {
@@ -88,6 +89,13 @@ class WPSubtitle {
 	private static $woocommerce = null;
 
 	/**
+	 * Gutenberg
+	 *
+	 * @var  WPSubtitle_Gutenberg|null
+	 */
+	private static $gutenberg = null;
+
+	/**
 	 * Load
 	 *
 	 * @since  3.0
@@ -97,6 +105,7 @@ class WPSubtitle {
 		self::$rest = new WPSubtitle_REST();
 		self::$wpseo = new WPSubtitle_WPSEO();
 		self::$woocommerce = new WPSubtitle_WooCommerce();
+		self::$gutenberg = new WPSubtitle_Gutenberg();
 
 	}
 
