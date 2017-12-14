@@ -4,10 +4,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 3.1
+
 ### Added
-- Added `%%wps_subtitle%%` placeholders for Yoast SEO compatibility.
+- `%%wps_subtitle%%` placeholders for Yoast SEO compatibility.
 - WooCommerce compatibility. Go to `WooCommerce > Settings > Products > Display` for settings.
-- Add `wps_subtitle_field_position` filter to position admin field `after_title`, `before_title` or otherwise in a meta box.
+- `wps_subtitle_field_position` filter to position admin field `after_title`, `before_title` or otherwise in a meta box.
 
 ## [3.0] - 2017-09-05
 
