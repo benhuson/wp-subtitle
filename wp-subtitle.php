@@ -43,7 +43,7 @@ include_once( WPSUBTITLE_DIR . 'includes/deprecated.php' );
 include_once( WPSUBTITLE_DIR . 'includes/shortcode.php' );
 include_once( WPSUBTITLE_DIR . 'includes/rest.php' );
 include_once( WPSUBTITLE_DIR . 'includes/compat/wordpress-seo.php' );
-include_once( WPSUBTITLE_DIR . 'compat/woocommerce.php' );
+include_once( WPSUBTITLE_DIR . 'includes/compat/woocommerce.php' );
 
 // Include admin-only functionality
 if ( is_admin() ) {
