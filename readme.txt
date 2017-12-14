@@ -103,6 +103,7 @@ The plugin is [hosted on GitHub](https://github.com/benhuson/wp-subtitle) and pu
 = Unreleased =
 * Added `%%wps_subtitle%%` placeholders for Yoast SEO compatibility.
 * WooCommerce compatibility. Go to `WooCommerce > Settings > Products > Display` for settings.
+* Add `wps_subtitle_field_position` filter to position admin field `after_title`, `before_title` or otherwise in a meta box.
 
 * Added `wps_subtitle_field_position` filter to show subtitle admin field `before_title`, `after_title` or in meta box.
 
