@@ -6,10 +6,9 @@
 
 ( function( blocks, i18n, element ) {
 
-	var el = element.createElement;
 	var __ = i18n.__;
 	var Editable = blocks.Editable;
-	var children = blocks.source.children;
+	var el = element.createElement;
 
 	blocks.registerBlockType( 'wp-subtitle/subtitle', {
 
@@ -21,7 +20,7 @@
 		attributes : {
 			content : {
 				type     : 'string',
-				source   : 'children',
+				source   : 'meta',
 				selector : 'h2',
 				meta     : 'wps_subtitle',
 			},
@@ -30,28 +29,24 @@
 		edit : function( props ) {
 
 			var content = props.attributes.content;
-			var focus = props.focus;
 
-			function onChangeContent( newContent ) {
-				props.setAttributes( { content : newContent } );
+			function onChangeContent( event ) {
+				props.setAttributes( { content : event[0] } );
 			}
 
-			return el(
+			return el( 'h2', {}, el(
 				Editable,
 				{
-					tagName   : 'h2',
-					className : props.className,
-					onChange  : onChangeContent,
-					value     : content,
-					focus     : focus,
-					onFocus   : props.setFocus
+					onChange    : onChangeContent,
+					value       : content,
+					placeholder : __( 'Enter subtitle here', 'wp-subtitle' )
 				}
-			);
+			) );
 
 		},
 
-		save: function( props ) {
-			return el( 'h2', {}, props.attributes.content );
+		save : function( props ) {
+			return null;
 		},
 
 	} );

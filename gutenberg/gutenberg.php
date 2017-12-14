@@ -21,7 +21,7 @@ class WPSubtitle_Gutenberg {
 
 	public function register_meta() {
 
-		register_meta( 'page', 'wps_subtitle', array(
+		register_meta( 'post', 'wps_subtitle', array(
 			'show_in_rest' => true,
 			'single'       => true
 		) );
