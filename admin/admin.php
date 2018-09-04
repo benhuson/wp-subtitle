@@ -462,6 +462,24 @@ class WPSubtitle_Admin {
 	}
 
 	/**
+	 * Gutenberg Supported
+	 *
+	 * @since  3.0.x
+	 *
+	 * @param   string  $post_type  Post type.
+	 * @return  bool
+	 */
+	private static function gutenberg_supported( $post_type = '' ) {
+
+		if ( function_exists( 'gutenberg_can_edit_post_type' ) && gutenberg_can_edit_post_type( $post_type ) && ! isset( $_GET['classic-editor'] ) ) {
+			return true;
+		}
+
+		return false;
+
+	}
+
+	/**
 	 * Subtitle Field Position
 	 *
 	 * @since  3.1
@@ -472,6 +490,10 @@ class WPSubtitle_Admin {
 	private static function subtitle_field_position( $post_type = '' ) {
 
 		$position = apply_filters( 'wps_subtitle_field_position', 'after_title', $post_type );
+
+		if ( self::gutenberg_supported( $post_type ) ) {
+			return '';
+		}
 
 		if ( ! self::edit_form_after_title_supported( $post_type ) ) {
 			return '';
