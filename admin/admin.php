@@ -275,7 +275,11 @@ class WPSubtitle_Admin {
 	public static function _add_meta_boxes() {
 		$post_types = WPSubtitle::get_supported_post_types();
 		foreach ( $post_types as $post_type ) {
-			add_meta_box( 'wps_subtitle_panel',  self::get_meta_box_title( $post_type ), array( 'WPSubtitle_Admin', '_add_subtitle_meta_box' ), $post_type, 'normal', 'high' );
+
+			$positiom = self::gutenberg_supported( $post_type ) ? 'side' : 'normal';
+
+			add_meta_box( 'wps_subtitle_panel',  self::get_meta_box_title( $post_type ), array( 'WPSubtitle_Admin', '_add_subtitle_meta_box' ), $post_type, $positiom, 'high' );
+
 		}
 	}
 
