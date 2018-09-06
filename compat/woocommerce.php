@@ -64,7 +64,7 @@ class WPSubtitle_WooCommerce {
 	 */
 	public function shop_loop_item_title() {
 
-		the_subtitle( '<p class="wp-subtitle">', '</p>' );
+		the_subtitle( '<p class="woocommerce-loop-product__subtitle wp-subtitle">', '</p>' );
 
 	}
 
