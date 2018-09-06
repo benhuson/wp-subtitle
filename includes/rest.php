@@ -4,7 +4,7 @@
  * @package     WP Subtitle
  * @subpackage  REST API
  *
- * @since  3.0
+ * @since  3.1
  */
 
 class WPSubtitle_REST {
@@ -12,7 +12,7 @@ class WPSubtitle_REST {
 	/**
 	 * Constructor
 	 *
-	 * @since  3.0
+	 * @since  3.1
 	 *
 	 * @internal  Do not create multiple instances.
 	 */
@@ -25,7 +25,7 @@ class WPSubtitle_REST {
 	/**
 	 * Register REST Field
 	 *
-	 * @since  3.0
+	 * @since  3.1
 	 *
 	 * @internal  Called via the `rest_api_init` action.
 	 */
@@ -48,7 +48,7 @@ class WPSubtitle_REST {
 	/**
 	 * Get REST Field
 	 *
-	 * @since  3.0
+	 * @since  3.1
 	 *
 	 * @internal  Called via register_rest_field() callback.
 	 *

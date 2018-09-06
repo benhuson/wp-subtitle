@@ -4,10 +4,19 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [3.1] - 2018-09-04
+
+### Added
+- `%%wps_subtitle%%` placeholders for Yoast SEO compatibility.
+- WooCommerce compatibility. Go to `WooCommerce > Settings > Products > Display` for settings.
+- `wps_subtitle_field_position` filter to position admin field `after_title`, `before_title` or otherwise in a meta box.
+- Use metabox UI if editing in Gutenberg.
+
 ## [3.0] - 2017-09-05
 
 ### Added
 - Make `wps_subtitle` available via WordPress REST API.
+- Added `wps_subtitle_field_position` filter to show subtitle admin field `before_title`, `after_title` or in meta box.
 
 ## [2.9.1] - 2017-06-01
 
@@ -20,7 +29,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Add support for post revisions. Props [Fabian Marz](https://github.com/fabianmarz).
 
 ### Fixed
-- As of WordPress 4.3 no need to esc_attr() AND htmlentities() - can mess up special characters.
+- As of WordPress 4.3 no need to `esc_attr()` AND `htmlentities()` - can mess up special characters.
 
 ## [2.8.1] - 2016-09-14
 
@@ -142,7 +151,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - First version.
 
-[Unreleased]: https://github.com/benhuson/wp-subtitle/compare/3.0...HEAD
+[Unreleased]: https://github.com/benhuson/wp-subtitle/compare/3.1...HEAD
+[3.1]: https://github.com/benhuson/wp-subtitle/compare/3.0...3.1
 [3.0]: https://github.com/benhuson/wp-subtitle/compare/2.9.2...3.0
 [2.9.1]: https://github.com/benhuson/wp-subtitle/compare/2.9...2.9.1
 [2.9]: https://github.com/benhuson/wp-subtitle/compare/2.8.1...2.9

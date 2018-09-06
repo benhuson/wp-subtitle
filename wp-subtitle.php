@@ -4,7 +4,7 @@
 Plugin Name: WP Subtitle
 Plugin URI: http://wordpress.org/plugins/wp-subtitle/
 Description: Adds a subtitle field to pages and posts. Possible to add support for custom post types.
-Version: 3.0
+Version: 3.1
 Author: Ben Huson, Husani Oakley
 Author URI: https://github.com/benhuson/wp-subtitle
 License: GPLv2
@@ -42,6 +42,8 @@ include_once( WPSUBTITLE_DIR . 'includes/subtitle.php' );
 include_once( WPSUBTITLE_DIR . 'includes/deprecated.php' );
 include_once( WPSUBTITLE_DIR . 'includes/shortcode.php' );
 include_once( WPSUBTITLE_DIR . 'includes/rest.php' );
+include_once( WPSUBTITLE_DIR . 'includes/compat/wordpress-seo.php' );
+include_once( WPSUBTITLE_DIR . 'includes/compat/woocommerce.php' );
 
 // Include admin-only functionality
 if ( is_admin() ) {
@@ -65,20 +67,40 @@ class WPSubtitle {
 	/**
 	 * REST API
 	 *
-	 * @since  3.0
+	 * @since  3.1
 	 *
 	 * @var  WPSubtitle_REST|null
 	 */
 	private static $rest = null;
 
 	/**
+	 * WP SEO (plugin compatibility)
+	 *
+	 * @since  3.1
+	 *
+	 * @var  WPSubtitle_WPSEO|null
+	 */
+	private static $wpseo = null;
+
+	/**
+	 * WooCommerce
+	 *
+	 * @since  3.1
+	 *
+	 * @var  WPSubtitle_WooCommerce|null
+	 */
+	private static $woocommerce = null;
+
+	/**
 	 * Load
 	 *
-	 * @since  3.0
+	 * @since  3.1
 	 */
 	public static function load() {
 
 		self::$rest = new WPSubtitle_REST();
+		self::$wpseo = new WPSubtitle_WPSEO();
+		self::$woocommerce = new WPSubtitle_WooCommerce();
 
 	}
 
