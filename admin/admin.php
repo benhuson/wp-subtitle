@@ -468,7 +468,7 @@ class WPSubtitle_Admin {
 	/**
 	 * Gutenberg Supported
 	 *
-	 * @since  3.0.x
+	 * @since  3.1
 	 *
 	 * @param   string  $post_type  Post type.
 	 * @return  bool

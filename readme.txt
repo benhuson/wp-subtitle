@@ -3,8 +3,8 @@ Contributors: husobj, husani
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SLZUF4XJTS4E6
 Tags: subtitle, content, title, subheading, subhead, alternate title
 Requires at least: 3.7
-Tested up to: 4.9.1
-Stable tag: 3.0
+Tested up to: 4.9.8
+Stable tag: 3.1
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 
@@ -106,6 +106,7 @@ The plugin is [hosted on GitHub](https://github.com/benhuson/wp-subtitle) and pu
 * Added `%%wps_subtitle%%` placeholders for Yoast SEO compatibility.
 * WooCommerce compatibility. Go to `WooCommerce > Settings > Products > Display` for settings.
 * Added `wps_subtitle_field_position` filter to show subtitle admin field `before_title`, `after_title` or in meta box.
+* Use metabox UI if editing in Gutenberg.
 
 = 3.0 =
 * Make `wps_subtitle` available via WordPress REST API.
@@ -188,7 +189,7 @@ The plugin is [hosted on GitHub](https://github.com/benhuson/wp-subtitle) and pu
 == Upgrade Notice ==
 
 = 3.1 =
-WooCommerce compatibility: Go to `WooCommerce > Settings > Products > Display` for settings. Yoast SEO compatibility: Added `%%wps_subtitle%%` placeholders.
+WooCommerce compatibility: Go to `WooCommerce > Settings > Products > Display` for settings. Yoast SEO compatibility: Added `%%wps_subtitle%%` placeholders. Gutenberg compatibility: Add metabox UI.
 
 = 3.0 =
 * Make `wps_subtitle` available via WordPress REST API.

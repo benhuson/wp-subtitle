@@ -91,7 +91,7 @@ Upgrade Notice
 ### Unreleased
 
 ### 3.1
-WooCommerce compatibility: Go to `WooCommerce > Settings > Products > Display` for settings. Yoast SEO compatibility: Added `%%wps_subtitle%%` placeholders.
+WooCommerce compatibility: Go to `WooCommerce > Settings > Products > Display` for settings. Yoast SEO compatibility: Added `%%wps_subtitle%%` placeholders. Gutenberg compatibility: Use metabox UI.
 
 ### 3.0
 Make `wps_subtitle` available via WordPress REST API.
