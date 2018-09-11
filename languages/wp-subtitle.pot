@@ -1,7 +1,8 @@
+#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: WP Subtitle\n"
-"POT-Creation-Date: 2015-07-02 06:57-0000\n"
+"POT-Creation-Date: 2017-12-14 08:21+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Ben Huson <ben@thewhiteroom.net>\n"
 "Language-Team: \n"
@@ -10,25 +11,50 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.7.6\n"
+"X-Generator: Poedit 2.0.2\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;_x;_ex\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: ..\n"
 
-#: ../admin/admin.php:79 ../admin/admin.php:150
+#: ../admin/admin.php:130 ../admin/admin.php:138 ../admin/admin.php:191
+#: ../admin/admin.php:262
 msgid "Subtitle"
 msgstr ""
 
-#: ../admin/admin.php:200
+#: ../admin/admin.php:301 ../admin/admin.php:328
 msgid "Enter subtitle here"
 msgstr ""
 
-#: ../admin/pointers.php:146
+#: ../admin/pointers.php:149
 #, php-format
 msgid "%s Field"
 msgstr ""
 
-#: ../admin/pointers.php:147
+#: ../admin/pointers.php:150
 msgid "This field has moved from a meta box to below the post title."
+msgstr ""
+
+#: ../includes/compat/woocommerce.php:96
+msgid "WP Subtitle"
+msgstr ""
+
+#: ../includes/compat/woocommerce.php:103
+msgid "Enable Product Subtitles"
+msgstr ""
+
+#: ../includes/compat/woocommerce.php:104
+msgid "Add subtitle field to product edit screen"
+msgstr ""
+
+#: ../includes/compat/woocommerce.php:111
+msgid "Subtitle Display"
+msgstr ""
+
+#: ../includes/compat/woocommerce.php:112
+msgid "Show on single product pages"
+msgstr ""
+
+#: ../includes/compat/woocommerce.php:120
+msgid "Show on product archives"
 msgstr ""

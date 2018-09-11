@@ -4,9 +4,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [3.1] - 2018-09-04
+
 ### Added
-- Added `%%wps_subtitle%%` placeholders for Yoast SEO compatibility.
+- `%%wps_subtitle%%` placeholders for Yoast SEO compatibility.
 - WooCommerce compatibility. Go to `WooCommerce > Settings > Products > Display` for settings.
+- `wps_subtitle_field_position` filter to position admin field `after_title`, `before_title` or otherwise in a meta box.
+- Use metabox UI if editing in Gutenberg.
 
 ## [3.0] - 2017-09-05
 
@@ -147,7 +151,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - First version.
 
-[Unreleased]: https://github.com/benhuson/wp-subtitle/compare/3.0...HEAD
+[Unreleased]: https://github.com/benhuson/wp-subtitle/compare/3.1...HEAD
+[3.1]: https://github.com/benhuson/wp-subtitle/compare/3.0...3.1
 [3.0]: https://github.com/benhuson/wp-subtitle/compare/2.9.2...3.0
 [2.9.1]: https://github.com/benhuson/wp-subtitle/compare/2.9...2.9.1
 [2.9]: https://github.com/benhuson/wp-subtitle/compare/2.8.1...2.9
