@@ -4,6 +4,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [3.2] - 2018-12-10
+
+### Changed
+- Fix WordPress 5.0 compatibility - check `use_block_editor_for_post_type`.
+
 ## [3.1] - 2018-09-04
 
 ### Added
@@ -151,7 +156,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - First version.
 
-[Unreleased]: https://github.com/benhuson/wp-subtitle/compare/3.1...HEAD
+[Unreleased]: https://github.com/benhuson/wp-subtitle/compare/3.2...HEAD
+[3.2]: https://github.com/benhuson/wp-subtitle/compare/3.1...3.2
 [3.1]: https://github.com/benhuson/wp-subtitle/compare/3.0...3.1
 [3.0]: https://github.com/benhuson/wp-subtitle/compare/2.9.2...3.0
 [2.9.1]: https://github.com/benhuson/wp-subtitle/compare/2.9...2.9.1
