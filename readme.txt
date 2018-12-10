@@ -3,8 +3,8 @@ Contributors: husobj, husani
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SLZUF4XJTS4E6
 Tags: subtitle, content, title, subheading, subhead, alternate title
 Requires at least: 3.7
-Tested up to: 4.9.8
-Stable tag: 3.1
+Tested up to: 5.0
+Stable tag: 3.2
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 
@@ -65,6 +65,10 @@ The plugin adds a Subtitle field when editing posts or pages. The subtitle is st
 
 All subtitles are stored as post meta data. Deactivating this plugin will not remove those fields.
 
+= Compatibility with WordPress 5.0+ =
+
+In the new editor in WordPress 5.0 the subtitle is editable via ap panel in the sidebar (like excerpts).
+
 = How do I add the subtitle to my pages? =
 
 Refer to [the documentation](https://github.com/benhuson/wp-subtitle/wiki).
@@ -101,6 +105,9 @@ The plugin is [hosted on GitHub](https://github.com/benhuson/wp-subtitle) and pu
 == Changelog ==
 
 = Unreleased =
+
+= 3.2 = 
+* Fix WordPress 5.0 compatibility - check `use_block_editor_for_post_type`.
 
 = 3.1 =
 * Added `%%wps_subtitle%%` placeholders for Yoast SEO compatibility.
@@ -187,6 +194,9 @@ The plugin is [hosted on GitHub](https://github.com/benhuson/wp-subtitle) and pu
 * First version.
 
 == Upgrade Notice ==
+
+= 3.2 =
+Fix WordPress 5.0 compatibility.
 
 = 3.1 =
 WooCommerce compatibility: Go to `WooCommerce > Settings > Products > Display` for settings. Yoast SEO compatibility: Added `%%wps_subtitle%%` placeholders. Gutenberg compatibility: Add metabox UI.
