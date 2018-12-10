@@ -58,6 +58,10 @@ __Where does WP Subtitle store the subtitles?__
 
 All subtitles are stored as post meta data. Deactivating this plugin will not remove those fields.
 
+__Compatibility with WordPress 5.0+__  
+
+In the new editor in WordPress 5.0 the subtitle is editable via ap panel in the sidebar (like excerpts).
+
 __How do I add the subtitle to my pages?__  
 
 Refer to [the documentation](https://github.com/benhuson/wp-subtitle/wiki).
@@ -89,6 +93,9 @@ Upgrade Notice
 --------------
 
 ### Unreleased
+
+### 3.2
+Fix WordPress 5.0 compatibility.
 
 ### 3.1
 WooCommerce compatibility: Go to `WooCommerce > Settings > Products > Display` for settings. Yoast SEO compatibility: Added `%%wps_subtitle%%` placeholders. Gutenberg compatibility: Use metabox UI.
