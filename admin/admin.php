@@ -475,7 +475,7 @@ class WPSubtitle_Admin {
 	 */
 	private static function gutenberg_supported( $post_type = '' ) {
 
-		if ( function_exists( 'gutenberg_can_edit_post_type' ) && gutenberg_can_edit_post_type( $post_type ) && ! isset( $_GET['classic-editor'] ) ) {
+		if ( function_exists( 'use_block_editor_for_post_type' ) && use_block_editor_for_post_type( $post_type ) && ! isset( $_GET['classic-editor'] ) ) {
 			return true;
 		}
 
