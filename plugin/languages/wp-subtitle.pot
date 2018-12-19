@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WP Subtitle\n"
-"POT-Creation-Date: 2018-12-19 22:56+0000\n"
+"POT-Creation-Date: 2018-12-19 23:04+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Ben Huson <ben@thewhiteroom.net>\n"
 "Language-Team: \n"
@@ -13,48 +13,49 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.2\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-KeywordsList: __;_e;_x;_ex\n"
+"X-Poedit-KeywordsList: __;_e;_x:1,2c;_ex:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c\n"
 "X-Poedit-Basepath: ../..\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: ../admin/admin.php:130 ../admin/admin.php:138 ../admin/admin.php:191
-#: ../admin/admin.php:262
+#: plugin/admin/admin.php:99 plugin/admin/admin.php:130
+#: plugin/admin/admin.php:138 plugin/admin/admin.php:191
+#: plugin/admin/admin.php:262
 msgid "Subtitle"
 msgstr ""
 
-#: ../admin/admin.php:301 ../admin/admin.php:328
+#: plugin/admin/admin.php:305 plugin/admin/admin.php:332
 msgid "Enter subtitle here"
 msgstr ""
 
-#: ../admin/pointers.php:149
+#: plugin/admin/pointers.php:149
 #, php-format
 msgid "%s Field"
 msgstr ""
 
-#: ../admin/pointers.php:150
+#: plugin/admin/pointers.php:150
 msgid "This field has moved from a meta box to below the post title."
 msgstr ""
 
-#: ../includes/compat/woocommerce.php:96
+#: plugin/includes/compat/woocommerce.php:96
 msgid "WP Subtitle"
 msgstr ""
 
-#: ../includes/compat/woocommerce.php:103
+#: plugin/includes/compat/woocommerce.php:103
 msgid "Enable Product Subtitles"
 msgstr ""
 
-#: ../includes/compat/woocommerce.php:104
+#: plugin/includes/compat/woocommerce.php:104
 msgid "Add subtitle field to product edit screen"
 msgstr ""
 
-#: ../includes/compat/woocommerce.php:111
+#: plugin/includes/compat/woocommerce.php:111
 msgid "Subtitle Display"
 msgstr ""
 
-#: ../includes/compat/woocommerce.php:112
+#: plugin/includes/compat/woocommerce.php:112
 msgid "Show on single product pages"
 msgstr ""
 
-#: ../includes/compat/woocommerce.php:120
+#: plugin/includes/compat/woocommerce.php:120
 msgid "Show on product archives"
 msgstr ""
