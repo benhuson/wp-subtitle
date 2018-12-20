@@ -3,6 +3,23 @@
 /**
  * @package     WP Subtitle
  * @subpackage  API Class
+ *
+ * Usage examples below. All parameters are optional.
+ *
+ * // Example: Display subtitle
+ * do_action( 'plugins/wp_subtitle/the_subtitle', array(
+ *    'before'        => '<p class="subtitle">',  // Before subtitle HTML output (default empty string)
+ *    'after'         => '</p>',                  // After subtitle HTML output (default empty string)
+ *    'post_id'       => get_the_ID(),            // Post ID (default current post ID)
+ *    'default_value' => ''                       // Default output (if no subtitle)
+ * ) );
+ *
+ * // Example: Get subtitle display
+ * $subtitle = apply_filters( 'plugins/wp_subtitle/get_subtitle', '', array(
+ *    'before' => '<p class="subtitle">',  // Before subtitle HTML output (default empty string)
+ *    'after'  => '</p>',                  // After subtitle HTML output (default empty string)
+ *    'post_id' => get_the_ID()            // Post ID (default current post ID)
+ * ) );
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
