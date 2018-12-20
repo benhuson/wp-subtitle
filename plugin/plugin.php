@@ -12,6 +12,7 @@ define( 'WPSUBTITLE_URL', plugins_url( WPSUBTITLE_SUBDIR ) );
 define( 'WPSUBTITLE_DIR', plugin_dir_path( __FILE__ ) );
 
 // Includes
+include_once( WPSUBTITLE_DIR . 'includes/class-api.php' );
 include_once( WPSUBTITLE_DIR . 'includes/subtitle.php' );
 include_once( WPSUBTITLE_DIR . 'includes/deprecated.php' );
 include_once( WPSUBTITLE_DIR . 'includes/shortcode.php' );
@@ -37,6 +38,13 @@ add_filter( 'wps_subtitle', 'wptexturize' );
 add_filter( 'wps_subtitle', 'trim' );
 
 class WPSubtitle {
+
+	/**
+	 * API
+	 *
+	 * @var  WP_Subtitle_API|null
+	 */
+	private static $api = null;
 
 	/**
 	 * REST API
@@ -72,9 +80,12 @@ class WPSubtitle {
 	 */
 	public static function load() {
 
+		self::$api = new WP_Subtitle_API();
 		self::$rest = new WPSubtitle_REST();
 		self::$wpseo = new WPSubtitle_WPSEO();
 		self::$woocommerce = new WPSubtitle_WooCommerce();
+
+		self::$api->setup_hooks();
 
 	}
 
