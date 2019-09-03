@@ -72,7 +72,7 @@ class WP_Subtitle_API {
 		$subtitle = $subtitle_obj->get_subtitle( $args );
 
 		if ( ! empty( $subtitle ) ) {
-			return $args['before'] . $subtitle . $args['after'];
+			return $subtitle;
 		}
 
 		return $default_subtitle;
