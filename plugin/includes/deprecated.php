@@ -6,6 +6,65 @@
  */
 
 /**
+ * The Subtitle
+ *
+ * @since  1.0
+ *
+ * @uses  WP_Subtitle::get_subtitle()
+ *
+ * @param   string  $before  Before the subtitle.
+ * @param   string  $after   After the subtitle.
+ * @param   bool    $echo    Output if true, return if false.
+ * @return  string           The subtitle string.
+ */
+function the_subtitle( $before = '', $after = '', $echo = true ) {
+
+	if ( ! $echo ) {
+
+		return apply_filters( 'plugins/wp_subtitle/get_subtitle', '', array(
+			'before' => $before,
+			'after'  => $after
+		) );
+
+	}
+
+	do_action( 'plugins/wp_subtitle/the_subtitle', array(
+		'before' => $before,
+		'after'  => $after
+	) );
+
+}
+
+/**
+ * Get the Subtitle
+ *
+ * @since  1.0
+ *
+ * @uses  WP_Subtitle::get_subtitle()
+ *
+ * @param   int|object  $post    Post ID or object.
+ * @param   string      $before  Before the subtitle.
+ * @param   string      $after   After the subtitle.
+ * @param   bool        $echo    Output if true, return if false.
+ * @return  string               The subtitle string.
+ */
+function get_the_subtitle( $post = 0, $before = '', $after = '', $echo = true ) {
+
+	$output = apply_filters( 'plugins/wp_subtitle/get_subtitle', '', array(
+		'post_id' => is_a( $post, 'WP_Post' ) ? $post->ID : $post,
+		'before' => $before,
+		'after'  => $after
+	) );
+
+	if ( ! $echo ) {
+		return $output;
+	}
+
+	echo $output;
+
+}
+
+/**
  * Query DB and echo page/post subtitle, if any
  *
  * @uses  WPSubtitle::_get_post_meta()
