@@ -208,18 +208,19 @@ class WPSubtitle {
  */
 function the_subtitle( $before = '', $after = '', $echo = true ) {
 
-	$subtitle = new WP_Subtitle( get_the_ID() );
+	if ( ! $echo ) {
 
-	$output = $subtitle->get_subtitle( array(
+		return apply_filters( 'plugins/wp_subtitle/get_subtitle', '', array(
+			'before' => $before,
+			'after'  => $after
+		) );
+
+	}
+
+	do_action( 'plugins/wp_subtitle/the_subtitle', array(
 		'before' => $before,
 		'after'  => $after
 	) );
-
-	if ( ! $echo ) {
-		return $output;
-	}
-
-	echo $output;
 
 }
 
@@ -238,9 +239,8 @@ function the_subtitle( $before = '', $after = '', $echo = true ) {
  */
 function get_the_subtitle( $post = 0, $before = '', $after = '', $echo = true ) {
 
-	$subtitle = new WP_Subtitle( $post );
-
-	$output = $subtitle->get_subtitle( array(
+	$output = apply_filters( 'plugins/wp_subtitle/get_subtitle', '', array(
+		'post_id' => is_a( $post, 'WP_Post' ) ? $post->ID : $post,
 		'before' => $before,
 		'after'  => $after
 	) );
