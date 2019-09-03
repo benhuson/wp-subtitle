@@ -73,7 +73,7 @@ function get_the_subtitle( $post = 0, $before = '', $after = '', $echo = true ) 
  * @deprecated  2.0  Use get_the_subtitle() instead.
  */
 function wps_get_the_subtitle() {
-	_deprecated_function( 'wps_get_the_subtitle()', '2.0', 'the_subtitle()' );
+	_deprecated_function( 'wps_get_the_subtitle()', '2.0', "do_action( 'plugins/wp_subtitle/the_subtitle' )" );
 
 	$subtitle = new WP_Subtitle( get_the_ID() );
 	$subtitle->the_subtitle();
