@@ -61,7 +61,10 @@ class WPSubtitle_WooCommerce {
 	 */
 	public function single_product_summary() {
 
-		the_subtitle( '<h2 class="product_subtitle entry-subtitle wp-subtitle">', '</h2>' );
+		do_action( 'plugins/wp_subtitle/the_subtitle', array(
+			'before' => '<h2 class="product_subtitle entry-subtitle wp-subtitle">',
+			'after'  => '</p>'
+		) );
 
 	}
 
@@ -74,7 +77,10 @@ class WPSubtitle_WooCommerce {
 	 */
 	public function shop_loop_item_title() {
 
-		the_subtitle( '<p class="woocommerce-loop-product__subtitle wp-subtitle">', '</p>' );
+		do_action( 'plugins/wp_subtitle/the_subtitle', array(
+			'before' => '<p class="woocommerce-loop-product__subtitle wp-subtitle">',
+			'after'  => '</p>'
+		) );
 
 	}
 
