@@ -22,14 +22,14 @@ All parameters are optional. If 'post_id' is omitted then the current post ID in
 
 PHP Code:
 
-```
+`
 do_action( 'plugins/wp_subtitle/the_subtitle', array(
     'before'        => '<p class="subtitle">',
     'after'         => '</p>',
     'post_id'       => get_the_ID(),
     'default_value' => ''
 ) );
-```
+`
 
 Output:
 
@@ -43,13 +43,13 @@ A default value can be supplied as the second parameter for `apply_filters`. Thi
 
 PHP Code:
 
-```
+`
 $subtitle = apply_filters( 'plugins/wp_subtitle/get_subtitle', '', array(
     'before'  => '<p class="subtitle">',
     'after'   => '</p>',
     'post_id' => get_the_ID()
 ) );
-```
+`
 
 Result:
 
