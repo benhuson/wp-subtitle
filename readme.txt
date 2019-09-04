@@ -146,9 +146,10 @@ The plugin is [hosted on GitHub](https://github.com/benhuson/wp-subtitle) and pu
 
 == Screenshots ==
 
-1. Edit post screen (WordPress 3.5+ and WP Title 2.2+)
-2. Edit post screen (for earlier versions of WordPress or using the 'wps_subtitle_use_meta_box' filter)
-3. A single page showing a subtitle
+1. Edit post screen (WordPress 5.0+ and WP Title 3.1+)
+2. Edit post screen (WordPress 3.5+ and WP Title 2.2+)
+3. Edit post screen (for earlier versions of WordPress or using the 'wps_subtitle_use_meta_box' filter)
+4. A single page showing a subtitle
 
 == Changelog ==
 
