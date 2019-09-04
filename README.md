@@ -140,7 +140,8 @@ The plugin is [hosted on GitHub](https://github.com/benhuson/wp-subtitle) and pu
 Upgrade Notice
 --------------
 
-### Unreleased
+### 3.3
+New API for getting and displaying the subtitle using `do_action( 'plugins/wp_subtitle/the_subtitle' )` and `apply_filters( 'plugins/wp_subtitle/get_subtitle', '' )`. Please see the documentation.
 
 ### 3.2
 Fix WordPress 5.0 compatibility.
