@@ -2,7 +2,14 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## [Unreleased]
+## [3.3] - 2019-09-04
+
+### Changed
+- New API for displaying the subtitle using `do_action( 'plugins/wp_subtitle/the_subtitle' )`.
+- New API for getting the subtitle using `apply_filters( 'plugins/wp_subtitle/get_subtitle', '' )`.
+
+### Fixed
+- Admin column title now matches the meta box title if altered using the `wps_meta_box_title` filter.
 
 ## [3.2] - 2018-12-10
 
@@ -156,7 +163,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - First version.
 
-[Unreleased]: https://github.com/benhuson/wp-subtitle/compare/3.2...HEAD
+[Unreleased]: https://github.com/benhuson/wp-subtitle/compare/3.3...HEAD
+[3.3]: https://github.com/benhuson/wp-subtitle/compare/3.2...3.3
 [3.2]: https://github.com/benhuson/wp-subtitle/compare/3.1...3.2
 [3.1]: https://github.com/benhuson/wp-subtitle/compare/3.0...3.1
 [3.0]: https://github.com/benhuson/wp-subtitle/compare/2.9.2...3.0

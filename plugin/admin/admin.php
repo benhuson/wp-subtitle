@@ -38,18 +38,7 @@ class WPSubtitle_Admin {
 	 */
 	public static function _admin_init() {
 
-		global $pagenow;
-
-		// Get post type
-		$post_type = '';
-
-		if ( isset( $_REQUEST['post_type'] ) ) {
-			$post_type = sanitize_text_field( $_REQUEST['post_type'] );
-		} elseif ( isset( $_GET['post'] ) ) {
-			$post_type = get_post_type( absint( $_GET['post'] ) );
-		} elseif ( in_array( $pagenow, array( 'post-new.php', 'edit.php' ) ) ) {
-			$post_type = 'post';
-		}
+		$post_type = self::get_admin_page_post_type();
 
 		// Setup Field / Meta Box
 		if ( WPSubtitle::is_supported_post_type( $post_type ) ) {
@@ -71,6 +60,27 @@ class WPSubtitle_Admin {
 			add_action( 'quick_edit_custom_box', array( 'WPSubtitle_Admin', 'quick_edit_custom_box' ), 10, 2 );
 
 		}
+
+	}
+
+	/**
+	 * Get Admin Page Post Type
+	 *
+	 * @return  string
+	 */
+	protected static function get_admin_page_post_type() {
+
+		global $pagenow;
+
+		if ( isset( $_REQUEST['post_type'] ) ) {
+			return sanitize_text_field( $_REQUEST['post_type'] );
+		} elseif ( isset( $_GET['post'] ) ) {
+			return get_post_type( absint( $_GET['post'] ) );
+		} elseif ( in_array( $pagenow, array( 'post-new.php', 'edit.php' ) ) ) {
+			return 'post';
+		}
+
+		return '';
 
 	}
 
@@ -125,9 +135,11 @@ class WPSubtitle_Admin {
 			$after_column = 'name';
 		}
 
+		$column_name = self::get_meta_box_title( self::get_admin_page_post_type() );
+
 		// Add column
 		if ( empty( $after_column ) ) {
-			$columns['wps_subtitle'] = __( 'Subtitle', 'wp-subtitle' );
+			$columns['wps_subtitle'] = $column_name;
 			return $columns;
 		}
 
@@ -135,7 +147,7 @@ class WPSubtitle_Admin {
 		foreach ( $columns as $column => $value ) {
 			$new_columns[ $column ] = $value;
 			if ( $after_column == $column ) {
-				$new_columns['wps_subtitle'] = __( 'Subtitle', 'wp-subtitle' );
+				$new_columns['wps_subtitle'] = $column_name;
 			}
 		}
 
