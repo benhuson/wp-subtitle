@@ -9,6 +9,7 @@
  * The Subtitle
  *
  * @since  1.0
+ * @deprecated  3.3  Use do_action( 'plugins/wp_subtitle/the_subtitle' ) instead.
  *
  * @uses  WP_Subtitle::get_subtitle()
  *
@@ -39,6 +40,7 @@ function the_subtitle( $before = '', $after = '', $echo = true ) {
  * Get the Subtitle
  *
  * @since  1.0
+ * @deprecated  3.3  Use apply_filters( 'plugins/wp_subtitle/get_subtitle' ) instead.
  *
  * @uses  WP_Subtitle::get_subtitle()
  *
