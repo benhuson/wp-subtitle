@@ -5,54 +5,102 @@ Add subtitles (subheadings) to your pages, posts or custom post types.
 
 The WP Subtitle plugin allows your pages and posts to contain a subtitle.  Also called a sub-heading, this this short line of text is meant to appear beneath a post's (or page's) title, but can be inserted in your template wherever you choose.
 
-`<?php the_subtitle(); ?>` is used for inside The Loop. If you wish to get a page/post's subtitle outside The Loop, use `<?php get_the_subtitle( $post ); ?>`, where $post is a post object or ID ($post->ID).
+The subtitle can be inserted into your theme template files (or plugin) using the following API:
+
+### Display The Subtitle
+
+All parameters are optional. If 'post_id' is omitted then the current post ID in the loop is used.
+
+PHP Code:
+
+```
+do_action( 'plugins/wp_subtitle/the_subtitle', array(
+    'before'        => '<p class="subtitle">',
+    'after'         => '</p>',
+    'post_id'       => get_the_ID(),
+    'default_value' => ''
+) );
+```
+
+Output:
+
+`<p class="subtitle">My Post Subtitle</p>`
+
+### Get The Subtitle
+
+All parameters are optional. If 'post_id' is omitted then the current post ID in the loop is used.
+
+A default value can be supplied as the second parameter for `apply_filters`. This will be used if the post does not have a subtitle. Leave as an empty string to return an empty string if the post does not have a subtitle.
+
+PHP Code:
+
+```
+$subtitle = apply_filters( 'plugins/wp_subtitle/get_subtitle', '', array(
+    'before'  => '<p class="subtitle">',
+    'after'   => '</p>',
+    'post_id' => get_the_ID()
+) );
+```
+
+Result:
+
+`$subtitle = '<p class="subtitle">My Post Subtitle</p>'`
 
 ### Parameters
 
-Just like WP's built-in `<?php the_title(); ?>` method, `<?php the_subtitle(); ?>` tag accepts three parameters:
+The array of arguments accepted for the `plugins/wp_subtitle/the_subtitle` action and `plugins/wp_subtitle/get_subtitle` filter are:
 
-**$before**  
-*(string)* Text to place before the subtitle. Defaults to "".
+**before**  
+*(string)* Text to place before the subtitle if one exists. Defaults to an empty string.
 
-**$after**  
-*(string)* Text to place after the subtitle. Defaults to "".
+**after**  
+*(string)* Text to place after the subtitle if one exists. Defaults to to an empty string.
 
-**$echo**  
-*(boolean)* If true, display the subtitle in HTML. If false, return the subtitle for use in PHP. Defaults to true.
+**post_id**  
+*(integer)* Post, page or custom post type ID.
 
-Things are slightly different in `<?php get_the_subtitle(); ?>`:
+**default_value**  
+*(string)* Only used by the `plugins/wp_subtitle/the_subtitle` action, allows you to specify a default subtitle to display if the post does not have one. For the `plugins/wp_subtitle/get_subtitle` filter the second parameter of `apply_filters` should be used instead. Defaults to to an empty string.
 
-**$post**  
-*(int|object)* Post, page or custom post type object or ID.
+### Post Type Support
 
-**$before**  
-*(string)* Text to place before the subtitle. Defaults to "".
+By default, subtitle are supported by both posts and pages. To add support for custom post types add teh following to your theme functions file or plugin:
 
-**$after**  
-*(string)* Text to place after the subtitle. Defaults to "".
+`add_post_type_support( 'my_post_type', 'wps_subtitle' )`
 
-**$echo**  
-*(boolean)* If true, display the subtitle in HTML. If false, return the subtitle for use in PHP. Defaults to true.
+### WooCommerce Plugin Support
 
-For full details on the template tags and their arguments, [view the documentation here](https://github.com/benhuson/wp-subtitle/wiki).
+Subtitles can automatically be added to your WooCommerce products without needing to make template changes. In the admin go to WooCommerce > Settings > Products where you can choose to:
 
-By default, subtitle are supported by both posts and pages. To add support for custom post types use add_post_type_support( 'my_post_type', 'wps_subtitle' ).
+ - Enable Product Subtitles
+ - Display the subtitle on single product pages
+ - Display the subtitle on product archives (category pages)
+
+### Yoast SEO Plugin Support
+
+The plugin allows you to include the subtitle in your Yoast SEO meta titles and descriptions.
+
+Similar to the Yoast `%%title%%` placeholder which inserts the post title, you can use `%%wps_subtitle%%`.
+
+There are also addition placeholders and filters to allow to to customize seperators for the subtitle.
+
+For more information, [view the Yoast SEO documentation here](https://github.com/benhuson/wp-subtitle/wiki/Yoast-SEO-Plugin-Support).
 
 Installation
 ------------
 
 1. Upload the WP Subtitle plugin to your WordPress site in the `/wp-content/plugins` folder or install via the WordPress admin.
 1. Activate it from the Wordpress plugin admin screen.
-1. Edit your page and/or post template and use the `<?php the_subtitle(); ?>` template tag where you'd like the subtitle to appear.
+1. Use the API to display the subtitle in your theme.
 
-For full details on the template tags and their arguments, [view the documentation here](https://github.com/benhuson/wp-subtitle/wiki).
+For full details on the API and how to display the subtitle, [view the documentation here](https://github.com/benhuson/wp-subtitle/wiki).
 
 Frequently Asked Questions
 --------------------------
 
 __What does WP Subtitle do?__  
 
-The plugin adds a Subtitle field when editing posts or pages. The subtitle is stores as a custom field (post meta data) and can be output using template tags.
+The plugin adds a Subtitle field when editing posts, pages or custom post types. The subtitle is stored as a custom field (post meta data) and can be output using API actions and filters.
 
 __Where does WP Subtitle store the subtitles?__  
 
@@ -60,7 +108,7 @@ All subtitles are stored as post meta data. Deactivating this plugin will not re
 
 __Compatibility with WordPress 5.0+__  
 
-In the new editor in WordPress 5.0 the subtitle is editable via ap panel in the sidebar (like excerpts).
+In the new editor in WordPress 5.0 the subtitle is editable via a panel in the sidebar (like excerpts).
 
 __How do I add the subtitle to my pages?__  
 
@@ -68,14 +116,14 @@ Refer to [the documentation](https://github.com/benhuson/wp-subtitle/wiki).
 
 __How do I add support for custom post types?__  
 
-To add support for custom post types use add_post_type_support( 'my_post_type', 'wps_subtitle' ):
+To add support for custom post types add the following to your theme functions file or plugin:
 
-`
+```
 function my_wp_subtitle_page_part_support() {
 	add_post_type_support( 'my_post_type', 'wps_subtitle' );
 }
 add_action( 'init', 'my_wp_subtitle_page_part_support' );
-`
+```
 
 __Where can I get help?__  
 
