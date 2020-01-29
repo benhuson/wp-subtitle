@@ -63,7 +63,7 @@ class WPSubtitle_WooCommerce {
 
 		do_action( 'plugins/wp_subtitle/the_subtitle', array(
 			'before' => '<h2 class="product_subtitle entry-subtitle wp-subtitle">',
-			'after'  => '</p>'
+			'after'  => '</h2>'
 		) );
 
 	}
