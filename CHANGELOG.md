@@ -2,6 +2,11 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.3.1] - 2020-01-29
+
+### Fixed
+- Fixed broken closing H2 tag for WooCommerce subtitle. Props @faktorvier.
+
 ## [3.3] - 2019-09-04
 
 ### Changed
@@ -163,7 +168,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - First version.
 
-[Unreleased]: https://github.com/benhuson/wp-subtitle/compare/3.3...HEAD
+[Unreleased]: https://github.com/benhuson/wp-subtitle/compare/3.3.1...HEAD
+[3.3.1]: https://github.com/benhuson/wp-subtitle/compare/3.3...3.3.1
 [3.3]: https://github.com/benhuson/wp-subtitle/compare/3.2...3.3
 [3.2]: https://github.com/benhuson/wp-subtitle/compare/3.1...3.2
 [3.1]: https://github.com/benhuson/wp-subtitle/compare/3.0...3.1
