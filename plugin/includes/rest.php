@@ -68,7 +68,7 @@ class WPSubtitle_REST {
         /**
          * Update REST Field
          *
-         * @since  3.1
+         * @since  3.3.1
          *
          * @internal  Called via register_rest_field() callback.
          *
@@ -77,7 +77,7 @@ class WPSubtitle_REST {
          */
         public function update_rest_field( $value, $object ) {
 
-		update_post_meta( $object->ID, 'wps_subtitle', $value );
+		update_post_meta( $object->ID, 'wps_subtitle', wp_kses_post($value) );
 
         }
 
