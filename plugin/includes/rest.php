@@ -37,7 +37,7 @@ class WPSubtitle_REST {
 
 			register_rest_field( $post_types, 'wps_subtitle', array(
 				'get_callback'    => array( $this, 'get_rest_field' ),
-				'update_callback' => array( $this, 'update_rest_field' ),
+				'update_callback' => null,
 				'schema'          => null
 			) );
 
@@ -64,21 +64,5 @@ class WPSubtitle_REST {
 		return $subtitle->get_raw_subtitle();
 
 	}
-
-        /**
-         * Update REST Field
-         *
-         * @since  3.1
-         *
-         * @internal  Called via register_rest_field() callback.
-         *
-         * @param   string           $value       New value for the field.
-         * @param   array            $object      Current post details.
-         */
-        public function update_rest_field( $value, $object ) {
-
-		update_post_meta( $object->ID, 'wps_subtitle', $value );
-
-        }
 
 }
