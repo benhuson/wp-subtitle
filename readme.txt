@@ -3,8 +3,8 @@ Contributors: husobj, husani
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SLZUF4XJTS4E6
 Tags: subtitle, content, title, subheading, subhead, alternate title
 Requires at least: 3.7
-Tested up to: 5.2
-Stable tag: 3.3
+Tested up to: 5.3.2
+Stable tag: 3.3.1
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 
@@ -153,6 +153,9 @@ The plugin is [hosted on GitHub](https://github.com/benhuson/wp-subtitle) and pu
 
 == Changelog ==
 
+= 3.3.1 =
+* Fixed broken closing H2 tag for WooCommerce subtitle. Props @faktorvier.
+
 = 3.3 =
 * New API for displaying the subtitle using `do_action( 'plugins/wp_subtitle/the_subtitle' )`.
 * New API for getting the subtitle using `apply_filters( 'plugins/wp_subtitle/get_subtitle', '' )`.
@@ -246,6 +249,9 @@ The plugin is [hosted on GitHub](https://github.com/benhuson/wp-subtitle) and pu
 * First version.
 
 == Upgrade Notice ==
+
+= 3.3.1 =
+Fixed broken closing H2 tag for WooCommerce subtitle.
 
 = 3.3 =
 New API for getting and displaying the subtitle using `do_action( 'plugins/wp_subtitle/the_subtitle' )` and `apply_filters( 'plugins/wp_subtitle/get_subtitle', '' )`. Please see the documentation.
