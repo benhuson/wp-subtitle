@@ -406,7 +406,7 @@ class WPSubtitle_Admin {
 		// Check data and save
 		if ( isset( $_POST['wps_subtitle'] ) ) {
 
-			$new_value = wp_kses_post($_POST['wps_subtitle']);
+			$new_value = wp_kses_post( $_POST['wps_subtitle'] );
 
 			$subtitle = new WP_Subtitle( $post_id );
 

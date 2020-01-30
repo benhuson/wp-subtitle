@@ -68,7 +68,7 @@ class WPSubtitle {
 	/**
 	 * SEOPress (plugin compatibility)
 	 *
-	 * @since  3.3.1
+	 * @since  3.4
 	 *
 	 * @var  WPSubtitle_SEOPress|null
 	 */

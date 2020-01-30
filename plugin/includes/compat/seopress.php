@@ -4,7 +4,7 @@
  * @package     WP Subtitle
  * @subpackage  SEOPress
  *
- * @since  3.3.1
+ * @since  3.4
  *
  * Compatibility for the SEOPress plugin:
  * https://wordpress.org/plugins/wp-seopress/
@@ -34,7 +34,7 @@ class WPSubtitle_SEOPress {
 	/**
 	 * Constructor
 	 *
-	 * @since  3.3.1
+	 * @since  3.4
 	 *
 	 * @internal  Do not create multiple instances.
 	 */
@@ -48,7 +48,7 @@ class WPSubtitle_SEOPress {
 	/**
 	 * Add SEOPress Replacements Variables
 	 *
-	 * @since  3.3.1
+	 * @since  3.4
 	 *
 	 * @param    array  $replacements  SEO replacements variables.
 	 * @return   array                 Filtered replacements variables.
@@ -62,12 +62,13 @@ class WPSubtitle_SEOPress {
 		$replacements[] = '%%wps_subtitle_after_sep%%';
 
 		return $replacements;
+
 	}
 
 	/**
 	 * Replace SEOPress Replacements Values
 	 *
-	 * @since  3.3.1
+	 * @since  3.4
 	 *
 	 * @param    array  $replacements  SEO replacements values.
 	 * @return   array                 Filtered replacements values.

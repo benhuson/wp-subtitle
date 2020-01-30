@@ -65,20 +65,20 @@ class WPSubtitle_REST {
 
 	}
 
-        /**
-         * Update REST Field
-         *
-         * @since  3.3.1
-         *
-         * @internal  Called via register_rest_field() callback.
-         *
-         * @param   string           $value       New value for the field.
-         * @param   array            $object      Current post details.
-         */
-        public function update_rest_field( $value, $object ) {
+	/**
+	 * Update REST Field
+	 *
+	 * @since  3.4
+	 *
+	 * @internal  Called via register_rest_field() callback.
+	 *
+	 * @param  string  $value   New value for the field.
+	 * @param  array   $object  Current post details.
+	 */
+	public function update_rest_field( $value, $object ) {
 
-		update_post_meta( $object->ID, 'wps_subtitle', wp_kses_post($value) );
+		update_post_meta( $object->ID, 'wps_subtitle', wp_kses_post( $value ) );
 
-        }
+	}
 
 }
