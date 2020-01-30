@@ -57,7 +57,7 @@ class WPSubtitle_SEOPress {
 	 */
 	public function add_seopress_replacements( $replacements ) {
 
-		$replacements[] = '%%wps_subtitle%%';
+                $replacements[] = '%%wps_subtitle%%';
 		$replacements[] = '%%wps_subtitle_before_sep%%';
 		$replacements[] = '%%wps_subtitle_after_sep%%';
 
