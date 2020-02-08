@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WP Subtitle\n"
-"POT-Creation-Date: 2018-12-19 23:04+0000\n"
+"POT-Creation-Date: 2020-01-31 09:28+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Ben Huson <ben@thewhiteroom.net>\n"
 "Language-Team: \n"
@@ -11,19 +11,18 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.2\n"
+"X-Generator: Poedit 2.2.4\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;_x:1,2c;_ex:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c\n"
 "X-Poedit-Basepath: ../..\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: plugin/admin/admin.php:99 plugin/admin/admin.php:130
-#: plugin/admin/admin.php:138 plugin/admin/admin.php:191
-#: plugin/admin/admin.php:262
+#: plugin/admin/admin.php:109 plugin/admin/admin.php:203
+#: plugin/admin/admin.php:274
 msgid "Subtitle"
 msgstr ""
 
-#: plugin/admin/admin.php:305 plugin/admin/admin.php:332
+#: plugin/admin/admin.php:317 plugin/admin/admin.php:344
 msgid "Enter subtitle here"
 msgstr ""
 
@@ -36,26 +35,26 @@ msgstr ""
 msgid "This field has moved from a meta box to below the post title."
 msgstr ""
 
-#: plugin/includes/compat/woocommerce.php:96
+#: plugin/includes/compat/woocommerce.php:102
 msgid "WP Subtitle"
 msgstr ""
 
-#: plugin/includes/compat/woocommerce.php:103
+#: plugin/includes/compat/woocommerce.php:109
 msgid "Enable Product Subtitles"
 msgstr ""
 
-#: plugin/includes/compat/woocommerce.php:104
+#: plugin/includes/compat/woocommerce.php:110
 msgid "Add subtitle field to product edit screen"
 msgstr ""
 
-#: plugin/includes/compat/woocommerce.php:111
+#: plugin/includes/compat/woocommerce.php:117
 msgid "Subtitle Display"
 msgstr ""
 
-#: plugin/includes/compat/woocommerce.php:112
+#: plugin/includes/compat/woocommerce.php:118
 msgid "Show on single product pages"
 msgstr ""
 
-#: plugin/includes/compat/woocommerce.php:120
+#: plugin/includes/compat/woocommerce.php:126
 msgid "Show on product archives"
 msgstr ""

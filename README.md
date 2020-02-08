@@ -76,15 +76,15 @@ Subtitles can automatically be added to your WooCommerce products without needin
  - Display the subtitle on single product pages
  - Display the subtitle on product archives (category pages)
 
-### Yoast SEO Plugin Support
+### Yoast SEO and SEOPress Plugin Support
 
-The plugin allows you to include the subtitle in your Yoast SEO meta titles and descriptions.
+The plugin allows you to include the subtitle in your meta titles and descriptions via the [Yoast SEO](https://wordpress.org/plugins/wordpress-seo/) and [SEOPress](https://wordpress.org/plugins/wp-seopress/) plugins.
 
 Similar to the Yoast `%%title%%` placeholder which inserts the post title, you can use `%%wps_subtitle%%`.
 
 There are also addition placeholders and filters to allow to to customize seperators for the subtitle.
 
-For more information, [view the Yoast SEO documentation here](https://github.com/benhuson/wp-subtitle/wiki/Yoast-SEO-Plugin-Support).
+For more information, [view the SEO support documentation here](https://github.com/benhuson/wp-subtitle/wiki/Yoast-SEO-Plugin-Support).
 
 Installation
 ------------
@@ -139,6 +139,12 @@ The plugin is [hosted on GitHub](https://github.com/benhuson/wp-subtitle) and pu
 
 Upgrade Notice
 --------------
+
+### 3.4
+Added support for the SEOPress plugin and updating the subtitle via the REST API.
+
+### 3.3.1
+Fixed broken closing H2 tag for WooCommerce subtitle.
 
 ### 3.3
 New API for getting and displaying the subtitle using `do_action( 'plugins/wp_subtitle/the_subtitle' )` and `apply_filters( 'plugins/wp_subtitle/get_subtitle', '' )`. Please see the documentation.
