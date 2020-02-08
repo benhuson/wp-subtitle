@@ -3,6 +3,8 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [3.4] - 2020-01-31
+
+### Added
 - Added support for the SEOPress plugin. Props @chriselkins.
 - You can now update the subtitle via the REST API. Props @chriselkins.
 
