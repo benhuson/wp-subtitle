@@ -18,6 +18,7 @@ include_once( WPSUBTITLE_DIR . 'includes/deprecated.php' );
 include_once( WPSUBTITLE_DIR . 'includes/shortcode.php' );
 include_once( WPSUBTITLE_DIR . 'includes/rest.php' );
 include_once( WPSUBTITLE_DIR . 'includes/compat/wordpress-seo.php' );
+include_once( WPSUBTITLE_DIR . 'includes/compat/seopress.php' );
 include_once( WPSUBTITLE_DIR . 'includes/compat/woocommerce.php' );
 
 // Include admin-only functionality
@@ -65,6 +66,15 @@ class WPSubtitle {
 	private static $wpseo = null;
 
 	/**
+	 * SEOPress (plugin compatibility)
+	 *
+	 * @since  3.4
+	 *
+	 * @var  WPSubtitle_SEOPress|null
+	 */
+	private static $seopress = null;
+
+	/**
 	 * WooCommerce
 	 *
 	 * @since  3.1
@@ -83,6 +93,7 @@ class WPSubtitle {
 		self::$api = new WP_Subtitle_API();
 		self::$rest = new WPSubtitle_REST();
 		self::$wpseo = new WPSubtitle_WPSEO();
+		self::$seopress = new WPSubtitle_SEOPress();
 		self::$woocommerce = new WPSubtitle_WooCommerce();
 
 		self::$api->setup_hooks();
