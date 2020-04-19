@@ -20,6 +20,34 @@
  *    'after'  => '</p>',                  // After subtitle HTML output (default empty string)
  *    'post_id' => get_the_ID()            // Post ID (default current post ID)
  * ) );
+ *
+ * // Example: Display term subtitle
+ * do_action( 'plugins/wp_subtitle/the_term_subtitle', array(
+ *    'before'        => '<p class="subtitle">',  // Before subtitle HTML output (default empty string)
+ *    'after'         => '</p>',                  // After subtitle HTML output (default empty string)
+ *    'term_id'       => 0,                       // Term ID (default to none)
+ *    'default_value' => ''                       // Default output (if no subtitle)
+ * ) );
+ *
+ * // Example: Get term subtitle display
+ * $subtitle = apply_filters( 'plugins/wp_subtitle/get_term_subtitle', '', array(
+ *    'before' => '<p class="subtitle">',  // Before subtitle HTML output (default empty string)
+ *    'after'  => '</p>',                  // After subtitle HTML output (default empty string)
+ *    'term_id' => 0                       // Term ID (default to none)
+ * ) );
+ *
+ * // Example: Display archive subtitle
+ * do_action( 'plugins/wp_subtitle/the_archive_subtitle', array(
+ *    'before'        => '<p class="subtitle">',  // Before subtitle HTML output (default empty string)
+ *    'after'         => '</p>',                  // After subtitle HTML output (default empty string)
+ *    'default_value' => ''                       // Default output (if no subtitle)
+ * ) );
+ *
+ * // Example: Get archive subtitle display
+ * $subtitle = apply_filters( 'plugins/wp_subtitle/get_archive_subtitle', '', array(
+ *    'before' => '<p class="subtitle">',  // Before subtitle HTML output (default empty string)
+ *    'after'  => '</p>',                  // After subtitle HTML output (default empty string)
+ * ) );
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
@@ -122,6 +150,9 @@ class WP_Subtitle_API {
 
 	/**
 	 * The Archive Subtitle (Filter)
+	 *
+	 * If the main blog page when posts page is set, get the subtitle of the page.
+	 * If a categiry/tag/term archive, get the term subtitle.
 	 *
 	 * @param   string  $subtitle  Subtitle.
 	 * @param   array   $args      Display args.
