@@ -37,6 +37,9 @@ class WP_Subtitle_API {
 		add_action( 'plugins/wp_subtitle/the_term_subtitle', array( $this, 'the_term_subtitle' ) );
 		add_filter( 'plugins/wp_subtitle/get_term_subtitle', array( $this, 'get_term_subtitle' ), 10, 2 );
 
+		add_action( 'plugins/wp_subtitle/the_archive_subtitle', array( $this, 'the_archive_subtitle' ) );
+		add_filter( 'plugins/wp_subtitle/get_archive_subtitle', array( $this, 'get_archive_subtitle' ), 10, 2 );
+
 	}
 
 	/**
@@ -90,7 +93,7 @@ class WP_Subtitle_API {
 	}
 
 	/**
-	 * The Subtitle (Filter)
+	 * The Term Subtitle (Filter)
 	 *
 	 * @param   string  $subtitle  Subtitle.
 	 * @param   array   $args      Display args.
@@ -103,6 +106,40 @@ class WP_Subtitle_API {
 		$subtitle = new WP_Subtitle_Term( $args['term_id'] );
 
 		return $this->get_display( $subtitle->get_meta_value(), $args );
+
+	}
+
+	/**
+	 * The Archive Subtitle (Action)
+	 *
+	 * @param  array  $args  Display args.
+	 */
+	public function the_archive_subtitle( $args = '' ) {
+
+		echo apply_filters( 'plugins/wp_subtitle/get_archive_subtitle', '', $args );
+
+	}
+
+	/**
+	 * The Archive Subtitle (Filter)
+	 *
+	 * @param   string  $subtitle  Subtitle.
+	 * @param   array   $args      Display args.
+	 * @return  string             Subtitle.
+	 */
+	public function get_archive_subtitle( $subtitle = '', $args = '' ) {
+
+		if ( is_home() && ! is_front_page() ) {
+			$args['post_id'] = get_option( 'page_for_posts', 0 );
+			return apply_filters( 'plugins/wp_subtitle/get_subtitle', '', $args );
+		}
+
+		if ( is_category() || is_tag() || is_tax() ) {
+			$args['term_id'] = get_queried_object_id();
+			return apply_filters( 'plugins/wp_subtitle/get_term_subtitle', '', $args );
+		}
+
+		return '';
 
 	}
 
@@ -150,7 +187,7 @@ class WP_Subtitle_API {
 	protected function term_parse_args( $args = '' ) {
 
 		$args = wp_parse_args( $args, array(
-			'term_id' => is_category() || is_tag() || is_tax() ? get_queried_object_id() : 0,
+			'term_id' => 0,
 			'before'  => '',
 			'after'   => ''
 		) );
