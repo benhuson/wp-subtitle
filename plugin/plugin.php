@@ -14,6 +14,7 @@ define( 'WPSUBTITLE_DIR', plugin_dir_path( __FILE__ ) );
 // Includes
 include_once( WPSUBTITLE_DIR . 'includes/class-api.php' );
 include_once( WPSUBTITLE_DIR . 'includes/subtitle.php' );
+require_once( WPSUBTITLE_DIR . 'includes/subtitle-term.php' );
 include_once( WPSUBTITLE_DIR . 'includes/deprecated.php' );
 include_once( WPSUBTITLE_DIR . 'includes/shortcode.php' );
 include_once( WPSUBTITLE_DIR . 'includes/rest.php' );
@@ -24,6 +25,8 @@ include_once( WPSUBTITLE_DIR . 'includes/compat/woocommerce.php' );
 // Include admin-only functionality
 if ( is_admin() ) {
 	require_once( WPSUBTITLE_DIR . 'admin/admin.php' );
+	require_once( WPSUBTITLE_DIR . 'admin/admin-terms.php' );
+
 	if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
 		// Load AJAX functions here if required...
 	} else {
