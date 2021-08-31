@@ -77,7 +77,9 @@ class WPSubtitle_REST {
 	 */
 	public function update_rest_field( $value, $object ) {
 
-		update_post_meta( $object->ID, 'wps_subtitle', wp_kses_post( $value ) );
+		$subtitle = new WP_Subtitle( $object->ID );
+
+		$subtitle->update_subtitle( wp_kses_post( $value ) );
 
 	}
 
