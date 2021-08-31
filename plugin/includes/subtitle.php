@@ -133,7 +133,7 @@ class WP_Subtitle {
 	 */
 	public function is_current_subtitle( $subtitle ) {
 
-		return $subtitle === get_metadata( 'post', $this->post_id, 'wps_subtitle', true );
+		return $subtitle === get_metadata( 'post', $this->post_id, $this->get_post_meta_key(), true );
 
 	}
 
@@ -144,7 +144,7 @@ class WP_Subtitle {
 	 *
 	 * @return  string  The subtitle meta key.
 	 */
-	private function get_post_meta_key() {
+	public function get_post_meta_key() {
 
 		return apply_filters( 'wps_subtitle_key', 'wps_subtitle', $this->post_id );
 

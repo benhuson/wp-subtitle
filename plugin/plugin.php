@@ -199,7 +199,9 @@ class WPSubtitle {
 	 */
 	public static function _get_post_meta_key( $post_id = 0 ) {
 
-		return apply_filters( 'wps_subtitle_key', 'wps_subtitle', $post_id );
+		$subtitle = new WP_Subtitle( $post_id );
+
+		return $subtitle->get_post_meta_key();
 
 	}
 
