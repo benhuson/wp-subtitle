@@ -153,6 +153,9 @@ The plugin is [hosted on GitHub](https://github.com/benhuson/wp-subtitle) and pu
 
 == Changelog ==
 
+= Unreleased =
+* Pass the current post object to the `wps_subtitle_field_placeholder` filter. Props [Dominik Schilling](https://github.com/ocean90).
+
 = 3.4 =
 * Added support for the SEOPress plugin. Props @chriselkins.
 * You can now update the subtitle via the REST API. Props @chriselkins.
