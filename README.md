@@ -140,6 +140,9 @@ The plugin is [hosted on GitHub](https://github.com/benhuson/wp-subtitle) and pu
 Upgrade Notice
 --------------
 
+### Unreleased
+Resolve XSS issue by improving sanitization when saving subtitle custom field.
+
 ### 3.4
 Added support for the SEOPress plugin and updating the subtitle via the REST API.
 

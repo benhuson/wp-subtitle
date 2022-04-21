@@ -154,6 +154,7 @@ The plugin is [hosted on GitHub](https://github.com/benhuson/wp-subtitle) and pu
 == Changelog ==
 
 = Unreleased =
+* Security: Resolve XSS issue by improving sanitization when saving subtitle custom field.
 * Pass the current post object to the `wps_subtitle_field_placeholder` filter. Props [Dominik Schilling](https://github.com/ocean90).
 
 = 3.4 =

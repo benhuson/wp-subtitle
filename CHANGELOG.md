@@ -4,6 +4,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Unreleased
 
+### Security
+- Resolve XSS issue by improving sanitization when saving subtitle custom field.
+
 ## [3.4] - 2020-01-31
 
 ### Changed
