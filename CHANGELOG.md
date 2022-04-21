@@ -2,7 +2,15 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.4.1] - 2022-04-21
+
+### Security
+- Resolve XSS issue by improving sanitization when saving subtitle custom field.
+
 ## [3.4] - 2020-01-31
+
+### Changed
+- Pass the current post object to the `wps_subtitle_field_placeholder` filter. Props [Dominik Schilling](https://github.com/ocean90).
 
 ### Added
 - Added support for the SEOPress plugin. Props @chriselkins.

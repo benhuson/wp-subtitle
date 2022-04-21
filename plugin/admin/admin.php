@@ -28,6 +28,8 @@ class WPSubtitle_Admin {
 		add_filter( '_wp_post_revision_fields', array( 'WPSubtitle_Admin', '_wp_post_revision_fields' ), 9 );
 		add_action( 'wp_restore_post_revision', array( 'WPSubtitle_Admin', 'wp_restore_post_revision' ), 10, 2 );
 
+		add_filter( 'sanitize_post_meta_wps_subtitle', array( 'WPSubtitle_Admin', 'sanitize_subtitle_value' ) );
+
 	}
 
 	/**
@@ -314,7 +316,7 @@ class WPSubtitle_Admin {
 
 		// As of WordPress 4.3 no need to esc_attr() AND htmlentities().
 		// @see  https://core.trac.wordpress.org/changeset/33271
-		echo '<input type="text" id="wpsubtitle" name="wps_subtitle" value="' . esc_attr( $value ) . '" autocomplete="off" placeholder="' . esc_attr( apply_filters( 'wps_subtitle_field_placeholder', __( 'Enter subtitle here', 'wp-subtitle' ) ) ) . '" style="width:99%;" />';
+		echo '<input type="text" id="wpsubtitle" name="wps_subtitle" value="' . esc_attr( $value ) . '" autocomplete="off" placeholder="' . esc_attr( apply_filters( 'wps_subtitle_field_placeholder', __( 'Enter subtitle here', 'wp-subtitle' ), $post ) ) . '" style="width:99%;" />';
 
 		echo apply_filters( 'wps_subtitle_field_description', '', $post );
 
@@ -341,7 +343,7 @@ class WPSubtitle_Admin {
 
 		// As of WordPress 4.3 no need to esc_attr() AND htmlentities().
 		// @see  https://core.trac.wordpress.org/changeset/33271
-		echo '<input type="text" id="wpsubtitle" name="wps_subtitle" value="' . esc_attr( $value ) . '" autocomplete="off" placeholder="' . esc_attr( apply_filters( 'wps_subtitle_field_placeholder', __( 'Enter subtitle here', 'wp-subtitle' ) ) ) . '" />';
+		echo '<input type="text" id="wpsubtitle" name="wps_subtitle" value="' . esc_attr( $value ) . '" autocomplete="off" placeholder="' . esc_attr( apply_filters( 'wps_subtitle_field_placeholder', __( 'Enter subtitle here', 'wp-subtitle' ), $post ) ) . '" />';
 
 		echo '</div>';
 
@@ -516,6 +518,12 @@ class WPSubtitle_Admin {
 		}
 
 		return $position;
+
+	}
+
+	public static function sanitize_subtitle_value( $value ) {
+
+		return wp_kses( $value, wp_kses_allowed_html( 'data' ) );
 
 	}
 
