@@ -28,6 +28,8 @@ class WPSubtitle_Admin {
 		add_filter( '_wp_post_revision_fields', array( 'WPSubtitle_Admin', '_wp_post_revision_fields' ), 9 );
 		add_action( 'wp_restore_post_revision', array( 'WPSubtitle_Admin', 'wp_restore_post_revision' ), 10, 2 );
 
+		add_filter( 'sanitize_post_meta_wps_subtitle', array( 'WPSubtitle_Admin', 'sanitize_subtitle_value' ) );
+
 	}
 
 	/**
@@ -516,6 +518,12 @@ class WPSubtitle_Admin {
 		}
 
 		return $position;
+
+	}
+
+	public static function sanitize_subtitle_value( $value ) {
+
+		return wp_kses( $value, wp_kses_allowed_html( 'data' ) );
 
 	}
 
