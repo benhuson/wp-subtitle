@@ -80,19 +80,19 @@ class WPSubtitle_SEOPress {
 		global $post;
 
 		$wp_subtitle = new WP_Subtitle( $post );
-		$subtitle = $wp_subtitle->get_subtitle();
+		$subtitle    = $wp_subtitle->get_subtitle();
 
 		$replacements[] = $subtitle;
 
 		$sep = ' ' . $replacements[0] . ' ';
 
 		$before_sep = '';
-		$after_sep = '';
+		$after_sep  = '';
 
 		if ( ! empty( $subtitle ) ) {
 
 			$before_sep = apply_filters( 'wps_subtitle_seo_before_sep', $sep );
-			$after_sep = apply_filters( 'wps_subtitle_seo_after_sep', $sep );
+			$after_sep  = apply_filters( 'wps_subtitle_seo_after_sep', $sep );
 
 		}
 

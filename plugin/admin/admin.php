@@ -292,7 +292,7 @@ class WPSubtitle_Admin {
 
 			$positiom = self::gutenberg_supported( $post_type ) ? 'side' : 'normal';
 
-			add_meta_box( 'wps_subtitle_panel',  self::get_meta_box_title( $post_type ), array( 'WPSubtitle_Admin', '_add_subtitle_meta_box' ), $post_type, $positiom, 'high' );
+			add_meta_box( 'wps_subtitle_panel', self::get_meta_box_title( $post_type ), array( 'WPSubtitle_Admin', '_add_subtitle_meta_box' ), $post_type, $positiom, 'high' );
 
 		}
 	}
@@ -420,7 +420,6 @@ class WPSubtitle_Admin {
 			if ( $subtitle->current_user_can_edit() ) {
 				$subtitle->update_subtitle( $new_value );
 			}
-
 		}
 
 	}

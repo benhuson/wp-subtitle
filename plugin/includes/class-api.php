@@ -22,7 +22,9 @@
  * ) );
  */
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly
+}
 
 class WP_Subtitle_API {
 
@@ -62,14 +64,17 @@ class WP_Subtitle_API {
 	 */
 	public function get_subtitle( $default_subtitle, $args = '' ) {
 
-		$args = wp_parse_args( $args, array(
-			'post_id' => get_the_ID(),  // Post ID
-			'before'  => '',            // Before subtitle HTML output
-			'after'   => ''             // After subtitle HTML output
-		) );
+		$args = wp_parse_args(
+			$args,
+			array(
+				'post_id' => get_the_ID(),  // Post ID
+				'before'  => '',            // Before subtitle HTML output
+				'after'   => '',             // After subtitle HTML output
+			)
+		);
 
 		$subtitle_obj = new WP_Subtitle( $args['post_id'] );
-		$subtitle = $subtitle_obj->get_subtitle( $args );
+		$subtitle     = $subtitle_obj->get_subtitle( $args );
 
 		if ( ! empty( $subtitle ) ) {
 			return $subtitle;

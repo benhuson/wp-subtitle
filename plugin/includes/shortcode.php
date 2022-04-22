@@ -23,32 +23,38 @@ class WPSubtitle_Shortcode {
 
 		global $post;
 
-		$atts = shortcode_atts( array(
-			'tag'    => self::get_default_tag(),
-			'before' => '',
-			'after'  => ''
-		), $atts, 'wp_subtitle' );
+		$atts = shortcode_atts(
+			array(
+				'tag'    => self::get_default_tag(),
+				'before' => '',
+				'after'  => '',
+			),
+			$atts,
+			'wp_subtitle'
+		);
 
 		// Get HTML tag
 		if ( ! empty( $atts['tag'] ) ) {
-			$tag = self::validate_tag( $atts['tag'] );
+			$tag    = self::validate_tag( $atts['tag'] );
 			$before = sprintf( '<%s class="wp-subtitle">', $tag );
-			$after = sprintf( '</%s>', $tag );
+			$after  = sprintf( '</%s>', $tag );
 		} else {
 			$before = '';
-			$after = '';
+			$after  = '';
 		}
 
 		// Add before/after content
 		$before .= self::format_subtitle_content( $atts['before'], 'before' );
-		$after = self::format_subtitle_content( $atts['after'], 'after' ) . $after;
+		$after   = self::format_subtitle_content( $atts['after'], 'after' ) . $after;
 
 		$subtitle = new WP_Subtitle( $post );
 
-		return $subtitle->get_subtitle( array(
-			'before' => $before,
-			'after'  => $after
-		) );
+		return $subtitle->get_subtitle(
+			array(
+				'before' => $before,
+				'after'  => $after,
+			)
+		);
 
 	}
 

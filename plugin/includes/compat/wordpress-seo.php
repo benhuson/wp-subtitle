@@ -59,18 +59,18 @@ class WPSubtitle_WPSEO {
 		global $post;
 
 		$wp_subtitle = new WP_Subtitle( $post );
-		$subtitle = $wp_subtitle->get_subtitle();
+		$subtitle    = $wp_subtitle->get_subtitle();
 
-		$replacements['%%wps_subtitle%%'] = $subtitle;
+		$replacements['%%wps_subtitle%%']            = $subtitle;
 		$replacements['%%wps_subtitle_before_sep%%'] = '';
-		$replacements['%%wps_subtitle_after_sep%%'] = '';
+		$replacements['%%wps_subtitle_after_sep%%']  = '';
 
 		if ( ! empty( $subtitle ) ) {
 
 			$sep = isset( $replacements['%%sep%%'] ) ? ' ' . $replacements['%%sep%%'] . ' ' : ' - ';
 
 			$replacements['%%wps_subtitle_before_sep%%'] = apply_filters( 'wps_subtitle_seo_before_sep', $sep );
-			$replacements['%%wps_subtitle_after_sep%%'] = apply_filters( 'wps_subtitle_seo_after_sep', $sep );
+			$replacements['%%wps_subtitle_after_sep%%']  = apply_filters( 'wps_subtitle_seo_after_sep', $sep );
 
 		}
 

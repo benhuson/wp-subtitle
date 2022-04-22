@@ -90,10 +90,10 @@ class WPSubtitle {
 	 */
 	public static function load() {
 
-		self::$api = new WP_Subtitle_API();
-		self::$rest = new WPSubtitle_REST();
-		self::$wpseo = new WPSubtitle_WPSEO();
-		self::$seopress = new WPSubtitle_SEOPress();
+		self::$api         = new WP_Subtitle_API();
+		self::$rest        = new WPSubtitle_REST();
+		self::$wpseo       = new WPSubtitle_WPSEO();
+		self::$seopress    = new WPSubtitle_SEOPress();
 		self::$woocommerce = new WPSubtitle_WooCommerce();
 
 		self::$api->setup_hooks();
@@ -122,11 +122,13 @@ class WPSubtitle {
 	 * @return  array  Array of supported post types.
 	 */
 	public static function get_supported_post_types() {
-		$post_types = (array) get_post_types( array(
-			'_builtin' => false
-		) );
+		$post_types = (array) get_post_types(
+			array(
+				'_builtin' => false,
+			)
+		);
 		$post_types = array_merge( $post_types, array( 'post', 'page', 'revision' ) );
-		$supported = array();
+		$supported  = array();
 		foreach ( $post_types as $post_type ) {
 			if ( post_type_supports( $post_type, 'wps_subtitle' ) ) {
 				$supported[] = $post_type;

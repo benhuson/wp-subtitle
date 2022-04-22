@@ -22,17 +22,24 @@ function the_subtitle( $before = '', $after = '', $echo = true ) {
 
 	if ( ! $echo ) {
 
-		return apply_filters( 'plugins/wp_subtitle/get_subtitle', '', array(
-			'before' => $before,
-			'after'  => $after
-		) );
+		return apply_filters(
+			'plugins/wp_subtitle/get_subtitle',
+			'',
+			array(
+				'before' => $before,
+				'after'  => $after,
+			)
+		);
 
 	}
 
-	do_action( 'plugins/wp_subtitle/the_subtitle', array(
-		'before' => $before,
-		'after'  => $after
-	) );
+	do_action(
+		'plugins/wp_subtitle/the_subtitle',
+		array(
+			'before' => $before,
+			'after'  => $after,
+		)
+	);
 
 }
 
@@ -52,11 +59,15 @@ function the_subtitle( $before = '', $after = '', $echo = true ) {
  */
 function get_the_subtitle( $post = 0, $before = '', $after = '', $echo = true ) {
 
-	$output = apply_filters( 'plugins/wp_subtitle/get_subtitle', '', array(
-		'post_id' => is_a( $post, 'WP_Post' ) ? $post->ID : $post,
-		'before' => $before,
-		'after'  => $after
-	) );
+	$output = apply_filters(
+		'plugins/wp_subtitle/get_subtitle',
+		'',
+		array(
+			'post_id' => is_a( $post, 'WP_Post' ) ? $post->ID : $post,
+			'before'  => $before,
+			'after'   => $after,
+		)
+	);
 
 	if ( ! $echo ) {
 		return $output;

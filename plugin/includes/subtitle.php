@@ -53,10 +53,13 @@ class WP_Subtitle {
 
 		if ( $this->post_id && $this->is_supported_post_type() ) {
 
-			$args = wp_parse_args( $args, array(
-				'before' => '',
-				'after'  => ''
-			) );
+			$args = wp_parse_args(
+				$args,
+				array(
+					'before' => '',
+					'after'  => '',
+				)
+			);
 
 			$subtitle = apply_filters( 'wps_subtitle', $this->get_raw_subtitle(), get_post( $this->post_id ) );
 
@@ -82,7 +85,7 @@ class WP_Subtitle {
 		if ( is_preview() ) {
 
 			if ( isset( $_GET['preview_id'] ) ) {
-				$p =  wp_get_post_autosave( $this->post_id );
+				$p = wp_get_post_autosave( $this->post_id );
 				return get_post_meta( $p->ID, $this->get_post_meta_key(), true );
 			}
 
@@ -90,7 +93,6 @@ class WP_Subtitle {
 				$p = array_shift( $revisions );
 				return get_post_meta( $p->ID, $this->get_post_meta_key(), true );
 			}
-
 		}
 
 		return get_post_meta( $this->post_id, $this->get_post_meta_key(), true );
@@ -191,9 +193,11 @@ class WP_Subtitle {
 	 */
 	private function get_supported_post_types() {
 
-		$post_types = (array) get_post_types( array(
-			'_builtin' => false
-		) );
+		$post_types = (array) get_post_types(
+			array(
+				'_builtin' => false,
+			)
+		);
 
 		$post_types = array_merge( $post_types, array( 'post', 'page', 'revision' ) );
 
@@ -240,15 +244,16 @@ class WP_Subtitle {
 
 				// ... edit other post type
 				default:
-
-					$post_types = (array) get_post_types( array(
-						'_builtin' => false
-					), 'objects' );
+					$post_types = (array) get_post_types(
+						array(
+							'_builtin' => false,
+						),
+						'objects'
+					);
 
 					return current_user_can( $post_types[ $post_type ]->cap->edit_post, $this->post_id );
 
 			}
-
 		}
 
 		return false;

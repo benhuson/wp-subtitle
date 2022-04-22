@@ -35,11 +35,15 @@ class WPSubtitle_REST {
 
 		foreach ( $post_types as $post_type ) {
 
-			register_rest_field( $post_types, 'wps_subtitle', array(
-				'get_callback'    => array( $this, 'get_rest_field' ),
-				'update_callback' => array( $this, 'update_rest_field' ),
-				'schema'          => null
-			) );
+			register_rest_field(
+				$post_types,
+				'wps_subtitle',
+				array(
+					'get_callback'    => array( $this, 'get_rest_field' ),
+					'update_callback' => array( $this, 'update_rest_field' ),
+					'schema'          => null,
+				)
+			);
 
 		}
 

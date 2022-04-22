@@ -71,7 +71,7 @@ class WPSubtitle_Pointers {
 	 */
 	private static function get_current_pointers() {
 
-		$screen = get_current_screen();
+		$screen   = get_current_screen();
 		$pointers = apply_filters( 'wps_subtitle_admin_pointers-' . $screen->id, array() );
 
 		// Only return valid array of pointers.
@@ -94,14 +94,14 @@ class WPSubtitle_Pointers {
 	 */
 	private static function remove_dismissed_pointers( $pointers ) {
 
-		$dismissed = self::get_dismissed_pointers();
+		$dismissed      = self::get_dismissed_pointers();
 		$valid_pointers = array();
 
 		// Check pointers and remove dismissed ones.
 		foreach ( $pointers as $pointer_id => $pointer ) {
 
 			// Sanity check
-			if ( in_array( $pointer_id, $dismissed ) || empty( $pointer )  || empty( $pointer_id ) || empty( $pointer['target'] ) || empty( $pointer['options'] ) ) {
+			if ( in_array( $pointer_id, $dismissed ) || empty( $pointer ) || empty( $pointer_id ) || empty( $pointer['target'] ) || empty( $pointer['options'] ) ) {
 				continue;
 			}
 
@@ -145,15 +145,16 @@ class WPSubtitle_Pointers {
 		$pointers['wps_subtitle_field_to_top'] = array(
 			'target'  => '#subtitlewrap',
 			'options' => array(
-				'content' => sprintf( '<h3>%s</h3><p>%s</p>',
+				'content'  => sprintf(
+					'<h3>%s</h3><p>%s</p>',
 					sprintf( __( '%s Field', 'wp-subtitle' ), WPSubtitle_Admin::get_meta_box_title( get_post_type( get_queried_object_id() ) ) ),
 					__( 'This field has moved from a meta box to below the post title.', 'wp-subtitle' )
 				),
 				'position' => array(
 					'edge'  => 'top',
-					'align' => 'middle'
-				)
-			)
+					'align' => 'middle',
+				),
+			),
 		);
 
 		return $pointers;
