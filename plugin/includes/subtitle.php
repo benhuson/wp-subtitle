@@ -17,7 +17,7 @@ class WP_Subtitle {
 	/**
 	 * Constructor
 	 *
-	 * @param  int|WP_Post  $post  Post object or ID.
+	 * @param  int|WP_Post $post  Post object or ID.
 	 */
 	public function __construct( $post ) {
 
@@ -33,7 +33,7 @@ class WP_Subtitle {
 	/**
 	 * The Subtitle
 	 *
-	 * @param  array  $args  Display parameters.
+	 * @param  array $args  Display parameters.
 	 */
 	public function the_subtitle( $args = '' ) {
 
@@ -46,7 +46,7 @@ class WP_Subtitle {
 	 *
 	 * @uses  apply_filters( 'wps_subtitle' )
 	 *
-	 * @param   array   $args  Display parameters.
+	 * @param   array $args  Display parameters.
 	 * @return  string         The filtered subtitle meta value.
 	 */
 	public function get_subtitle( $args = '' ) {
@@ -113,7 +113,7 @@ class WP_Subtitle {
 	/**
 	 * Update Subtitle
 	 *
-	 * @param   string    $subtitle  Subtitle.
+	 * @param   string $subtitle  Subtitle.
 	 * @return  int|bool             Meta ID if new entry. True if updated, false if not updated or the same as current value.
 	 */
 	public function update_subtitle( $subtitle ) {
@@ -128,7 +128,7 @@ class WP_Subtitle {
 	 *
 	 * @since  2.9
 	 *
-	 * @param   string   $subtitle  Subtitle value.
+	 * @param   string $subtitle  Subtitle value.
 	 * @return  boolean
 	 */
 	public function is_current_subtitle( $subtitle ) {
@@ -155,7 +155,7 @@ class WP_Subtitle {
 	 *
 	 * @since  2.9
 	 *
-	 * @param  int  $revision_id  Revision ID.
+	 * @param  int $revision_id  Revision ID.
 	 */
 	public function restore_post_revision( $revision_id ) {
 

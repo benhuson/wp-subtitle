@@ -15,8 +15,8 @@ class WPSubtitle_Shortcode {
 	 * content will be used as a fallback if no subtitle is specified.
 	 * e.g. [wp_subtitle]Fallback Subtitle[/wp_subtitle]
 	 *
-	 * @param   array   $atts     Shortcode attributes.
-	 * @param   string  $content  Fallback content (content between the shortcode tags).
+	 * @param   array  $atts     Shortcode attributes.
+	 * @param   string $content  Fallback content (content between the shortcode tags).
 	 * @return  string            Subtitle HTML.
 	 */
 	public static function shortcode( $atts, $content = null ) {
@@ -88,7 +88,7 @@ class WPSubtitle_Shortcode {
 	 * @since  2.5
 	 * @internal
 	 *
-	 * @param   string  $tag  Tag to validate.
+	 * @param   string $tag  Tag to validate.
 	 * @return  string        Validated tag.
 	 */
 	private static function validate_tag( $tag ) {
@@ -107,8 +107,8 @@ class WPSubtitle_Shortcode {
 	 * @since  2.5
 	 * @internal
 	 *
-	 * @param   string  $content  Content.
-	 * @param   string  $type     Content type.
+	 * @param   string $content  Content.
+	 * @param   string $type     Content type.
 	 * @return  string            HTML formatted content.
 	 */
 	private static function format_subtitle_content( $content, $type ) {

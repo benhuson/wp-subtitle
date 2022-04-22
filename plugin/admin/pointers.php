@@ -31,7 +31,7 @@ class WPSubtitle_Pointers {
 	 * @since  2.2
 	 * @internal
 	 *
-	 * @param   string  $hook_suffix  Page hook.
+	 * @param   string $hook_suffix  Page hook.
 	 */
 	public static function _pointer_load( $hook_suffix ) {
 
@@ -89,7 +89,7 @@ class WPSubtitle_Pointers {
 	 * @since  2.4
 	 * @internal
 	 *
-	 * @param   array  $pointers  Pointers.
+	 * @param   array $pointers  Pointers.
 	 * @return  array             Active pointers.
 	 */
 	private static function remove_dismissed_pointers( $pointers ) {
@@ -136,7 +136,7 @@ class WPSubtitle_Pointers {
 	 * @since  2.2
 	 * @internal
 	 *
-	 * @param   array  $pointers  Pointers.
+	 * @param   array $pointers  Pointers.
 	 * @return  array             Pointers.
 	 */
 	public static function _post_type_pointers( $pointers ) {

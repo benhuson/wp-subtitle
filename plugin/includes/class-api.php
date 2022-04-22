@@ -39,7 +39,7 @@ class WP_Subtitle_API {
 	/**
 	 * The Subtitle
 	 *
-	 * @param  array  $args  Display args.
+	 * @param  array $args  Display args.
 	 *
 	 * @internal  Private. Called via the `the_subtitle` action.
 	 */
@@ -54,8 +54,8 @@ class WP_Subtitle_API {
 	/**
 	 * Get Subtitle
 	 *
-	 * @param   string  $default_subtitle  Default/fallback subtitle.
-	 * @param   array   $args              Display args.
+	 * @param   string $default_subtitle  Default/fallback subtitle.
+	 * @param   array  $args              Display args.
 	 * @return  string                     The subtitle.
 	 *
 	 * @internal  Private. Called via the `get_subtitle` action.

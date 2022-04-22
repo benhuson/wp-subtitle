@@ -1,4 +1,3 @@
-
 /**
  * @package     WP Subtitle
  * @subpackage  JavaScript > Pointers

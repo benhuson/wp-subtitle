@@ -93,8 +93,8 @@ class WPSubtitle_Admin {
 	 *
 	 * @uses  add_action( 'quick_edit_custom_box' )
 	 *
-	 * @param  string  $column_name  Column name.
-	 * @param  string  $post_type 	 Post type
+	 * @param  string $column_name  Column name.
+	 * @param  string $post_type    Post type
 	 */
 	public static function quick_edit_custom_box( $column_name, $post_type ) {
 
@@ -122,7 +122,7 @@ class WPSubtitle_Admin {
 	 *
 	 * @since  2.4
 	 *
-	 * @param   array  $columns  A columns
+	 * @param   array $columns  A columns
 	 * @return  array            Updated columns.
 	 */
 	public static function manage_subtitle_columns( $columns ) {
@@ -162,8 +162,8 @@ class WPSubtitle_Admin {
 	 *
 	 * @since  2.4
 	 *
-	 * @param  string  $column_name  Column name.
-	 * @param  int     $post_id      Post ID
+	 * @param  string $column_name  Column name.
+	 * @param  int    $post_id      Post ID
 	 */
 	public static function manage_subtitle_columns_content( $column_name, $post_id ) {
 
@@ -198,7 +198,7 @@ class WPSubtitle_Admin {
 	 * @since     2.9
 	 * @internal
 	 *
-	 * @param  array  $fields  Revision fields.
+	 * @param  array $fields  Revision fields.
 	 */
 	public static function _wp_post_revision_fields( $fields ) {
 
@@ -213,8 +213,8 @@ class WPSubtitle_Admin {
 	 *
 	 * @since  2.9
 	 *
-	 * @param  int  $post_id      Post ID.
-	 * @param  int  $revision_id  Revision ID.
+	 * @param  int $post_id      Post ID.
+	 * @param  int $revision_id  Revision ID.
 	 */
 	public static function wp_restore_post_revision( $post_id, $revision_id ) {
 
@@ -361,7 +361,7 @@ class WPSubtitle_Admin {
 	 * @since  2.8
 	 * @internal
 	 *
-	 * @param   WP_Post  $post  Post object.
+	 * @param   WP_Post $post  Post object.
 	 * @return  string          Subtitle value.
 	 */
 	private static function get_admin_subtitle_value( $post ) {
@@ -390,11 +390,11 @@ class WPSubtitle_Admin {
 	 *
 	 * @uses  WPSubtitle::get_supported_post_types()
 	 *
-	 * @param  int  $post_id  Post ID or object.
+	 * @param  int $post_id  Post ID or object.
 	 */
 	public static function _save_post( $post_id ) {
 
-		// Verify if this is an auto save routine. 
+		// Verify if this is an auto save routine.
 		// If it is our form has not been submitted, so we dont want to do anything
 		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
 			return;
@@ -432,7 +432,7 @@ class WPSubtitle_Admin {
 	 * @deprecated   2.7    Use WP_Subtitle->current_user_can_edit() instead.
 	 * @internal
 	 *
-	 * @param   int  $post_id  Post ID.
+	 * @param   int $post_id  Post ID.
 	 * @return  bool
 	 */
 	private static function _verify_post_edit_capability( $post_id ) {
@@ -451,8 +451,8 @@ class WPSubtitle_Admin {
 	 * @since  2.0.1
 	 * @internal
 	 *
-	 * @param   string  $nonce   Posted nonce name.
-	 * @param   string  $action  Nonce action.
+	 * @param   string $nonce   Posted nonce name.
+	 * @param   string $action  Nonce action.
 	 * @return  bool
 	 */
 	private static function _verify_posted_nonce( $nonce, $action ) {
@@ -467,7 +467,7 @@ class WPSubtitle_Admin {
 	 *
 	 * @since  2.2
 	 *
-	 * @param   string  $post_type  Post type.
+	 * @param   string $post_type  Post type.
 	 * @return  bool
 	 */
 	private static function edit_form_after_title_supported( $post_type = '' ) {
@@ -484,7 +484,7 @@ class WPSubtitle_Admin {
 	 *
 	 * @since  3.1
 	 *
-	 * @param   string  $post_type  Post type.
+	 * @param   string $post_type  Post type.
 	 * @return  bool
 	 */
 	private static function gutenberg_supported( $post_type = '' ) {
@@ -502,8 +502,8 @@ class WPSubtitle_Admin {
 	 *
 	 * @since  3.1
 	 *
-	 * @param  string  $post_type  Post type.
-	 * @param  string              Position.
+	 * @param   string $post_type  Post type.
+	 * @return  string              Position.
 	 */
 	private static function subtitle_field_position( $post_type = '' ) {
 

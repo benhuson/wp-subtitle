@@ -50,7 +50,7 @@ class WPSubtitle_SEOPress {
 	 *
 	 * @since  3.4
 	 *
-	 * @param    array  $replacements  SEO replacements variables.
+	 * @param    array $replacements  SEO replacements variables.
 	 * @return   array                 Filtered replacements variables.
 	 *
 	 * @internal  Called via the `seopress_titles_template_variables_array` filter.
@@ -70,7 +70,7 @@ class WPSubtitle_SEOPress {
 	 *
 	 * @since  3.4
 	 *
-	 * @param    array  $replacements  SEO replacements values.
+	 * @param    array $replacements  SEO replacements values.
 	 * @return   array                 Filtered replacements values.
 	 *
 	 * @internal  Called via the `seopress_titles_template_replace_array` filter.

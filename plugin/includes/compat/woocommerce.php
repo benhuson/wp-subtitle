@@ -89,7 +89,7 @@ class WPSubtitle_WooCommerce {
 	 *
 	 * @since  3.1
 	 *
-	 * @param   array  $settings  Settings.
+	 * @param   array $settings  Settings.
 	 * @return  array             Settings.
 	 *
 	 * @internal  Private. Called via the `woocommerce_product_settings` filter.

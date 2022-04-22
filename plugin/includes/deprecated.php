@@ -13,9 +13,9 @@
  *
  * @uses  WP_Subtitle::get_subtitle()
  *
- * @param   string  $before  Before the subtitle.
- * @param   string  $after   After the subtitle.
- * @param   bool    $echo    Output if true, return if false.
+ * @param   string $before  Before the subtitle.
+ * @param   string $after   After the subtitle.
+ * @param   bool   $echo    Output if true, return if false.
  * @return  string           The subtitle string.
  */
 function the_subtitle( $before = '', $after = '', $echo = true ) {
@@ -44,10 +44,10 @@ function the_subtitle( $before = '', $after = '', $echo = true ) {
  *
  * @uses  WP_Subtitle::get_subtitle()
  *
- * @param   int|object  $post    Post ID or object.
- * @param   string      $before  Before the subtitle.
- * @param   string      $after   After the subtitle.
- * @param   bool        $echo    Output if true, return if false.
+ * @param   int|object $post    Post ID or object.
+ * @param   string     $before  Before the subtitle.
+ * @param   string     $after   After the subtitle.
+ * @param   bool       $echo    Output if true, return if false.
  * @return  string               The subtitle string.
  */
 function get_the_subtitle( $post = 0, $before = '', $after = '', $echo = true ) {

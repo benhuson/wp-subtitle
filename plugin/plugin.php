@@ -140,7 +140,7 @@ class WPSubtitle {
 	 *
 	 * @since  2.3
 	 *
-	 * @param   string   $post_type  Post Type.
+	 * @param   string $post_type  Post Type.
 	 * @return  boolean
 	 */
 	public static function is_supported_post_type( $post_type ) {
@@ -158,7 +158,7 @@ class WPSubtitle {
 	 *
 	 * @uses  WP_Subtitle::get_subtitle()
 	 *
-	 * @param   int|object  $post  Post ID or object.
+	 * @param   int|object $post  Post ID or object.
 	 * @return  string             The filtered subtitle meta value.
 	 */
 	public static function get_the_subtitle( $post = 0 ) {
@@ -177,7 +177,7 @@ class WPSubtitle {
 	 *
 	 * @uses  WP_Subtitle::get_raw_subtitle()
 	 *
-	 * @param   int|object  $post  Post ID or object.
+	 * @param   int|object $post  Post ID or object.
 	 * @return  string             The subtitle meta value.
 	 */
 	public static function _get_post_meta( $post = 0 ) {
@@ -194,7 +194,7 @@ class WPSubtitle {
 	 * @since  2.5.x
 	 * @internal
 	 *
-	 * @param   int     $post  Post ID.
+	 * @param   int $post  Post ID.
 	 * @return  string         The subtitle meta key.
 	 */
 	public static function _get_post_meta_key( $post_id = 0 ) {

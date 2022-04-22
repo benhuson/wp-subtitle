@@ -49,7 +49,7 @@ class WPSubtitle_WPSEO {
 	 *
 	 * @since  3.1
 	 *
-	 * @param    array  $replacements  SEO replacements.
+	 * @param    array $replacements  SEO replacements.
 	 * @return   array                 Filtered replacements.
 	 *
 	 * @internal  Called via the `wpseo_replacements` filter.
