@@ -99,7 +99,7 @@ class WPSubtitle_Shortcode {
 	 */
 	private static function validate_tag( $tag ) {
 
-		if ( ! in_array( $tag, self::get_allowed_tags() ) ) {
+		if ( ! in_array( $tag, self::get_allowed_tags(), true ) ) {
 			$tag = self::get_default_tag();
 		}
 

@@ -147,7 +147,7 @@ class WPSubtitle {
 	 */
 	public static function is_supported_post_type( $post_type ) {
 		$post_types = self::get_supported_post_types();
-		if ( in_array( $post_type, $post_types ) ) {
+		if ( in_array( $post_type, $post_types, true ) ) {
 			return true;
 		}
 		return false;
@@ -196,7 +196,7 @@ class WPSubtitle {
 	 * @since  2.5.x
 	 * @internal
 	 *
-	 * @param   int $post  Post ID.
+	 * @param   int $post_id  Post ID.
 	 * @return  string         The subtitle meta key.
 	 */
 	public static function _get_post_meta_key( $post_id = 0 ) {

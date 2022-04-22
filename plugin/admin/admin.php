@@ -47,10 +47,10 @@ class WPSubtitle_Admin {
 
 			$position = self::subtitle_field_position( $post_type );
 
-			if ( 'after_title' == $position ) {
+			if ( 'after_title' === $position ) {
 				add_action( 'admin_head', array( 'WPSubtitle_Admin', '_add_admin_styles' ) );
 				add_action( 'edit_form_after_title', array( 'WPSubtitle_Admin', '_add_subtitle_field' ) );
-			} elseif ( 'before_title' == $position ) {
+			} elseif ( 'before_title' === $position ) {
 				add_action( 'admin_head', array( 'WPSubtitle_Admin', '_add_admin_styles' ) );
 				add_action( 'edit_form_top', array( 'WPSubtitle_Admin', '_add_subtitle_field' ) );
 			} else {
@@ -75,10 +75,10 @@ class WPSubtitle_Admin {
 		global $pagenow;
 
 		if ( isset( $_REQUEST['post_type'] ) ) {
-			return sanitize_text_field( $_REQUEST['post_type'] );
+			return sanitize_text_field( wp_unslash( $_REQUEST['post_type'] ) );
 		} elseif ( isset( $_GET['post'] ) ) {
 			return get_post_type( absint( $_GET['post'] ) );
-		} elseif ( in_array( $pagenow, array( 'post-new.php', 'edit.php' ) ) ) {
+		} elseif ( in_array( $pagenow, array( 'post-new.php', 'edit.php' ), true ) ) {
 			return 'post';
 		}
 
@@ -98,7 +98,7 @@ class WPSubtitle_Admin {
 	 */
 	public static function quick_edit_custom_box( $column_name, $post_type ) {
 
-		if ( $column_name !== 'wps_subtitle' ) {
+		if ( 'wps_subtitle' !== $column_name ) {
 			return;
 		}
 
@@ -148,7 +148,7 @@ class WPSubtitle_Admin {
 		// Insert column
 		foreach ( $columns as $column => $value ) {
 			$new_columns[ $column ] = $value;
-			if ( $after_column == $column ) {
+			if ( $after_column === $column ) {
 				$new_columns['wps_subtitle'] = $column_name;
 			}
 		}
@@ -167,7 +167,7 @@ class WPSubtitle_Admin {
 	 */
 	public static function manage_subtitle_columns_content( $column_name, $post_id ) {
 
-		if ( $column_name == 'wps_subtitle' ) {
+		if ( 'wps_subtitle' === $column_name ) {
 
 			$subtitle = new WP_Subtitle( $post_id );
 			echo '<span data-wps_subtitle="' . esc_attr( $subtitle->get_subtitle() ) . '">' . esc_html( $subtitle->get_subtitle() ) . '</span>';
@@ -184,11 +184,11 @@ class WPSubtitle_Admin {
 	 */
 	public static function _add_admin_scripts( $hook ) {
 
-		if ( 'edit.php' != $hook ) {
+		if ( 'edit.php' !== $hook ) {
 			return;
 		}
 
-		wp_enqueue_script( 'wps_subtitle', plugins_url( 'js/admin-edit.js', __FILE__ ), false, null, true );
+		wp_enqueue_script( 'wps_subtitle', plugins_url( 'js/admin-edit.js', __FILE__ ), false, '3.4.1', true );
 
 	}
 
@@ -312,13 +312,13 @@ class WPSubtitle_Admin {
 
 		$value = self::get_admin_subtitle_value( $post );
 
-		echo '<input type="hidden" name="wps_noncename" id="wps_noncename" value="' . wp_create_nonce( 'wp-subtitle' ) . '" />';
+		echo '<input type="hidden" name="wps_noncename" id="wps_noncename" value="' . esc_attr( wp_create_nonce( 'wp-subtitle' ) ) . '" />';
 
 		// As of WordPress 4.3 no need to esc_attr() AND htmlentities().
 		// @see  https://core.trac.wordpress.org/changeset/33271
 		echo '<input type="text" id="wpsubtitle" name="wps_subtitle" value="' . esc_attr( $value ) . '" autocomplete="off" placeholder="' . esc_attr( apply_filters( 'wps_subtitle_field_placeholder', __( 'Enter subtitle here', 'wp-subtitle' ), $post ) ) . '" style="width:99%;" />';
 
-		echo apply_filters( 'wps_subtitle_field_description', '', $post );
+		echo wp_kses_post( apply_filters( 'wps_subtitle_field_description', '', $post ) );
 
 	}
 
@@ -337,7 +337,7 @@ class WPSubtitle_Admin {
 
 		$value = self::get_admin_subtitle_value( $post );
 
-		echo '<input type="hidden" name="wps_noncename" id="wps_noncename" value="' . wp_create_nonce( 'wp-subtitle' ) . '" />';
+		echo '<input type="hidden" name="wps_noncename" id="wps_noncename" value="' . esc_attr( wp_create_nonce( 'wp-subtitle' ) ) . '" />';
 		echo '<div id="subtitlediv" class="top">';
 		echo '<div id="subtitlewrap">';
 
@@ -350,7 +350,7 @@ class WPSubtitle_Admin {
 		// Description
 		$description = apply_filters( 'wps_subtitle_field_description', '', $post );
 		if ( ! empty( $description ) ) {
-			echo '<div id="subtitledescription">' . $description . '</div>';
+			echo '<div id="subtitledescription">' . wp_kses_post( $description ) . '</div>';
 		}
 		echo '</div>';
 	}
@@ -373,7 +373,7 @@ class WPSubtitle_Admin {
 		// Default subtitle if adding new post
 		if ( function_exists( 'get_current_screen' ) && empty( $value ) ) {
 			$screen = get_current_screen();
-			if ( isset( $screen->action ) && 'add' == $screen->action ) {
+			if ( isset( $screen->action ) && 'add' === $screen->action ) {
 				$value = $subtitle->get_default_subtitle( $post );
 			}
 		}
@@ -408,7 +408,7 @@ class WPSubtitle_Admin {
 		// Check data and save
 		if ( isset( $_POST['wps_subtitle'] ) ) {
 
-			$new_value = wp_kses_post( $_POST['wps_subtitle'] );
+			$new_value = wp_kses_post( wp_unslash( $_POST['wps_subtitle'] ) );
 
 			$subtitle = new WP_Subtitle( $post_id );
 
@@ -455,7 +455,7 @@ class WPSubtitle_Admin {
 	 * @return  bool
 	 */
 	private static function _verify_posted_nonce( $nonce, $action ) {
-		if ( isset( $_POST[ $nonce ] ) && wp_verify_nonce( $_POST[ $nonce ], $action ) ) {
+		if ( isset( $_POST[ $nonce ] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST[ $nonce ] ) ), $action ) ) {
 			return true;
 		}
 		return false;

@@ -89,7 +89,9 @@ class WP_Subtitle {
 				return get_post_meta( $p->ID, $this->get_post_meta_key(), true );
 			}
 
-			if ( $revisions = wp_get_post_revisions( $this->post_id ) ) {
+			$revisions = wp_get_post_revisions( $this->post_id );
+
+			if ( $revisions ) {
 				$p = array_shift( $revisions );
 				return get_post_meta( $p->ID, $this->get_post_meta_key(), true );
 			}
@@ -135,7 +137,7 @@ class WP_Subtitle {
 	 */
 	public function is_current_subtitle( $subtitle ) {
 
-		return $subtitle === get_metadata( 'post', $this->post_id, 'wps_subtitle', true );
+		return get_metadata( 'post', $this->post_id, 'wps_subtitle', true ) === $subtitle;
 
 	}
 
@@ -180,7 +182,7 @@ class WP_Subtitle {
 
 		$post_types = $this->get_supported_post_types();
 
-		return in_array( get_post_type( $this->post_id ), $post_types );
+		return in_array( get_post_type( $this->post_id ), $post_types, true );
 
 	}
 
@@ -226,8 +228,9 @@ class WP_Subtitle {
 		if ( $this->is_supported_post_type() ) {
 
 			$post_type = get_post_type( $this->post_id );
+			$revision  = wp_is_post_revision( $this->post_id );
 
-			if ( $revision = wp_is_post_revision( $this->post_id ) ) {
+			if ( $revision ) {
 				$post_type = get_post_type( $revision );
 			}
 

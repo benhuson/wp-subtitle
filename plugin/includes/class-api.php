@@ -49,7 +49,7 @@ class WP_Subtitle_API {
 
 		$default_value = isset( $args['default_value'] ) ? $args['default_value'] : '';
 
-		echo $this->get_subtitle( $default_value, $args );
+		echo wp_kses_post( $this->get_subtitle( $default_value, $args ) );
 
 	}
 

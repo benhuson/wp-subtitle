@@ -138,6 +138,8 @@ function wps_showSubtitlePanelOld() {
  *
  * @since  1.0
  * @deprecated  2.0  Legacy function.
+ * 
+ * @param  int $post_id  Post ID.
  */
 function wps_saveSubtitle( $post_id ) {
 	_deprecated_function( 'wps_saveSubtitle()', '2.0' );

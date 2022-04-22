@@ -54,7 +54,7 @@ class WPSubtitle_Pointers {
 
 		// Enqueue pointer scripts and styles.
 		wp_enqueue_style( 'wp-pointer' );
-		wp_enqueue_script( 'wps-subtitle-pointer', plugins_url( 'js/pointers.js', __FILE__ ), array( 'wp-pointer' ) );
+		wp_enqueue_script( 'wps-subtitle-pointer', plugins_url( 'js/pointers.js', __FILE__ ), array( 'wp-pointer' ), '3.4.1', true );
 		wp_localize_script( 'wps-subtitle-pointer', 'wpsSubtitlePointer', $valid_pointers );
 
 	}
