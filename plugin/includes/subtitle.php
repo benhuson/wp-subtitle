@@ -37,7 +37,7 @@ class WP_Subtitle {
 	 */
 	public function the_subtitle( $args = '' ) {
 
-		echo $this->get_subtitle( $args );
+		echo wp_kses_post( $this->get_subtitle( $args ) );
 
 	}
 

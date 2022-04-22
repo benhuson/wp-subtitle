@@ -73,7 +73,7 @@ function get_the_subtitle( $post = 0, $before = '', $after = '', $echo = true ) 
 		return $output;
 	}
 
-	echo $output;
+	echo wp_kses_post( $output );
 
 }
 
