@@ -12,22 +12,22 @@ define( 'WPSUBTITLE_URL', plugins_url( WPSUBTITLE_SUBDIR ) );
 define( 'WPSUBTITLE_DIR', plugin_dir_path( __FILE__ ) );
 
 // Includes
-include_once( WPSUBTITLE_DIR . 'includes/class-api.php' );
-include_once( WPSUBTITLE_DIR . 'includes/subtitle.php' );
-include_once( WPSUBTITLE_DIR . 'includes/deprecated.php' );
-include_once( WPSUBTITLE_DIR . 'includes/shortcode.php' );
-include_once( WPSUBTITLE_DIR . 'includes/rest.php' );
-include_once( WPSUBTITLE_DIR . 'includes/compat/wordpress-seo.php' );
-include_once( WPSUBTITLE_DIR . 'includes/compat/seopress.php' );
-include_once( WPSUBTITLE_DIR . 'includes/compat/woocommerce.php' );
+require_once WPSUBTITLE_DIR . 'includes/class-api.php';
+require_once WPSUBTITLE_DIR . 'includes/subtitle.php';
+require_once WPSUBTITLE_DIR . 'includes/deprecated.php';
+require_once WPSUBTITLE_DIR . 'includes/shortcode.php';
+require_once WPSUBTITLE_DIR . 'includes/rest.php';
+require_once WPSUBTITLE_DIR . 'includes/compat/wordpress-seo.php';
+require_once WPSUBTITLE_DIR . 'includes/compat/seopress.php';
+require_once WPSUBTITLE_DIR . 'includes/compat/woocommerce.php';
 
 // Include admin-only functionality
 if ( is_admin() ) {
-	require_once( WPSUBTITLE_DIR . 'admin/admin.php' );
+	require_once WPSUBTITLE_DIR . 'admin/admin.php';
 	if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
 		// Load AJAX functions here if required...
 	} else {
-		require_once( WPSUBTITLE_DIR . 'admin/pointers.php' );
+		require_once WPSUBTITLE_DIR . 'admin/pointers.php';
 	}
 }
 
@@ -90,10 +90,10 @@ class WPSubtitle {
 	 */
 	public static function load() {
 
-		self::$api = new WP_Subtitle_API();
-		self::$rest = new WPSubtitle_REST();
-		self::$wpseo = new WPSubtitle_WPSEO();
-		self::$seopress = new WPSubtitle_SEOPress();
+		self::$api         = new WP_Subtitle_API();
+		self::$rest        = new WPSubtitle_REST();
+		self::$wpseo       = new WPSubtitle_WPSEO();
+		self::$seopress    = new WPSubtitle_SEOPress();
 		self::$woocommerce = new WPSubtitle_WooCommerce();
 
 		self::$api->setup_hooks();
@@ -122,11 +122,13 @@ class WPSubtitle {
 	 * @return  array  Array of supported post types.
 	 */
 	public static function get_supported_post_types() {
-		$post_types = (array) get_post_types( array(
-			'_builtin' => false
-		) );
+		$post_types = (array) get_post_types(
+			array(
+				'_builtin' => false,
+			)
+		);
 		$post_types = array_merge( $post_types, array( 'post', 'page', 'revision' ) );
-		$supported = array();
+		$supported  = array();
 		foreach ( $post_types as $post_type ) {
 			if ( post_type_supports( $post_type, 'wps_subtitle' ) ) {
 				$supported[] = $post_type;
@@ -140,12 +142,12 @@ class WPSubtitle {
 	 *
 	 * @since  2.3
 	 *
-	 * @param   string   $post_type  Post Type.
+	 * @param   string $post_type  Post Type.
 	 * @return  boolean
 	 */
 	public static function is_supported_post_type( $post_type ) {
 		$post_types = self::get_supported_post_types();
-		if ( in_array( $post_type, $post_types ) ) {
+		if ( in_array( $post_type, $post_types, true ) ) {
 			return true;
 		}
 		return false;
@@ -158,7 +160,7 @@ class WPSubtitle {
 	 *
 	 * @uses  WP_Subtitle::get_subtitle()
 	 *
-	 * @param   int|object  $post  Post ID or object.
+	 * @param   int|object $post  Post ID or object.
 	 * @return  string             The filtered subtitle meta value.
 	 */
 	public static function get_the_subtitle( $post = 0 ) {
@@ -177,7 +179,7 @@ class WPSubtitle {
 	 *
 	 * @uses  WP_Subtitle::get_raw_subtitle()
 	 *
-	 * @param   int|object  $post  Post ID or object.
+	 * @param   int|object $post  Post ID or object.
 	 * @return  string             The subtitle meta value.
 	 */
 	public static function _get_post_meta( $post = 0 ) {
@@ -194,7 +196,7 @@ class WPSubtitle {
 	 * @since  2.5.x
 	 * @internal
 	 *
-	 * @param   int     $post  Post ID.
+	 * @param   int $post_id  Post ID.
 	 * @return  string         The subtitle meta key.
 	 */
 	public static function _get_post_meta_key( $post_id = 0 ) {

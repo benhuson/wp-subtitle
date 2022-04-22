@@ -21,21 +21,20 @@ class WPSubtitle_WooCommerce {
 	 */
 	public function __construct() {
 
-		if ( 'yes' == get_option( 'wp_subtitle_woocommerce_enabled' ) ) {
+		if ( 'yes' === get_option( 'wp_subtitle_woocommerce_enabled' ) ) {
 
 			add_action( 'init', array( $this, 'add_product_post_type_support' ) );
 
-			if ( 'yes' == get_option( 'wp_subtitle_woocommerce_show_on_single' ) ) {
-				add_action( 'woocommerce_single_product_summary' , array( $this, 'single_product_summary' ), 6 );
+			if ( 'yes' === get_option( 'wp_subtitle_woocommerce_show_on_single' ) ) {
+				add_action( 'woocommerce_single_product_summary', array( $this, 'single_product_summary' ), 6 );
 			}
 
-			if ( 'yes' == get_option( 'wp_subtitle_woocommerce_show_in_loop' ) ) {
-				add_action( 'woocommerce_shop_loop_item_title' , array( $this, 'shop_loop_item_title' ) );
+			if ( 'yes' === get_option( 'wp_subtitle_woocommerce_show_in_loop' ) ) {
+				add_action( 'woocommerce_shop_loop_item_title', array( $this, 'shop_loop_item_title' ) );
 			}
-
 		}
 
-		add_filter( 'woocommerce_product_settings' , array( $this, 'product_settings' ) );
+		add_filter( 'woocommerce_product_settings', array( $this, 'product_settings' ) );
 
 	}
 
@@ -61,10 +60,13 @@ class WPSubtitle_WooCommerce {
 	 */
 	public function single_product_summary() {
 
-		do_action( 'plugins/wp_subtitle/the_subtitle', array(
-			'before' => '<h2 class="product_subtitle entry-subtitle wp-subtitle">',
-			'after'  => '</h2>'
-		) );
+		do_action(
+			'plugins/wp_subtitle/the_subtitle',
+			array(
+				'before' => '<h2 class="product_subtitle entry-subtitle wp-subtitle">',
+				'after'  => '</h2>',
+			)
+		);
 
 	}
 
@@ -77,10 +79,13 @@ class WPSubtitle_WooCommerce {
 	 */
 	public function shop_loop_item_title() {
 
-		do_action( 'plugins/wp_subtitle/the_subtitle', array(
-			'before' => '<p class="woocommerce-loop-product__subtitle wp-subtitle">',
-			'after'  => '</p>'
-		) );
+		do_action(
+			'plugins/wp_subtitle/the_subtitle',
+			array(
+				'before' => '<p class="woocommerce-loop-product__subtitle wp-subtitle">',
+				'after'  => '</p>',
+			)
+		);
 
 	}
 
@@ -89,7 +94,7 @@ class WPSubtitle_WooCommerce {
 	 *
 	 * @since  3.1
 	 *
-	 * @param   array  $settings  Settings.
+	 * @param   array $settings  Settings.
 	 * @return  array             Settings.
 	 *
 	 * @internal  Private. Called via the `woocommerce_product_settings` filter.
@@ -102,7 +107,7 @@ class WPSubtitle_WooCommerce {
 				'title' => __( 'WP Subtitle', 'wp-subtitle' ),
 				'type'  => 'title',
 				'desc'  => '',
-				'id'    => 'wp_subtitle_options'
+				'id'    => 'wp_subtitle_options',
 			),
 
 			array(
@@ -119,7 +124,7 @@ class WPSubtitle_WooCommerce {
 				'id'            => 'wp_subtitle_woocommerce_show_on_single',
 				'default'       => 'yes',
 				'type'          => 'checkbox',
-				'checkboxgroup' => 'start'
+				'checkboxgroup' => 'start',
 			),
 
 			array(
@@ -127,13 +132,13 @@ class WPSubtitle_WooCommerce {
 				'id'            => 'wp_subtitle_woocommerce_show_in_loop',
 				'default'       => 'yes',
 				'type'          => 'checkbox',
-				'checkboxgroup' => 'end'
+				'checkboxgroup' => 'end',
 			),
 
 			array(
 				'type' => 'sectionend',
-				'id'   => 'wp_subtitle_options'
-			)
+				'id'   => 'wp_subtitle_options',
+			),
 
 		);
 

@@ -22,7 +22,9 @@
  * ) );
  */
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly
+}
 
 class WP_Subtitle_API {
 
@@ -39,7 +41,7 @@ class WP_Subtitle_API {
 	/**
 	 * The Subtitle
 	 *
-	 * @param  array  $args  Display args.
+	 * @param  array $args  Display args.
 	 *
 	 * @internal  Private. Called via the `the_subtitle` action.
 	 */
@@ -47,29 +49,32 @@ class WP_Subtitle_API {
 
 		$default_value = isset( $args['default_value'] ) ? $args['default_value'] : '';
 
-		echo $this->get_subtitle( $default_value, $args );
+		echo wp_kses_post( $this->get_subtitle( $default_value, $args ) );
 
 	}
 
 	/**
 	 * Get Subtitle
 	 *
-	 * @param   string  $default_subtitle  Default/fallback subtitle.
-	 * @param   array   $args              Display args.
+	 * @param   string $default_subtitle  Default/fallback subtitle.
+	 * @param   array  $args              Display args.
 	 * @return  string                     The subtitle.
 	 *
 	 * @internal  Private. Called via the `get_subtitle` action.
 	 */
 	public function get_subtitle( $default_subtitle, $args = '' ) {
 
-		$args = wp_parse_args( $args, array(
-			'post_id' => get_the_ID(),  // Post ID
-			'before'  => '',            // Before subtitle HTML output
-			'after'   => ''             // After subtitle HTML output
-		) );
+		$args = wp_parse_args(
+			$args,
+			array(
+				'post_id' => get_the_ID(),  // Post ID
+				'before'  => '',            // Before subtitle HTML output
+				'after'   => '',             // After subtitle HTML output
+			)
+		);
 
 		$subtitle_obj = new WP_Subtitle( $args['post_id'] );
-		$subtitle = $subtitle_obj->get_subtitle( $args );
+		$subtitle     = $subtitle_obj->get_subtitle( $args );
 
 		if ( ! empty( $subtitle ) ) {
 			return $subtitle;

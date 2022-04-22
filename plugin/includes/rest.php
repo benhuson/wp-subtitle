@@ -35,11 +35,15 @@ class WPSubtitle_REST {
 
 		foreach ( $post_types as $post_type ) {
 
-			register_rest_field( $post_types, 'wps_subtitle', array(
-				'get_callback'    => array( $this, 'get_rest_field' ),
-				'update_callback' => array( $this, 'update_rest_field' ),
-				'schema'          => null
-			) );
+			register_rest_field(
+				$post_types,
+				'wps_subtitle',
+				array(
+					'get_callback'    => array( $this, 'get_rest_field' ),
+					'update_callback' => array( $this, 'update_rest_field' ),
+					'schema'          => null,
+				)
+			);
 
 		}
 
@@ -52,9 +56,9 @@ class WPSubtitle_REST {
 	 *
 	 * @internal  Called via register_rest_field() callback.
 	 *
-	 * @param   array            $object      Current post details.
-	 * @param   string           $field_name  Name of field.
-	 * @param   WP_REST_Request  $request     Current request.
+	 * @param   array           $object      Current post details.
+	 * @param   string          $field_name  Name of field.
+	 * @param   WP_REST_Request $request     Current request.
 	 * @return  string                        Subtitle
 	 */
 	public function get_rest_field( $object, $field_name, $request ) {
@@ -72,8 +76,8 @@ class WPSubtitle_REST {
 	 *
 	 * @internal  Called via register_rest_field() callback.
 	 *
-	 * @param  string  $value   New value for the field.
-	 * @param  array   $object  Current post details.
+	 * @param  string $value   New value for the field.
+	 * @param  array  $object  Current post details.
 	 */
 	public function update_rest_field( $value, $object ) {
 

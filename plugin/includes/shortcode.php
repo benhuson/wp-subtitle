@@ -15,40 +15,46 @@ class WPSubtitle_Shortcode {
 	 * content will be used as a fallback if no subtitle is specified.
 	 * e.g. [wp_subtitle]Fallback Subtitle[/wp_subtitle]
 	 *
-	 * @param   array   $atts     Shortcode attributes.
-	 * @param   string  $content  Fallback content (content between the shortcode tags).
+	 * @param   array  $atts     Shortcode attributes.
+	 * @param   string $content  Fallback content (content between the shortcode tags).
 	 * @return  string            Subtitle HTML.
 	 */
 	public static function shortcode( $atts, $content = null ) {
 
 		global $post;
 
-		$atts = shortcode_atts( array(
-			'tag'    => self::get_default_tag(),
-			'before' => '',
-			'after'  => ''
-		), $atts, 'wp_subtitle' );
+		$atts = shortcode_atts(
+			array(
+				'tag'    => self::get_default_tag(),
+				'before' => '',
+				'after'  => '',
+			),
+			$atts,
+			'wp_subtitle'
+		);
 
 		// Get HTML tag
 		if ( ! empty( $atts['tag'] ) ) {
-			$tag = self::validate_tag( $atts['tag'] );
+			$tag    = self::validate_tag( $atts['tag'] );
 			$before = sprintf( '<%s class="wp-subtitle">', $tag );
-			$after = sprintf( '</%s>', $tag );
+			$after  = sprintf( '</%s>', $tag );
 		} else {
 			$before = '';
-			$after = '';
+			$after  = '';
 		}
 
 		// Add before/after content
 		$before .= self::format_subtitle_content( $atts['before'], 'before' );
-		$after = self::format_subtitle_content( $atts['after'], 'after' ) . $after;
+		$after   = self::format_subtitle_content( $atts['after'], 'after' ) . $after;
 
 		$subtitle = new WP_Subtitle( $post );
 
-		return $subtitle->get_subtitle( array(
-			'before' => $before,
-			'after'  => $after
-		) );
+		return $subtitle->get_subtitle(
+			array(
+				'before' => $before,
+				'after'  => $after,
+			)
+		);
 
 	}
 
@@ -88,12 +94,12 @@ class WPSubtitle_Shortcode {
 	 * @since  2.5
 	 * @internal
 	 *
-	 * @param   string  $tag  Tag to validate.
+	 * @param   string $tag  Tag to validate.
 	 * @return  string        Validated tag.
 	 */
 	private static function validate_tag( $tag ) {
 
-		if ( ! in_array( $tag, self::get_allowed_tags() ) ) {
+		if ( ! in_array( $tag, self::get_allowed_tags(), true ) ) {
 			$tag = self::get_default_tag();
 		}
 
@@ -107,8 +113,8 @@ class WPSubtitle_Shortcode {
 	 * @since  2.5
 	 * @internal
 	 *
-	 * @param   string  $content  Content.
-	 * @param   string  $type     Content type.
+	 * @param   string $content  Content.
+	 * @param   string $type     Content type.
 	 * @return  string            HTML formatted content.
 	 */
 	private static function format_subtitle_content( $content, $type ) {
