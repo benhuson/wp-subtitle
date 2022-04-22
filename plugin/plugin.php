@@ -12,22 +12,22 @@ define( 'WPSUBTITLE_URL', plugins_url( WPSUBTITLE_SUBDIR ) );
 define( 'WPSUBTITLE_DIR', plugin_dir_path( __FILE__ ) );
 
 // Includes
-include_once( WPSUBTITLE_DIR . 'includes/class-api.php' );
-include_once( WPSUBTITLE_DIR . 'includes/subtitle.php' );
-include_once( WPSUBTITLE_DIR . 'includes/deprecated.php' );
-include_once( WPSUBTITLE_DIR . 'includes/shortcode.php' );
-include_once( WPSUBTITLE_DIR . 'includes/rest.php' );
-include_once( WPSUBTITLE_DIR . 'includes/compat/wordpress-seo.php' );
-include_once( WPSUBTITLE_DIR . 'includes/compat/seopress.php' );
-include_once( WPSUBTITLE_DIR . 'includes/compat/woocommerce.php' );
+require_once WPSUBTITLE_DIR . 'includes/class-api.php';
+require_once WPSUBTITLE_DIR . 'includes/subtitle.php';
+require_once WPSUBTITLE_DIR . 'includes/deprecated.php';
+require_once WPSUBTITLE_DIR . 'includes/shortcode.php';
+require_once WPSUBTITLE_DIR . 'includes/rest.php';
+require_once WPSUBTITLE_DIR . 'includes/compat/wordpress-seo.php';
+require_once WPSUBTITLE_DIR . 'includes/compat/seopress.php';
+require_once WPSUBTITLE_DIR . 'includes/compat/woocommerce.php';
 
 // Include admin-only functionality
 if ( is_admin() ) {
-	require_once( WPSUBTITLE_DIR . 'admin/admin.php' );
+	require_once WPSUBTITLE_DIR . 'admin/admin.php';
 	if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
 		// Load AJAX functions here if required...
 	} else {
-		require_once( WPSUBTITLE_DIR . 'admin/pointers.php' );
+		require_once WPSUBTITLE_DIR . 'admin/pointers.php';
 	}
 }
 
