@@ -33,6 +33,7 @@ if ( is_admin() ) {
 
 add_action( 'plugins_loaded', array( 'WPSubtitle', 'load' ) );
 add_action( 'init', array( 'WPSubtitle', '_add_default_post_type_support' ), 5 );
+add_filter( 'posts_clauses', array( 'WPSubtitle', '_posts_clauses' ), 20 );
 
 // Default subtitle filters
 add_filter( 'wps_subtitle', 'wptexturize' );
@@ -113,6 +114,88 @@ class WPSubtitle {
 		add_post_type_support( 'revision', 'wps_subtitle' );
 
 	}
+
+        /**
+         * Add Subtitle searching support
+         *
+         * @since  3.3.1
+         * @internal
+         */
+        public static function _posts_clauses( $pieces ) {
+
+		global $wpdb;
+
+		$where = WPSubtitle::_build_search();
+
+		if ( is_search() && is_main_query() && ! empty( $where ) ) {
+
+			$pieces['distinct'] = 'DISTINCT';
+			$pieces['where'] .= $where;
+			$pieces['join'] = $pieces['join'] . " LEFT JOIN {$wpdb->postmeta} ON ({$wpdb->posts}.ID = {$wpdb->postmeta}.post_id) ";
+
+		}
+
+		return $pieces;
+
+	}
+
+        /**
+         * Add Subtitle searching support
+         *
+         * @since  3.3.1
+         * @internal
+         */
+        public static function _build_search() {
+
+                global $wpdb;
+
+		$search_terms = get_query_var( 'search_terms', array() );
+
+		$search    = '';
+		$n         = ! empty( get_query_var( 'exact' ) ) ? '' : '%';
+		$searchand = '';
+
+		$exclusion_prefix = apply_filters( 'wp_query_search_exclusion_prefix', '-' );
+
+		foreach ( $search_terms as $term ) {
+
+			// If there is an $exclusion_prefix, terms prefixed with it should be excluded.
+			$exclude = $exclusion_prefix && ( $exclusion_prefix === substr( $term, 0, 1 ) );
+
+			if ( $exclude ) {
+
+				$like_op  = 'NOT LIKE';
+				$andor_op = 'AND';
+				$term     = substr( $term, 1 );
+
+			} else {
+
+				$like_op  = 'LIKE';
+				$andor_op = 'OR';
+
+			}
+
+			$like      = $n . $wpdb->esc_like( $term ) . $n;
+			$search   .= $wpdb->prepare( "{$searchand}({$wpdb->postmeta}.meta_key = 'wps_subtitle' AND {$wpdb->postmeta}.meta_value $like_op %s)", $like );
+			$searchand = ' AND ';
+
+		}
+
+		if ( ! empty( $search ) ) {
+
+			$search = " OR ({$search}) ";
+
+			if ( ! is_user_logged_in() ) {
+
+				$search .= " AND ({$wpdb->posts}.post_password = '') ";
+
+			}
+
+		}
+
+		return $search;
+
+        }
 
 	/**
 	 * Get Supported Post Types
