@@ -50,7 +50,7 @@ class WPSubtitle_SEOPress {
 	 *
 	 * @since  3.4
 	 *
-	 * @param    array  $replacements  SEO replacements variables.
+	 * @param    array $replacements  SEO replacements variables.
 	 * @return   array                 Filtered replacements variables.
 	 *
 	 * @internal  Called via the `seopress_titles_template_variables_array` filter.
@@ -70,7 +70,7 @@ class WPSubtitle_SEOPress {
 	 *
 	 * @since  3.4
 	 *
-	 * @param    array  $replacements  SEO replacements values.
+	 * @param    array $replacements  SEO replacements values.
 	 * @return   array                 Filtered replacements values.
 	 *
 	 * @internal  Called via the `seopress_titles_template_replace_array` filter.
@@ -80,19 +80,19 @@ class WPSubtitle_SEOPress {
 		global $post;
 
 		$wp_subtitle = new WP_Subtitle( $post );
-		$subtitle = $wp_subtitle->get_subtitle();
+		$subtitle    = $wp_subtitle->get_subtitle();
 
 		$replacements[] = $subtitle;
 
 		$sep = ' ' . $replacements[0] . ' ';
 
 		$before_sep = '';
-		$after_sep = '';
+		$after_sep  = '';
 
 		if ( ! empty( $subtitle ) ) {
 
 			$before_sep = apply_filters( 'wps_subtitle_seo_before_sep', $sep );
-			$after_sep = apply_filters( 'wps_subtitle_seo_after_sep', $sep );
+			$after_sep  = apply_filters( 'wps_subtitle_seo_after_sep', $sep );
 
 		}
 

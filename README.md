@@ -140,6 +140,9 @@ The plugin is [hosted on GitHub](https://github.com/benhuson/wp-subtitle) and pu
 Upgrade Notice
 --------------
 
+### 3.4.2
+Resolve XSS issue - standardized santitization throughout plugin and fixed issue with autosave and preview.
+
 ### 3.4.1
 Resolve XSS issue by improving sanitization when saving subtitle custom field.
 

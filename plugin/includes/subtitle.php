@@ -17,7 +17,7 @@ class WP_Subtitle {
 	/**
 	 * Constructor
 	 *
-	 * @param  int|WP_Post  $post  Post object or ID.
+	 * @param  int|WP_Post $post  Post object or ID.
 	 */
 	public function __construct( $post ) {
 
@@ -33,11 +33,11 @@ class WP_Subtitle {
 	/**
 	 * The Subtitle
 	 *
-	 * @param  array  $args  Display parameters.
+	 * @param  array $args  Display parameters.
 	 */
 	public function the_subtitle( $args = '' ) {
 
-		echo $this->get_subtitle( $args );
+		echo wp_kses_post( $this->get_subtitle( $args ) );
 
 	}
 
@@ -46,17 +46,20 @@ class WP_Subtitle {
 	 *
 	 * @uses  apply_filters( 'wps_subtitle' )
 	 *
-	 * @param   array   $args  Display parameters.
+	 * @param   array $args  Display parameters.
 	 * @return  string         The filtered subtitle meta value.
 	 */
 	public function get_subtitle( $args = '' ) {
 
 		if ( $this->post_id && $this->is_supported_post_type() ) {
 
-			$args = wp_parse_args( $args, array(
-				'before' => '',
-				'after'  => ''
-			) );
+			$args = wp_parse_args(
+				$args,
+				array(
+					'before' => '',
+					'after'  => '',
+				)
+			);
 
 			$subtitle = apply_filters( 'wps_subtitle', $this->get_raw_subtitle(), get_post( $this->post_id ) );
 
@@ -81,16 +84,35 @@ class WP_Subtitle {
 
 		if ( is_preview() ) {
 
-			if ( isset( $_GET['preview_id'] ) ) {
-				$p =  wp_get_post_autosave( $this->post_id );
-				return get_post_meta( $p->ID, $this->get_post_meta_key(), true );
+			$has_preview_access = false;
+
+			if ( isset( $_GET['preview_id'], $_GET['preview_nonce'] ) ) {
+				$preview_id    = absint( wp_unslash( $_GET['preview_id'] ) );
+				$preview_nonce = sanitize_text_field( wp_unslash( $_GET['preview_nonce'] ) );
+
+				$has_preview_access = (
+					$preview_id === $this->post_id &&
+					$this->current_user_can_edit() &&
+					wp_verify_nonce( $preview_nonce, 'post_preview_' . $this->post_id )
+				);
 			}
 
-			if ( $revisions = wp_get_post_revisions( $this->post_id ) ) {
-				$p = array_shift( $revisions );
-				return get_post_meta( $p->ID, $this->get_post_meta_key(), true );
-			}
+			if ( $has_preview_access ) {
+				$p = wp_get_post_autosave( $this->post_id, get_current_user_id() );
 
+				if ( $p instanceof WP_Post && absint( $p->post_parent ) === $this->post_id ) {
+					return get_post_meta( $p->ID, $this->get_post_meta_key(), true );
+				}
+
+				$revisions = wp_get_post_revisions( $this->post_id );
+
+				if ( $revisions ) {
+					$p = array_shift( $revisions );
+					if ( $p instanceof WP_Post && absint( $p->post_parent ) === $this->post_id ) {
+						return get_post_meta( $p->ID, $this->get_post_meta_key(), true );
+					}
+				}
+			}
 		}
 
 		return get_post_meta( $this->post_id, $this->get_post_meta_key(), true );
@@ -113,10 +135,12 @@ class WP_Subtitle {
 	/**
 	 * Update Subtitle
 	 *
-	 * @param   string    $subtitle  Subtitle.
+	 * @param   string $subtitle  Subtitle.
 	 * @return  int|bool             Meta ID if new entry. True if updated, false if not updated or the same as current value.
 	 */
 	public function update_subtitle( $subtitle ) {
+
+		$subtitle = WPSubtitle_Helper::sanitize_subtitle_value( $subtitle );
 
 		// Uses `update_metadata` as `update_post_meta` doesn't work with revisions.
 		return update_metadata( 'post', $this->post_id, $this->get_post_meta_key(), $subtitle );
@@ -128,12 +152,12 @@ class WP_Subtitle {
 	 *
 	 * @since  2.9
 	 *
-	 * @param   string   $subtitle  Subtitle value.
+	 * @param   string $subtitle  Subtitle value.
 	 * @return  boolean
 	 */
 	public function is_current_subtitle( $subtitle ) {
 
-		return $subtitle === get_metadata( 'post', $this->post_id, 'wps_subtitle', true );
+		return get_metadata( 'post', $this->post_id, 'wps_subtitle', true ) === $subtitle;
 
 	}
 
@@ -155,7 +179,7 @@ class WP_Subtitle {
 	 *
 	 * @since  2.9
 	 *
-	 * @param  int  $revision_id  Revision ID.
+	 * @param  int $revision_id  Revision ID.
 	 */
 	public function restore_post_revision( $revision_id ) {
 
@@ -178,7 +202,7 @@ class WP_Subtitle {
 
 		$post_types = $this->get_supported_post_types();
 
-		return in_array( get_post_type( $this->post_id ), $post_types );
+		return in_array( get_post_type( $this->post_id ), $post_types, true );
 
 	}
 
@@ -191,9 +215,11 @@ class WP_Subtitle {
 	 */
 	private function get_supported_post_types() {
 
-		$post_types = (array) get_post_types( array(
-			'_builtin' => false
-		) );
+		$post_types = (array) get_post_types(
+			array(
+				'_builtin' => false,
+			)
+		);
 
 		$post_types = array_merge( $post_types, array( 'post', 'page', 'revision' ) );
 
@@ -222,8 +248,9 @@ class WP_Subtitle {
 		if ( $this->is_supported_post_type() ) {
 
 			$post_type = get_post_type( $this->post_id );
+			$revision  = wp_is_post_revision( $this->post_id );
 
-			if ( $revision = wp_is_post_revision( $this->post_id ) ) {
+			if ( $revision ) {
 				$post_type = get_post_type( $revision );
 			}
 
@@ -240,15 +267,20 @@ class WP_Subtitle {
 
 				// ... edit other post type
 				default:
+					$post_types = (array) get_post_types(
+						array(
+							'_builtin' => false,
+						),
+						'objects'
+					);
 
-					$post_types = (array) get_post_types( array(
-						'_builtin' => false
-					), 'objects' );
+					if ( ! isset( $post_types[ $post_type ] ) || ! isset( $post_types[ $post_type ]->cap->edit_post ) ) {
+						return false;
+					}
 
 					return current_user_can( $post_types[ $post_type ]->cap->edit_post, $this->post_id );
 
 			}
-
 		}
 
 		return false;

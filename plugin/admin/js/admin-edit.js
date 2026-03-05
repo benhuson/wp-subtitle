@@ -8,7 +8,7 @@
 	// inlineEditPost does not invoke any events, but does ensure to stop
 	// propagation to all other event handlers; swap it out.
 	inlineEditPost.editPreWpSubtitle = inlineEditPost.edit;
-	inlineEditPost.edit = function ( id ) {
+	inlineEditPost.edit              = function ( id ) {
 
 		// Invoke original edit event handler.
 		this.editPreWpSubtitle.apply( this, arguments );
@@ -35,4 +35,4 @@
 
 	}
 
-} ) ( jQuery, inlineEditPost );
+} )( jQuery, inlineEditPost );

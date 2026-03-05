@@ -1,10 +1,11 @@
 === WP Subtitle ===
 Contributors: husobj, husani
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SLZUF4XJTS4E6
-Tags: subtitle, content, title, subheading, subhead, alternate title
-Requires at least: 3.7
-Tested up to: 5.9.3
-Stable tag: 3.4.1
+Tags: subtitle, content, title, subheading, subhead
+Requires at least: 5.6
+Tested up to: 6.9
+Stable tag: 3.4.2
+Requires PHP: 5.6
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 
@@ -153,6 +154,11 @@ The plugin is [hosted on GitHub](https://github.com/benhuson/wp-subtitle) and pu
 
 == Changelog ==
 
+= 3.4.2 =
+* Resolve XSS issue - standardized santitization throughout plugin.
+* Fixed issue with autosave and preview.
+* Confirmed WordPress 6.9 compatibility.
+
 = 3.4.1 =
 * Security: Resolve XSS issue by improving sanitization when saving subtitle custom field.
 * Pass the current post object to the `wps_subtitle_field_placeholder` filter. Props [Dominik Schilling](https://github.com/ocean90).
@@ -257,6 +263,9 @@ The plugin is [hosted on GitHub](https://github.com/benhuson/wp-subtitle) and pu
 * First version.
 
 == Upgrade Notice ==
+
+= 3.4.2 =
+Resolve XSS issue - standardized santitization throughout plugin and fixed issue with autosave and preview.
 
 = 3.4.1 =
 Resolve XSS issue by improving sanitization when saving subtitle custom field.
