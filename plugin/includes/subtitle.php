@@ -84,16 +84,32 @@ class WP_Subtitle {
 
 		if ( is_preview() ) {
 
-			if ( isset( $_GET['preview_id'] ) ) {
-				$p = wp_get_post_autosave( $this->post_id );
-				return get_post_meta( $p->ID, $this->get_post_meta_key(), true );
+			if ( isset( $_GET['preview_id'], $_GET['preview_nonce'] ) ) {
+				$preview_id    = absint( wp_unslash( $_GET['preview_id'] ) );
+				$preview_nonce = sanitize_text_field( wp_unslash( $_GET['preview_nonce'] ) );
+
+				$has_preview_access = (
+					$preview_id === $this->post_id &&
+					$this->current_user_can_edit() &&
+					wp_verify_nonce( $preview_nonce, 'post_preview_' . $this->post_id )
+				);
+
+				if ( $has_preview_access ) {
+					$p = wp_get_post_autosave( $this->post_id, get_current_user_id() );
+
+					if ( $p instanceof WP_Post && absint( $p->post_parent ) === $this->post_id ) {
+						return get_post_meta( $p->ID, $this->get_post_meta_key(), true );
+					}
+				}
 			}
 
 			$revisions = wp_get_post_revisions( $this->post_id );
 
 			if ( $revisions ) {
 				$p = array_shift( $revisions );
-				return get_post_meta( $p->ID, $this->get_post_meta_key(), true );
+				if ( $p instanceof WP_Post && absint( $p->post_parent ) === $this->post_id ) {
+					return get_post_meta( $p->ID, $this->get_post_meta_key(), true );
+				}
 			}
 		}
 
