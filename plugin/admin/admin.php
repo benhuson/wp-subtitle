@@ -28,7 +28,7 @@ class WPSubtitle_Admin {
 		add_filter( '_wp_post_revision_fields', array( 'WPSubtitle_Admin', '_wp_post_revision_fields' ), 9 );
 		add_action( 'wp_restore_post_revision', array( 'WPSubtitle_Admin', 'wp_restore_post_revision' ), 10, 2 );
 
-		add_filter( 'sanitize_post_meta_wps_subtitle', array( 'WPSubtitle_Admin', 'sanitize_subtitle_value' ) );
+		add_filter( 'sanitize_post_meta_wps_subtitle', array( 'WPSubtitle_Helper', 'sanitize_subtitle_value' ) );
 
 	}
 
@@ -408,7 +408,7 @@ class WPSubtitle_Admin {
 		// Check data and save
 		if ( isset( $_POST['wps_subtitle'] ) ) {
 
-			$new_value = self::sanitize_subtitle_value( wp_unslash( $_POST['wps_subtitle'] ) );
+			$new_value = WPSubtitle_Helper::sanitize_subtitle_value( wp_unslash( $_POST['wps_subtitle'] ) );
 
 			$subtitle = new WP_Subtitle( $post_id );
 
@@ -517,16 +517,6 @@ class WPSubtitle_Admin {
 		}
 
 		return $position;
-
-	}
-
-	public static function sanitize_subtitle_value( $value ) {
-
-		if ( ! is_string( $value ) ) {
-			$value = '';
-		}
-
-		return wp_kses( $value, wp_kses_allowed_html( 'data' ) );
 
 	}
 
