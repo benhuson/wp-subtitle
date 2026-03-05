@@ -202,7 +202,7 @@ class WPSubtitle_Admin {
 	 */
 	public static function _wp_post_revision_fields( $fields ) {
 
-		$fields['wps_subtitle'] = __( 'Subtitle', 'wp-subtitle' );
+		$fields['wps_subtitle'] = esc_html__( 'Subtitle', 'wp-subtitle' );
 
 		return $fields;
 
@@ -273,7 +273,7 @@ class WPSubtitle_Admin {
 	 * @uses  apply_filters( 'wps_meta_box_title' )
 	 */
 	public static function get_meta_box_title( $post_type ) {
-		return apply_filters( 'wps_meta_box_title', __( 'Subtitle', 'wp-subtitle' ), $post_type );
+		return apply_filters( 'wps_meta_box_title', esc_html__( 'Subtitle', 'wp-subtitle' ), $post_type );
 	}
 
 	/**
