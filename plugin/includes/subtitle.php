@@ -274,6 +274,10 @@ class WP_Subtitle {
 						'objects'
 					);
 
+					if ( ! isset( $post_types[ $post_type ] ) || ! isset( $post_types[ $post_type ]->cap->edit_post ) ) {
+						return false;
+					}
+
 					return current_user_can( $post_types[ $post_type ]->cap->edit_post, $this->post_id );
 
 			}
