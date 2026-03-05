@@ -2,8 +2,8 @@
 Contributors: husobj, husani
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SLZUF4XJTS4E6
 Tags: subtitle, content, title, subheading, subhead
-Requires at least: 3.7
-Tested up to: 6.5.2
+Requires at least: 5.6
+Tested up to: 6.9
 Stable tag: 3.4.1
 Requires PHP: 5.6
 License: GPLv2
