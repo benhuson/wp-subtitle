@@ -36,7 +36,7 @@ class WPSubtitle_REST {
 		foreach ( $post_types as $post_type ) {
 
 			register_rest_field(
-				$post_types,
+				$post_type,
 				'wps_subtitle',
 				array(
 					'get_callback'    => array( $this, 'get_rest_field' ),
