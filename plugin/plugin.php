@@ -13,6 +13,7 @@ define( 'WPSUBTITLE_DIR', plugin_dir_path( __FILE__ ) );
 
 // Includes
 require_once WPSUBTITLE_DIR . 'includes/class-api.php';
+require_once WPSUBTITLE_DIR . 'includes/helper.php';
 require_once WPSUBTITLE_DIR . 'includes/subtitle.php';
 require_once WPSUBTITLE_DIR . 'includes/deprecated.php';
 require_once WPSUBTITLE_DIR . 'includes/shortcode.php';

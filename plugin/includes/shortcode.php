@@ -122,7 +122,7 @@ class WPSubtitle_Shortcode {
 		$type = sanitize_html_class( $type );
 
 		if ( ! empty( $content ) && ! empty( $type ) ) {
-			$content = sprintf( '<span class="wp-subtitle-%s">%s</span>', $type, $content );
+			$content = sprintf( '<span class="wp-subtitle-%s">%s</span>', $type, wp_kses_post( $content ) );
 		}
 
 		return $content;

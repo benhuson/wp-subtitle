@@ -36,7 +36,7 @@ class WPSubtitle_REST {
 		foreach ( $post_types as $post_type ) {
 
 			register_rest_field(
-				$post_types,
+				$post_type,
 				'wps_subtitle',
 				array(
 					'get_callback'    => array( $this, 'get_rest_field' ),
@@ -81,7 +81,7 @@ class WPSubtitle_REST {
 	 */
 	public function update_rest_field( $value, $object ) {
 
-		update_post_meta( $object->ID, 'wps_subtitle', wp_kses_post( $value ) );
+		update_post_meta( $object->ID, 'wps_subtitle', WPSubtitle_Helper::sanitize_subtitle_value( $value ) );
 
 	}
 

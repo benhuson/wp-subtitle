@@ -147,8 +147,9 @@ class WPSubtitle_Pointers {
 			'options' => array(
 				'content'  => sprintf(
 					'<h3>%s</h3><p>%s</p>',
-					sprintf( __( '%s Field', 'wp-subtitle' ), WPSubtitle_Admin::get_meta_box_title( get_post_type( get_queried_object_id() ) ) ),
-					__( 'This field has moved from a meta box to below the post title.', 'wp-subtitle' )
+					/* translators: %s: Subtitle field label. */
+					sprintf( esc_html__( '%s Field', 'wp-subtitle' ), esc_html( WPSubtitle_Admin::get_meta_box_title( get_post_type( get_queried_object_id() ) ) ) ),
+					esc_html__( 'This field has moved from a meta box to below the post title.', 'wp-subtitle' )
 				),
 				'position' => array(
 					'edge'  => 'top',
