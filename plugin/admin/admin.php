@@ -408,7 +408,7 @@ class WPSubtitle_Admin {
 		// Check data and save
 		if ( isset( $_POST['wps_subtitle'] ) ) {
 
-			$new_value = wp_kses_post( wp_unslash( $_POST['wps_subtitle'] ) );
+			$new_value = self::sanitize_subtitle_value( wp_unslash( $_POST['wps_subtitle'] ) );
 
 			$subtitle = new WP_Subtitle( $post_id );
 
@@ -521,6 +521,10 @@ class WPSubtitle_Admin {
 	}
 
 	public static function sanitize_subtitle_value( $value ) {
+
+		if ( ! is_string( $value ) ) {
+			$value = '';
+		}
 
 		return wp_kses( $value, wp_kses_allowed_html( 'data' ) );
 

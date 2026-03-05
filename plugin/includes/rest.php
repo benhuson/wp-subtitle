@@ -81,7 +81,7 @@ class WPSubtitle_REST {
 	 */
 	public function update_rest_field( $value, $object ) {
 
-		update_post_meta( $object->ID, 'wps_subtitle', wp_kses_post( $value ) );
+		update_post_meta( $object->ID, 'wps_subtitle', WPSubtitle_Admin::sanitize_subtitle_value( $value ) );
 
 	}
 
